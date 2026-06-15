@@ -41,67 +41,67 @@ Progetto "MakerManager" di Giuseppe Vaglica per il corso di Programmazione Avanz
 
 Il progetto **MakerManager** è un applicazione distribuita realizzata in Java che permette ad hobbisti e professionisti (maker) di gestire in modo efficiente il proprio inventario hardware e la pianificazione dei progetti. Il sistema si compone di un'interfaccia grafica intuitiva realizzata in JavaFX e di un servizio backend autonomo che gestisce la logica di business e la persistenza dei dati. L'obiettivo principale è mettere in correlazione i componenti posseduti dall'utente (es. sensori, microcontrollori, filamenti 3D) con i requisiti di nuovi progetti, permettendo di stimare costi, tenere traccia del tempo impiegato e verificare la fattibilità costruttiva in base alle giacenze.
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ## Sviluppo del software
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Changelog
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Roadmap
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ## Manuali
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Prerequisiti
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Installazione
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Altri manuali
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ## Funzionalità del servizio
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Descrizione del progetto
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Casi d'uso
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Esempi di utilizzo
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ## Informazioni generali
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Collaboratori
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Licenza
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Contatti
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ## Supporta il progetto
 
@@ -109,4 +109,4 @@ Se questo strumento ti è stato utile, ti ha fatto risparmiare tempo o semplicem
 
 È un piccolo gesto gratuito che mi aiuta tantissimo a mantenere il progetto attivo e visibile!
 
-<p align="right">(<a href="#progetto-di-programmazione-avanzata">ritorna all'inizio</a>)</p>
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
