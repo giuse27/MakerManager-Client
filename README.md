@@ -97,6 +97,8 @@ Il progetto **MakerManager** è un applicazione distribuita realizzata in Java c
 
 ### Licenza
 
+Puoi consultare la licenza di questo progetto nel file ['LICENSE'](./LICENSE).
+
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Contatti
