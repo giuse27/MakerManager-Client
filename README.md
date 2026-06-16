@@ -1,5 +1,13 @@
 # MakerManager
 
+</br>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Stato-Work_in_Progress-yellow?style=for-the-badge" alt="Work in Progress Banner">
+</div>
+
+</br>
+
 <p align="center">
   <a href="https://github.com/giuse27/MakerManager-Client">
     <img src="https://img.shields.io/github/stars/giuse27/MakerManager-Client?style=social" alt="Stars">
@@ -46,21 +54,40 @@ Il progetto **MakerManager** è un applicazione distribuita realizzata in Java c
 
 ## Sviluppo del software
 
+> [!warning] ATTENZIONE  
+> Lo sviluppo di questo progetto è stato diviso in due repository per esigenze legate alla consegna del progetto:
+> * **[Repo - MakerManager-Client]** per lo sviluppo dell'interfaccia di MakerManager
+> * **[Repo - MakerManager-Server]** per la logica di back-end del server
+
+> Nonostante le due repository siano separate tutta la documentazione è contenuta qua dentro e fa riferimento al software MakerManager nel suo complesso. Pertanto, **è possibile fare affidamento al solo contenuto di questa repository**.  
+
+> Anche le **versioni** presenti nelle due repo sono coerenti
+
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Changelog
 
-Puoi consultare il changelog di questo progetto nel file [`CHANGELOG.md`](./CHANGELOG.md).
+Puoi consultare il changelog per i dettagli delle varie versioni di questo progetto nel file [`CHANGELOG.md`](./CHANGELOG.md).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
-### Roadmap
+### Roadmap  
+
+> [!note] 
+> La **roadmap** elenca le funzioni già realizzate e da realizzare del progetto. Non dà dettagli implementativi ma serve solo per tenere traccia del **quadro generale** del progetto.
+
+* [X] Creazione del progetto MakerManager-Client
+* [X] Creazione del progetto MakerManager-Server
+* [ ] Implementazione dei meccanismi di base
+  * [ ] Interfaccia grafica
+  * [ ] Inventario personale
+  * [ ] Database progetti 
+
+> v0.0.0
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ## Manuali
-
-<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Prerequisiti
 
@@ -76,8 +103,6 @@ Puoi consultare il changelog di questo progetto nel file [`CHANGELOG.md`](./CHAN
 
 ## Funzionalità del servizio
 
-<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
-
 ### Descrizione del progetto
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
@@ -91,8 +116,6 @@ Puoi consultare il changelog di questo progetto nel file [`CHANGELOG.md`](./CHAN
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ## Informazioni generali
-
-<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Collaboratori
 
@@ -119,3 +142,6 @@ Se questo strumento ti è stato utile, ti ha fatto risparmiare tempo o semplicem
 È un piccolo gesto gratuito che mi aiuta tantissimo a mantenere il progetto attivo e visibile!
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
+
+[Repo - MakerManager-Client]: https://github.com/giuse27/MakerManager-Client
+[Repo - MakerManager-Server]: https://github.com/giuse27/MakerManager-Server
