@@ -50,7 +50,7 @@ Il progetto **MakerManager** è un applicazione distribuita realizzata in Java c
 
 ### Changelog
 
-Puoi consultare il changelog di questo progetto nel file ['CHANGELOG.md'](./CHANGELOG.md).
+Puoi consultare il changelog di questo progetto nel file [`CHANGELOG.md`](./CHANGELOG.md).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
@@ -100,7 +100,7 @@ Puoi consultare il changelog di questo progetto nel file ['CHANGELOG.md'](./CHAN
 
 ### Licenza
 
-Puoi consultare la licenza di questo progetto nel file ['LICENSE'](./LICENSE).
+Puoi consultare la licenza di questo progetto nel file [`LICENSE`](./LICENSE).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
