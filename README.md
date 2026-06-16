@@ -35,6 +35,7 @@ Progetto "MakerManager" di Giuseppe Vaglica per il corso di Programmazione Avanz
     - [Collaboratori](#collaboratori)
     - [Licenza](#licenza)
     - [Contatti](#contatti)
+  - [Informazioni sull'utilizzo dell'AI](#informazioni-sullutilizzo-dellai)
   - [Supporta il progetto](#supporta-il-progetto)
 
 ## Descrizione breve del progetto
@@ -48,6 +49,8 @@ Il progetto **MakerManager** è un applicazione distribuita realizzata in Java c
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Changelog
+
+Puoi consultare il changelog di questo progetto nel file ['CHANGELOG.md'](./CHANGELOG.md).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
@@ -102,6 +105,10 @@ Puoi consultare la licenza di questo progetto nel file ['LICENSE'](./LICENSE).
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Contatti
+
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
+
+## Informazioni sull'utilizzo dell'AI
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
