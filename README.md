@@ -90,9 +90,9 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
   * [X] Creazione e setup del progetto MakerManager-Server
     * [X] Configurazione della connessione MySQL in `application.properties`
   * [ ] Architettura base 
-    * [ ] package `model`
-      * [ ] inventario
-      * [ ] progetti
+    * [X] package `model`
+      * [X] inventario
+      * [X] progetti
     * [ ] package `repository`
     * [ ] package `controller`
     * [ ] package `dto`
