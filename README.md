@@ -93,10 +93,10 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
     * [X] package `model`
       * [X] inventario
       * [X] progetti
-    * [ ] package `repository`
+    * [X] package `repository`
     * [ ] package `controller`
     * [ ] package `dto`
-  * [ ] Verifica: avvio del server, Hibernate crea le tabelle vuote su MySQL 
+  * [X] Verifica: avvio del server, Hibernate crea le tabelle vuote su MySQL 
 </br>
 
 > Raggiungimento di [`v0.0.0`] (architettura base di MakerManager)
