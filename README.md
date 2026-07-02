@@ -76,13 +76,27 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
 > [!note] 
 > La **roadmap** elenca le funzioni già realizzate e da realizzare del progetto. Non dà dettagli implementativi ma serve solo per tenere traccia del **quadro generale** del progetto.
 
-* [X] Creazione del progetto MakerManager-Client
-* [X] Creazione del progetto MakerManager-Server
-* [ ] Implementazione dell'architettura base
-  * [ ] Interfaccia grafica
-  * [ ] Inventario personale
-  * [ ] Database progetti 
-
+* [ ] Client
+  * [X] Creazione e setup del progetto MakerManager-Client
+  * [ ] Architettura base
+    * [ ] package `model`: stesse classi dati (DTO) ridefinite lato client, senza annotazioni JPA
+    * [ ] package `view`/`FXML`: schermata minima con un bottone "Inizializza"
+    * [ ] package `controller` (JavaFX controller, da non confondere col controller Spring): gestisce il click e chiama l'endpoint HTTP 
+    * [ ] package `service`/`network`: classe che fa la chiamata HTTP e serializza/deserializza JSON (Gson)
+  * [ ] Comunicazione con il Server
+    * [ ] Verifica: click sul bottone → richiesta arriva al server → risposta mostrata (es. in una label o console)
+  * [ ] Unit test minimo (almeno 1, es. su un modello o un componente semplice)
+* [ ] Server
+  * [X] Creazione e setup del progetto MakerManager-Server
+    * [X] Configurazione della connessione MySQL in `application.properties`
+  * [ ] Architettura base 
+    * [ ] package `model`
+      * [ ] inventario
+      * [ ] progetti
+    * [ ] package `repository`
+    * [ ] package `controller`
+    * [ ] package `dto`
+  * [ ] Verifica: avvio del server, Hibernate crea le tabelle vuote su MySQL 
 </br>
 
 > Raggiungimento di [`v0.0.0`] (architettura base di MakerManager)
