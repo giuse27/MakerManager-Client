@@ -86,16 +86,19 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
   * [ ] Comunicazione con il Server
     * [ ] Verifica: click sul bottone → richiesta arriva al server → risposta mostrata (es. in una label o console)
   * [ ] Unit test minimo (almeno 1, es. su un modello o un componente semplice)
-* [ ] Server
+* [X] Server
   * [X] Creazione e setup del progetto MakerManager-Server
     * [X] Configurazione della connessione MySQL in `application.properties`
-  * [ ] Architettura base 
+  * [X] Architettura base 
     * [X] package `model`
       * [X] inventario
       * [X] progetti
     * [X] package `repository`
-    * [ ] package `controller`
-    * [ ] package `dto`
+    * [X] `/inizializza`
+      * [X] package `controller` (solo `/inizializza`)
+      * [X] package `dto/init`
+      * [X] package `service` (solo `InizializzazioneService.java`)
+      * [X] `catalogo-iniziale.json`
   * [X] Verifica: avvio del server, Hibernate crea le tabelle vuote su MySQL 
 </br>
 
