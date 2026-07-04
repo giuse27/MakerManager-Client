@@ -98,14 +98,14 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
       * [X] Elimina un inventario a partire dal suo id
       * [X] Aggiungi un articolo a un inventario
       * [X] Elimina un articolo dall'inventario a partire dal suo id
-    * [ ] `/api/progetti...`
+    * [X] `/api/progetti...`
       * [X] Visualizza tutti i progetti
-      * [ ] Visualizza un progetto a partire dal suo id
+      * [X] Visualizza un progetto a partire dal suo id
       * [X] Visualizza i progetti di una tipologia
       * [X] Crea un nuovo progetto
       * [X] Elimina un progetto a partire dal suo id
-      * [ ] Aggiungi una riga alla BOM di un progetto
-      * [ ] Elimina una riga dalla BOM di un progetto a partire dal suo id 
+      * [X] Aggiungi una riga alla BOM di un progetto
+      * [X] Elimina una riga dalla BOM di un progetto a partire dal suo id 
 
 </br>
 
