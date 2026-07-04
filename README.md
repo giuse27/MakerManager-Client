@@ -79,38 +79,67 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
 * [ ] Client
   * [X] Creazione e setup del progetto MakerManager-Client
   * [ ] Architettura base
-    * [ ] package `model`: stesse classi dati (DTO) ridefinite lato client, senza annotazioni JPA
-    * [ ] package `view`/`FXML`: schermata minima con un bottone "Inizializza"
-    * [ ] package `controller` (JavaFX controller, da non confondere col controller Spring): gestisce il click e chiama l'endpoint HTTP 
-    * [ ] package `service`/`network`: classe che fa la chiamata HTTP e serializza/deserializza JSON (Gson)
-  * [ ] Comunicazione con il Server
-    * [ ] Verifica: click sul bottone → richiesta arriva al server → risposta mostrata (es. in una label o console)
-  * [ ] Unit test minimo (almeno 1, es. su un modello o un componente semplice)
+    * [ ] Interfaccia minimale per testare gli endpoint del server
+    * [ ] Tutti gli endpoint creati lato server possono essere testati
 * [X] Server
   * [X] Creazione e setup del progetto MakerManager-Server
     * [X] Configurazione della connessione MySQL in `application.properties`
-  * [X] Architettura base 
-    * [X] package `model`
-      * [X] inventario
-      * [X] progetti
-    * [X] package `repository`
+  * [X] Architettura base
     * [X] `/inizializza`
-      * [X] package `controller` (solo `/inizializza`)
-      * [X] package `dto/init`
-      * [X] package `service` (solo `InizializzazioneService.java`)
-      * [X] `catalogo-iniziale.json`
-  * [X] Verifica: avvio del server, Hibernate crea le tabelle vuote su MySQL 
+    * [X] `/api/catalogo...`
+      * [X] Visualizza elementi in catalogo
+      * [X] Aggiungi un elemento al catalogo
+      * [X] Elimina un elemento dal catalogo a partire dal suo id
+    * [X] `/api/inventario...`
+      * [X] Visualizza tutti gli inventari
+      * [X] Visualizza il contenuto di un inventario
+      * [X] Visualizza gli inventari di un utente
+      * [X] Crea un nuovo inventario
+      * [X] Elimina un inventario a partire dal suo id
+      * [X] Aggiungi un articolo a un inventario
+      * [X] Elimina un articolo dall'inventario a partire dal suo id
+    * [ ] `/api/progetti...`
+      * [X] Visualizza tutti i progetti
+      * [ ] Visualizza un progetto a partire dal suo id
+      * [X] Visualizza i progetti di una tipologia
+      * [X] Crea un nuovo progetto
+      * [X] Elimina un progetto a partire dal suo id
+      * [ ] Aggiungi una riga alla BOM di un progetto
+      * [ ] Elimina una riga dalla BOM di un progetto a partire dal suo id 
+
 </br>
 
 > Raggiungimento di [`v0.0.0`] (architettura base di MakerManager)
 
 </br>
 
-* [ ] Implementazione delle funzioni di base
-  * [ ] Visualizzazione dei progetti presenti in catalogo
-  * [ ] Creazione di un nuovo progetto in catalogo
-  * [ ] Creazione di un nuovo inventario
-  * [ ] Gestione del proprio inventario
+* [ ] Client
+  * [ ] Implementazione di una GUI funzionale
+    * [ ] Creazione dell'utente
+    * [ ] Dashboard utente
+      * [ ] L'utente può visualizzare e gestire i suoi progetti
+      * [ ] L'utente può visualizzare e gestire i suoi inventari
+        * [ ] L'utente può creare un nuovo articolo in inventario selezionando un elemento catalogo già esistente o in alternativa può crearne uno nuovo
+    * [ ] Dashboard globale
+      * [ ] L'utente può visualizzare i progetti nel catalogo globale
+      * [ ] L'utente può aprire un progetto per visualizzarne le caratteristiche
+* [ ] Server
+  * [ ] Utente
+    * [ ] Registrazione con nickname email e password
+      * [ ] Sistema con token di autorizzazione (JWT)
+    * [ ] Autenticazione e permessi sugli endpoint
+  * [ ] Sistema multi ruolo (utente e admin)
+  * [ ] Endpoint avanzati per la modifica di entità già esistenti
+    * [ ] Catalogo
+      * [ ] È possibile modificare un elemento in catalogo
+    * [ ] Progetti
+      * [ ] È possibile modificare un progetto
+      * [ ] È possibile modificare il contenuto della BOM
+    * [ ] Inventario
+      * [ ] È possibile modificare un inventario
+      * [ ] È possibile modificare il contenuto di un inventario
+  * [ ] Logica di business
+    * [ ] Progetti consigliati sulla base delle proprie risorse
 
 </br>
 
@@ -118,19 +147,19 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
 
 </br>
 
-* [ ] Funzionalità avanzate del progetto
-  * [ ] Progetti consigliati sulla base delle proprie risorse
+* [ ] Funzioni future 
+  * [ ] Interazione con altri utenti
   * [ ] Interfaccia di prototipazione
+    * [ ] Diario personale
+    * [ ] Funzionalità basate sulla logica economica
+      * [ ] Ricerca di progetti tramite budget personale
+  * [ ] Possibilità di rendere i progetti privati o pubblici
 
 </br>
 
 > Raggiungimento di [`v2.0.0`] (prima versione completa di MakerManager)
 
 </br>
-
-* [ ] Funzioni future 
-  * [ ] Profilo utente
-  * [ ] Interazione con altri utenti
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
