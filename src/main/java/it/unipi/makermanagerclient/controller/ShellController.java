@@ -97,7 +97,7 @@ public class ShellController implements Initializable {
         controllerProgetti.impostaSpinnerCondiviso(spinnerIdProgetto);
 
         areaContenuti.getChildren().addAll(
-                pannelloInizializzazione, pannelloCatalogo
+                pannelloInizializzazione, pannelloCatalogo, pannelloInventario, pannelloProgetti
         );
 
     }
