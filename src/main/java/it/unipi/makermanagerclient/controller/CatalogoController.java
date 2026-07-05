@@ -3,12 +3,12 @@ package it.unipi.makermanagerclient.controller;
 import it.unipi.makermanagerclient.config.AppConfig;
 import it.unipi.makermanagerclient.network.ApiClient;
 import it.unipi.makermanagerclient.util.OutputFormatter;
+import it.unipi.makermanagerclient.util.SpinnerFactories;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -71,7 +71,7 @@ public class CatalogoController implements Initializable {
         // SpinnerValueFactory: definisce il range di valori accettati
         // dallo Spinner (qui: interi da 1 in su, valore iniziale 1).
         spinnerIdElimina.setValueFactory(
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE, 1)
+                SpinnerFactories.interoSicuro(1, Integer.MAX_VALUE, 1)
         );
 
     }

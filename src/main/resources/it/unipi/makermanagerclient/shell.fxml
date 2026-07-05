@@ -26,43 +26,59 @@
 <HBox xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="it.unipi.makermanagerclient.controller.ShellController"
-      spacing="14.0">
+      spacing="20.0">
 
     <padding>
-        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+        <Insets bottom="18.0" left="18.0" right="18.0" top="18.0" />
     </padding>
 
     <children>
 
         <!-- ================= SIDEBAR ================= -->
-        <VBox spacing="6.0" prefWidth="170.0" minWidth="170.0">
+        <VBox styleClass="sidebar" spacing="8.0" prefWidth="230.0" minWidth="230.0">
             <children>
 
-                <Label text="MakerManager" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
-                <Separator />
+                <Label text="MakerManager" styleClass="app-title" />
+                <Separator>
+                    <VBox.margin>
+                        <Insets bottom="6.0" top="10.0" />
+                    </VBox.margin>
+                </Separator>
 
-                <Button fx:id="bottoneInizializzazione" text="Inizializzazione" maxWidth="Infinity" onAction="#mostraInizializzazione" />
-                <Button fx:id="bottoneCatalogo" text="Catalogo" maxWidth="Infinity" onAction="#mostraCatalogo" />
-                <Button fx:id="bottoneInventario" text="Inventario" maxWidth="Infinity" onAction="#mostraInventario" />
-                <Button fx:id="bottoneProgetti" text="Progetti" maxWidth="Infinity" onAction="#mostraProgetti" />
+                <Button fx:id="bottoneInizializzazione" styleClass="nav-button" text="Inizializzazione" maxWidth="Infinity" onAction="#mostraInizializzazione" />
+                <Button fx:id="bottoneCatalogo" styleClass="nav-button" text="Catalogo" maxWidth="Infinity" onAction="#mostraCatalogo" />
+                <Button fx:id="bottoneInventario" styleClass="nav-button" text="Inventario" maxWidth="Infinity" onAction="#mostraInventario" />
+                <Button fx:id="bottoneProgetti" styleClass="nav-button" text="Progetti" maxWidth="Infinity" onAction="#mostraProgetti" />
 
                 <Separator>
                     <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="14.0" />
                     </VBox.margin>
                 </Separator>
-                <Label text="Parametri comuni" style="-fx-font-size: 10px; -fx-text-fill: gray;" />
+                <Label text="Parametri comuni" styleClass="sidebar-section-label">
+                    <VBox.margin>
+                        <Insets bottom="4.0" />
+                    </VBox.margin>
+                </Label>
 
                 <!-- Parametri comuni al dominio Inventario -->
-                <Label text="idInventario" style="-fx-font-size: 11px;" />
-                <Spinner fx:id="spinnerIdInventario" editable="true" prefWidth="150.0" />
+                <Label text="idInventario" styleClass="field-label" />
+                <Spinner fx:id="spinnerIdInventario" editable="true" prefWidth="198.0" />
 
-                <Label text="idUtente" style="-fx-font-size: 11px;" />
-                <Spinner fx:id="spinnerIdUtente" editable="true" prefWidth="150.0" />
+                <Label text="idUtente" styleClass="field-label">
+                    <VBox.margin>
+                        <Insets top="6.0" />
+                    </VBox.margin>
+                </Label>
+                <Spinner fx:id="spinnerIdUtente" editable="true" prefWidth="198.0" />
 
                 <!-- Parametro comune al dominio Progetti -->
-                <Label text="idProgetto" style="-fx-font-size: 11px;" />
-                <Spinner fx:id="spinnerIdProgetto" editable="true" prefWidth="150.0" />
+                <Label text="idProgetto" styleClass="field-label">
+                    <VBox.margin>
+                        <Insets top="6.0" />
+                    </VBox.margin>
+                </Label>
+                <Spinner fx:id="spinnerIdProgetto" editable="true" prefWidth="198.0" />
 
             </children>
         </VBox>

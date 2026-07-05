@@ -14,30 +14,28 @@
 <VBox xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="it.unipi.makermanagerclient.controller.CatalogoController"
-      spacing="10.0">
+      spacing="16.0">
 
     <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
     </padding>
 
     <children>
 
-        <Label text="Catalogo" style="-fx-font-size: 15px; -fx-font-weight: bold;" />
+        <Label text="Catalogo" styleClass="panel-title" />
 
         <!-- Visualizza elementi in catalogo -->
-        <VBox style="-fx-background-color: #f4f4f4; -fx-background-radius: 6;" spacing="6.0">
-            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+        <VBox styleClass="card" spacing="10.0">
             <children>
-                <Label text="Visualizza catalogo" style="-fx-font-weight: bold; -fx-font-size: 12px;" />
+                <Label text="Visualizza catalogo" styleClass="card-title" />
                 <Button fx:id="bottoneLista" text="GET /api/catalogo" maxWidth="Infinity" onAction="#onLista" />
             </children>
         </VBox>
 
         <!-- Aggiungi elemento al catalogo -->
-        <VBox style="-fx-background-color: #f4f4f4; -fx-background-radius: 6;" spacing="6.0">
-            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+        <VBox styleClass="card" spacing="10.0">
             <children>
-                <Label text="Aggiungi elemento" style="-fx-font-weight: bold; -fx-font-size: 12px;" />
+                <Label text="Aggiungi elemento" styleClass="card-title" />
                 <TextField fx:id="campoNome" promptText="nome" />
                 <TextField fx:id="campoDescrizione" promptText="descrizione" />
                 <ComboBox fx:id="comboTipologia" maxWidth="Infinity" promptText="tipologia" />
@@ -46,23 +44,22 @@
         </VBox>
 
         <!-- Elimina elemento dal catalogo -->
-        <VBox style="-fx-background-color: #f4f4f4; -fx-background-radius: 6;" spacing="6.0">
-            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+        <VBox styleClass="card" spacing="10.0">
             <children>
-                <Label text="Elimina elemento" style="-fx-font-weight: bold; -fx-font-size: 12px;" />
-                <HBox spacing="6.0">
+                <Label text="Elimina elemento" styleClass="card-title" />
+                <HBox spacing="10.0">
                     <children>
-                        <Spinner fx:id="spinnerIdElimina" editable="true" prefWidth="90.0" />
-                        <Button fx:id="bottoneElimina" text="DELETE /api/catalogo/{id}" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#onElimina" />
+                        <Spinner fx:id="spinnerIdElimina" editable="true" prefWidth="110.0" />
+                        <Button fx:id="bottoneElimina" styleClass="danger" text="DELETE /api/catalogo/{id}" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#onElimina" />
                     </children>
                 </HBox>
             </children>
         </VBox>
 
-        <Label text="Output" style="-fx-font-weight: bold;" />
-        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+        <Label text="Output" styleClass="output-title" />
+        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" styleClass="output-scroll">
             <content>
-                <TextArea fx:id="areaOutput" editable="false" wrapText="true" />
+                <TextArea fx:id="areaOutput" editable="false" wrapText="true" styleClass="output-area" />
             </content>
         </ScrollPane>
 

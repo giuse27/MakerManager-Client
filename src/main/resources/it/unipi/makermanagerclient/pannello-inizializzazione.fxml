@@ -10,30 +10,27 @@
 <VBox xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="it.unipi.makermanagerclient.controller.InizializzazioneController"
-      spacing="10.0">
+      spacing="16.0">
 
     <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
     </padding>
 
     <children>
 
-        <Label text="Inizializzazione database" style="-fx-font-size: 15px; -fx-font-weight: bold;" />
+        <Label text="Inizializzazione database" styleClass="panel-title" />
 
-        <VBox style="-fx-background-color: #f4f4f4; -fx-background-radius: 6;" spacing="8.0">
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </padding>
+        <VBox styleClass="card" spacing="10.0">
             <children>
-                <Label text="Nessun parametro richiesto. Cancella e ricarica tutti i dati dal file JSON iniziale." wrapText="true" style="-fx-font-size: 11px; -fx-text-fill: gray;" />
-                <Button fx:id="bottoneInizializza" text="POST /inizializza" maxWidth="Infinity" onAction="#onInizializza" />
+                <Label text="Nessun parametro richiesto. Cancella e ricarica tutti i dati dal file JSON iniziale." wrapText="true" styleClass="hint-label" />
+                <Button fx:id="bottoneInizializza" styleClass="danger" text="POST /inizializza" maxWidth="Infinity" onAction="#onInizializza" />
             </children>
         </VBox>
 
-        <Label text="Output" style="-fx-font-weight: bold;" />
-        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+        <Label text="Output" styleClass="output-title" />
+        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" styleClass="output-scroll">
             <content>
-                <TextArea fx:id="areaOutput" editable="false" wrapText="true" />
+                <TextArea fx:id="areaOutput" editable="false" wrapText="true" styleClass="output-area" />
             </content>
         </ScrollPane>
 

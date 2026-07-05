@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.unipi.makermanagerclient.util.SpinnerFactories;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -61,13 +61,13 @@ public class ShellController implements Initializable {
     private void configuraSpinnerCondivisi() {
 
         spinnerIdInventario.setValueFactory(
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE, 1)
+                SpinnerFactories.interoSicuro(1, Integer.MAX_VALUE, 1)
         );
         spinnerIdUtente.setValueFactory(
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE, 1)
+                SpinnerFactories.interoSicuro(1, Integer.MAX_VALUE, 1)
         );
         spinnerIdProgetto.setValueFactory(
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE, 1)
+                SpinnerFactories.interoSicuro(1, Integer.MAX_VALUE, 1)
         );
 
     }

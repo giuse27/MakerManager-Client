@@ -21,8 +21,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("shell"), 780, 640);
+        scene = new Scene(loadFXML("shell"), 1360, 900);
+        scene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
         stage.setTitle("MakerManager");
+        stage.setMinWidth(1100);
+        stage.setMinHeight(720);
         stage.setScene(scene);
         stage.show();
     }
