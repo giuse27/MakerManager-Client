@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    Shell principale del Client: sidebar di navigazione fissa a sinistra,
+    area contenuti a destra. I 4 pannelli (Inizializzazione, Catalogo,
+    Inventario, Progetti) vengono precaricati una sola volta dal
+    ShellController e inseriti dentro areaContenuti (uno StackPane):
+    cambiare sezione significa solo mostrare/nascondere il pannello gia'
+    esistente, non ricrearlo. Questo preserva lo stato (in particolare
+    l'ultimo output mostrato) di ogni pannello quando si cambia sezione.
+
+    I campi "idInventario"/"idUtente"/"idProgetto" nella sidebar sono
+    parametri comuni condivisi tra piu' endpoint dello stesso dominio:
+    i pannelli Inventario e Progetti li leggono da qui invece di avere
+    un proprio campo duplicato per ciascun blocco che li usa.
+-->
+<HBox xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="it.unipi.makermanagerclient.controller.ShellController"
+      spacing="14.0">
+
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+    </padding>
+
+    <children>
+
+        <!-- ================= SIDEBAR ================= -->
+        <VBox spacing="6.0" prefWidth="170.0" minWidth="170.0">
+            <children>
+
+                <Label text="MakerManager" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                <Separator />
+
+                <Button fx:id="bottoneInizializzazione" text="Inizializzazione" maxWidth="Infinity" onAction="#mostraInizializzazione" />
+                <Button fx:id="bottoneCatalogo" text="Catalogo" maxWidth="Infinity" onAction="#mostraCatalogo" />
+                <Button fx:id="bottoneInventario" text="Inventario" maxWidth="Infinity" onAction="#mostraInventario" />
+                <Button fx:id="bottoneProgetti" text="Progetti" maxWidth="Infinity" onAction="#mostraProgetti" />
+
+                <Separator>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </Separator>
+                <Label text="Parametri comuni" style="-fx-font-size: 10px; -fx-text-fill: gray;" />
+
+                <!-- Parametri comuni al dominio Inventario -->
+                <Label text="idInventario" style="-fx-font-size: 11px;" />
+                <Spinner fx:id="spinnerIdInventario" editable="true" prefWidth="150.0" />
+
+                <Label text="idUtente" style="-fx-font-size: 11px;" />
+                <Spinner fx:id="spinnerIdUtente" editable="true" prefWidth="150.0" />
+
+                <!-- Parametro comune al dominio Progetti -->
+                <Label text="idProgetto" style="-fx-font-size: 11px;" />
+                <Spinner fx:id="spinnerIdProgetto" editable="true" prefWidth="150.0" />
+
+            </children>
+        </VBox>
+
+        <!-- ================= AREA CONTENUTI ================= -->
+        <StackPane fx:id="areaContenuti" HBox.hgrow="ALWAYS" />
+
+    </children>
+</HBox>
