@@ -1,0 +1,174 @@
+/*
+ * Foglio di stile globale del Client. Caricato una sola volta sulla
+ * Scene principale (vedi App.java), si applica quindi a shell.fxml e a
+ * tutti i pannelli che vi vengono innestati.
+ */
+
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-background-color: #eef1f6;
+}
+
+/* ================= Sidebar ================= */
+
+.sidebar {
+    -fx-background-color: #232a3d;
+    -fx-background-radius: 12;
+    -fx-padding: 20 16 20 16;
+}
+
+.app-title {
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.sidebar .separator .line {
+    -fx-border-color: #3b4459;
+    -fx-border-width: 1 0 0 0;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ccd1e0;
+    -fx-font-size: 14.5px;
+    -fx-font-weight: 600;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 11 14 11 14;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #323c56;
+    -fx-text-fill: white;
+}
+
+.nav-button:pressed, .nav-button:armed {
+    -fx-background-color: #465080;
+}
+
+.sidebar-section-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #7d84a0;
+    -fx-font-weight: 700;
+}
+
+.field-label {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: #b7bcd0;
+    -fx-font-weight: 600;
+}
+
+/* ================= Contenuto pannelli ================= */
+
+.panel-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #232a3d;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #dde2ec;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(30,34,60,0.08), 10, 0, 0, 2);
+}
+
+.card-title {
+    -fx-font-size: 15.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #232a3d;
+}
+
+.hint-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #8b90a3;
+    -fx-font-style: italic;
+}
+
+.output-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #232a3d;
+}
+
+/* ================= Controlli ================= */
+
+.card .button {
+    -fx-font-size: 13.5px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 16 10 16;
+    -fx-background-radius: 7;
+    -fx-background-color: #3a6df0;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.card .button:hover {
+    -fx-background-color: #2f5bd0;
+}
+
+.card .button:pressed, .card .button:armed {
+    -fx-background-color: #24469f;
+}
+
+.card .button.danger {
+    -fx-background-color: #e0473d;
+}
+
+.card .button.danger:hover {
+    -fx-background-color: #c53a31;
+}
+
+.card .button.danger:pressed, .card .button.danger:armed {
+    -fx-background-color: #9c2e27;
+}
+
+.text-field, .combo-box, .spinner {
+    -fx-font-size: 13.5px;
+}
+
+.text-field, .combo-box .list-cell {
+    -fx-padding: 6 8 6 8;
+}
+
+.spinner .text-field {
+    -fx-padding: 5 8 5 8;
+}
+
+/* ================= Area di output ================= */
+
+.output-area, .output-area .content {
+    -fx-background-color: #1e2433;
+}
+
+.output-area {
+    -fx-font-family: "Consolas", "Menlo", "Monaco", monospace;
+    -fx-font-size: 13px;
+    -fx-text-fill: #e3e7f5;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #333c54;
+    -fx-border-width: 1;
+    -fx-highlight-fill: #3a6df0;
+    -fx-highlight-text-fill: white;
+}
+
+.output-area .content {
+    -fx-background-radius: 8;
+}
+
+.output-scroll {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.output-scroll > .viewport {
+    -fx-background-color: transparent;
+}
