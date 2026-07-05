@@ -85,6 +85,7 @@
                         <!-- Aggiungi riga BOM -->
                         <VBox spacing="10.0" styleClass="card">
                             <children>
+                                <Label styleClass="card-title" text="Aggiungi riga BOM" />
                                 <Label styleClass="hint-label" text="usa idProgetto dalla sidebar" />
                         <HBox prefHeight="0.0" prefWidth="515.0">
                            <children>
@@ -111,7 +112,6 @@
                            </children>
                         </HBox>
                                 <Button fx:id="bottoneAggiungiRigaBom" maxWidth="Infinity" onAction="#onAggiungiRigaBom" text="POST /api/progetti/{idProgetto}/bom" />
-                                <Label styleClass="card-title" text="Aggiungi riga BOM" />
                             </children>
                         </VBox>
 
