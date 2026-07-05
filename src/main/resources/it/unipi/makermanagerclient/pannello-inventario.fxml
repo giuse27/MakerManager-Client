@@ -19,10 +19,8 @@
     riceve i relativi Spinner da ShellController dopo il caricamento
     (vedi ShellController.inizializzaControllori()).
 -->
-<VBox xmlns="http://javafx.com/javafx/8.0.171"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="it.unipi.makermanagerclient.controller.InventarioController"
-      spacing="14.0">
+
+<VBox spacing="14.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipi.makermanagerclient.controller.InventarioController">
 
     <padding>
         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -30,81 +28,91 @@
 
     <children>
 
-        <Label text="Inventario" styleClass="panel-title" />
+        <Label styleClass="panel-title" text="Inventario" />
 
-        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="output-scroll">
+        <ScrollPane fitToWidth="true" styleClass="output-scroll" VBox.vgrow="ALWAYS">
             <content>
                 <VBox spacing="14.0">
                     <children>
 
                         <!-- Visualizza tutti gli inventari -->
-                        <VBox styleClass="card" spacing="10.0">
+                        <VBox spacing="10.0" styleClass="card">
                             <children>
-                                <Label text="Tutti gli inventari" styleClass="card-title" />
-                                <Button fx:id="bottoneTuttiGliInventari" text="GET /api/inventario" maxWidth="Infinity" onAction="#onTuttiGliInventari" />
+                                <Label styleClass="card-title" text="Tutti gli inventari" />
+                                <Button fx:id="bottoneTuttiGliInventari" maxWidth="Infinity" onAction="#onTuttiGliInventari" text="GET /api/inventario" />
                             </children>
                         </VBox>
 
                         <!-- Contenuto di un inventario -->
-                        <VBox styleClass="card" spacing="10.0">
+                        <VBox spacing="10.0" styleClass="card">
                             <children>
-                                <Label text="Contenuto inventario" styleClass="card-title" />
-                                <Label text="usa idInventario dalla sidebar" styleClass="hint-label" />
-                                <Button fx:id="bottoneContenutoInventario" text="GET /api/inventario/{idInventario}" maxWidth="Infinity" onAction="#onContenutoInventario" />
+                                <Label styleClass="card-title" text="Contenuto inventario" />
+                                <Label styleClass="hint-label" text="usa idInventario dalla sidebar" />
+                                <Button fx:id="bottoneContenutoInventario" maxWidth="Infinity" onAction="#onContenutoInventario" text="GET /api/inventario/{idInventario}" />
                             </children>
                         </VBox>
 
                         <!-- Inventari di un utente -->
-                        <VBox styleClass="card" spacing="10.0">
+                        <VBox spacing="10.0" styleClass="card">
                             <children>
-                                <Label text="Inventari di un utente" styleClass="card-title" />
-                                <Label text="usa idUtente dalla sidebar" styleClass="hint-label" />
-                                <Button fx:id="bottoneInventariUtente" text="GET /api/inventario/utente/{idUtente}" maxWidth="Infinity" onAction="#onInventariUtente" />
+                                <Label styleClass="card-title" text="Inventari di un utente" />
+                                <Label styleClass="hint-label" text="usa idUtente dalla sidebar" />
+                                <Button fx:id="bottoneInventariUtente" maxWidth="Infinity" onAction="#onInventariUtente" text="GET /api/inventario/utente/{idUtente}" />
                             </children>
                         </VBox>
 
                         <!-- Crea nuovo inventario -->
-                        <VBox styleClass="card" spacing="10.0">
+                        <VBox spacing="10.0" styleClass="card">
                             <children>
-                                <Label text="Crea inventario" styleClass="card-title" />
-                                <Label text="usa idUtente dalla sidebar" styleClass="hint-label" />
+                                <Label styleClass="card-title" text="Crea inventario" />
+                                <Label styleClass="hint-label" text="usa idUtente dalla sidebar" />
                                 <TextField fx:id="campoNomeInventario" promptText="nome" />
-                                <Button fx:id="bottoneCreaInventario" text="POST /api/inventario" maxWidth="Infinity" onAction="#onCreaInventario" />
+                                <Button fx:id="bottoneCreaInventario" maxWidth="Infinity" onAction="#onCreaInventario" text="POST /api/inventario" />
                             </children>
                         </VBox>
 
                         <!-- Elimina inventario -->
-                        <VBox styleClass="card" spacing="10.0">
+                        <VBox spacing="10.0" styleClass="card">
                             <children>
-                                <Label text="Elimina inventario" styleClass="card-title" />
-                                <Label text="usa idInventario dalla sidebar" styleClass="hint-label" />
-                                <Button fx:id="bottoneEliminaInventario" styleClass="danger" text="DELETE /api/inventario/{idInventario}" maxWidth="Infinity" onAction="#onEliminaInventario" />
+                                <Label styleClass="card-title" text="Elimina inventario" />
+                                <Label styleClass="hint-label" text="usa idInventario dalla sidebar" />
+                                <Button fx:id="bottoneEliminaInventario" maxWidth="Infinity" onAction="#onEliminaInventario" styleClass="danger" text="DELETE /api/inventario/{idInventario}" />
                             </children>
                         </VBox>
 
                         <!-- Aggiungi articolo -->
-                        <VBox styleClass="card" spacing="10.0">
+                        <VBox spacing="10.0" styleClass="card">
                             <children>
-                                <Label text="Aggiungi articolo" styleClass="card-title" />
-                                <Label text="usa idInventario dalla sidebar" styleClass="hint-label" />
+                                <Label styleClass="card-title" text="Aggiungi articolo" />
+                                <Label styleClass="hint-label" text="usa idInventario dalla sidebar" />
                                 <HBox spacing="10.0">
                                     <children>
-                                        <Spinner fx:id="spinnerIdElementoCatalogo" editable="true" prefWidth="140.0" />
-                                        <Spinner fx:id="spinnerQuantitaArticolo" editable="true" prefWidth="110.0" />
+                              <VBox prefHeight="40.0" prefWidth="100.0">
+                                 <children>
+                                    <Label styleClass="hint-label" text="idElemento" />
+                                              <Spinner fx:id="spinnerIdElementoCatalogo" editable="true" prefWidth="140.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="40.0" prefWidth="100.0">
+                                 <children>
+                                    <Label styleClass="hint-label" text="quantità" />
+                                              <Spinner fx:id="spinnerQuantitaArticolo" editable="true" prefWidth="110.0" />
+                                 </children>
+                              </VBox>
                                     </children>
                                 </HBox>
-                                <Button fx:id="bottoneAggiungiArticolo" text="POST /api/inventario/articoli" maxWidth="Infinity" onAction="#onAggiungiArticolo" />
+                                <Button fx:id="bottoneAggiungiArticolo" maxWidth="Infinity" onAction="#onAggiungiArticolo" text="POST /api/inventario/articoli" />
                             </children>
                         </VBox>
 
                         <!-- Elimina articolo -->
-                        <VBox styleClass="card" spacing="10.0">
+                        <VBox spacing="10.0" styleClass="card">
                             <children>
-                                <Label text="Elimina articolo" styleClass="card-title" />
+                                <Label styleClass="card-title" text="Elimina articolo (inserisci il suo idArticolo)" />
                                 <HBox spacing="10.0">
                                     <children>
                                         <Spinner fx:id="spinnerIdArticolo" editable="true" prefWidth="120.0" />
-                                        <Button fx:id="bottoneEliminaArticolo" styleClass="danger" text="DELETE /api/inventario/articoli/{id}" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#onEliminaArticolo" />
+                                        <Button fx:id="bottoneEliminaArticolo" maxWidth="Infinity" onAction="#onEliminaArticolo" styleClass="danger" text="DELETE /api/inventario/articoli/{id}" HBox.hgrow="ALWAYS" />
                                     </children>
                                 </HBox>
                             </children>
@@ -115,10 +123,10 @@
             </content>
         </ScrollPane>
 
-        <Label text="Output" styleClass="output-title" />
-        <ScrollPane fitToWidth="true" fitToHeight="true" prefHeight="240.0" styleClass="output-scroll">
+        <Label styleClass="output-title" text="Output" />
+        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="1080.0" styleClass="output-scroll">
             <content>
-                <TextArea fx:id="areaOutput" editable="false" wrapText="true" styleClass="output-area" />
+                <TextArea fx:id="areaOutput" editable="false" prefHeight="540.0" styleClass="output-area" wrapText="true" />
             </content>
         </ScrollPane>
 

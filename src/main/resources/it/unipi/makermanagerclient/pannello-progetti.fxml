@@ -85,15 +85,33 @@
                         <!-- Aggiungi riga BOM -->
                         <VBox spacing="10.0" styleClass="card">
                             <children>
-                                <Label styleClass="card-title" text="Aggiungi riga BOM" />
                                 <Label styleClass="hint-label" text="usa idProgetto dalla sidebar" />
-                                <HBox spacing="10.0">
-                                    <children>
-                                        <Spinner fx:id="spinnerIdElementoCatalogoBom" editable="true" prefWidth="140.0" />
-                                        <Spinner fx:id="spinnerQuantitaBom" editable="true" prefWidth="110.0" />
-                                    </children>
-                                </HBox>
+                        <HBox prefHeight="0.0" prefWidth="515.0">
+                           <children>
+                              <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="100.0">
+                                 <children>
+                                    <Label styleClass="hint-label" text="idElemento" />
+                                              <Spinner fx:id="spinnerIdElementoCatalogoBom" editable="true" prefWidth="140.0" />
+                                 </children>
+                              </VBox>
+                              <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="100.0">
+                                 <children>
+                                    <Label styleClass="hint-label" text="quantità">
+                                       <VBox.margin>
+                                          <Insets left="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                              <Spinner fx:id="spinnerQuantitaBom" editable="true" prefWidth="110.0">
+                                       <VBox.margin>
+                                          <Insets left="10.0" />
+                                       </VBox.margin>
+                                    </Spinner>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                                 <Button fx:id="bottoneAggiungiRigaBom" maxWidth="Infinity" onAction="#onAggiungiRigaBom" text="POST /api/progetti/{idProgetto}/bom" />
+                                <Label styleClass="card-title" text="Aggiungi riga BOM" />
                             </children>
                         </VBox>
 
@@ -119,7 +137,7 @@
         <Label styleClass="output-title" text="Output" />
         <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="842.0" prefWidth="517.0" styleClass="output-scroll">
             <content>
-                <TextArea fx:id="areaOutput" editable="false" prefHeight="748.0" prefWidth="515.0" styleClass="output-area" wrapText="true" />
+                <TextArea fx:id="areaOutput" editable="false" prefHeight="720.0" styleClass="output-area" wrapText="true" />
             </content>
         </ScrollPane>
 
