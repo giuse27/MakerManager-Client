@@ -67,6 +67,12 @@ public final class OutputFormatter {
 
     }
 
+    /**
+     * Scrive nell'area dell'output il testo passato
+     * 
+     * @param areaOutput la text area dove verrà scritto l'output
+     * @param testo testo da scrivere
+     */
     private static void scrivi(TextArea areaOutput, String testo) {
         String separatore = System.lineSeparator()
                 + "=".repeat(70) + System.lineSeparator()
@@ -74,16 +80,18 @@ public final class OutputFormatter {
         areaOutput.setText(testo + separatore + areaOutput.getText());
     }
 
+    /**
+     * utility
+     * 
+     * @return orario attuale
+     */
     private static String orarioAttuale() {
         return LocalTime.now().format(ORARIO);
     }
 
     /**
      * Se il body sembra JSON (inizia con '{' o '['), lo reindenta per
-     * leggibilita'; altrimenti lo restituisce cosi' com'e'. Non e' un
-     * parser JSON completo: e' un semplice reindentatore basato sulle
-     * parentesi, sufficiente perche' il body arriva gia' sintatticamente
-     * valido dal Server.
+     * leggibilita'; altrimenti lo restituisce cosi' com'è
      */
     private static String formattaBody(String body) {
 

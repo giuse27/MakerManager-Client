@@ -9,9 +9,7 @@ import javafx.scene.control.TextArea;
 /**
  * Controller del pannello Inizializzazione.
  *
- * Gestisce l'unico endpoint del dominio: POST /inizializza (nessun
- * parametro in input). Segue lo stesso principio "un controller per
- * dominio di endpoint" usato per gli altri pannelli.
+ * Gestisce l'unico endpoint del dominio: POST /inizializza 
  */
 public class InizializzazioneController {
 
@@ -20,6 +18,7 @@ public class InizializzazioneController {
 
     @FXML
     private void onInizializza() {
+        // nella funzione post possiamo passare un json null per avere body vuoto
         OutputFormatter.eseguiEMostra(
                 areaOutput,
                 "POST /inizializza",

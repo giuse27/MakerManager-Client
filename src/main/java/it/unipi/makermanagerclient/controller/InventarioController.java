@@ -49,6 +49,8 @@ public class InventarioController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         spinnerIdElementoCatalogo.setValueFactory(
+                // funzione di utilità per evitare eccezioni in console e rendere
+                // il valore dell'intero sicuro
                 SpinnerFactories.interoSicuro(1, Integer.MAX_VALUE, 1)
         );
         spinnerQuantitaArticolo.setValueFactory(
@@ -64,10 +66,12 @@ public class InventarioController implements Initializable {
      * Chiamato da ShellController subito dopo il caricamento del pannello,
      * per collegare questo controller agli Spinner condivisi definiti
      * nella sidebar. Necessario perche' FXMLLoader inietta automaticamente
-     * solo i campi @FXML dichiarati nel file FXML caricato: gli Spinner
-     * della sidebar vivono in un file FXML diverso (shell.fxml).
+     * solo i campi @FXML dichiarati nel file FXML caricato
      */
-    public void impostaSpinnerCondivisi(Spinner<Integer> spinnerIdInventario, Spinner<Integer> spinnerIdUtente) {
+    public void impostaSpinnerCondivisi(
+        Spinner<Integer> spinnerIdInventario, 
+        Spinner<Integer> spinnerIdUtente
+    ) {
         this.spinnerIdInventarioCondiviso = spinnerIdInventario;
         this.spinnerIdUtenteCondiviso = spinnerIdUtente;
     }
@@ -167,6 +171,7 @@ public class InventarioController implements Initializable {
         );
     }
 
+    // controllo semplice per i test che evita la rottuta del json
     private String escapaJson(String testo) {
         return testo == null ? "" : testo.replace("\"", "\\\"");
     }

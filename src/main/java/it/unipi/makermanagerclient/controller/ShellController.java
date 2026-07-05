@@ -47,6 +47,7 @@ public class ShellController implements Initializable {
     private Parent pannelloInventario;
     private Parent pannelloProgetti;
 
+    // metodo di base per i controller
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -58,6 +59,10 @@ public class ShellController implements Initializable {
 
     }
 
+    /**
+     * utility per evitare lanci di eccezioni in conosole che costringe la 
+     * casella di testo ad avere un intero sicuro e valido
+     */
     private void configuraSpinnerCondivisi() {
 
         spinnerIdInventario.setValueFactory(

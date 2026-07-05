@@ -122,10 +122,8 @@ public class CatalogoController implements Initializable {
     }
 
     /**
-     * Escape minimo per i caratteri che romperebbero la sintassi JSON se
-     * l'utente li digitasse nei campi di testo (es. virgolette). Non e'
-     * un parser JSON completo: per una GUI di puro test e' sufficiente
-     * gestire il caso piu' comune.
+     * Controllo minimo per i caratteri che romperebbero la sintassi JSON se
+     * l'utente li digitasse nei campi di testo (es. virgolette).
      */
     private String escapaJson(String testo) {
         return testo == null ? "" : testo.replace("\"", "\\\"");

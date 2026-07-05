@@ -16,6 +16,7 @@ import java.time.Duration;
  */
 public final class ApiClient {
 
+    // configurazione della connessione
     private static final HttpClient HTTP_CLIENT = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(5))
             .build();

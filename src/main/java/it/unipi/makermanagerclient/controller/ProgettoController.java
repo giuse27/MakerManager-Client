@@ -20,14 +20,11 @@ import java.util.ResourceBundle;
  *
  * Gestisce i 7 endpoint del dominio. Il parametro idProgetto NON e'
  * definito in questo pannello ma nella sidebar (shell.fxml), perche'
- * condiviso tra piu' blocchi (dettaglio, elimina, aggiungi/elimina riga
- * BOM): ShellController lo inietta tramite impostaSpinnerCondiviso().
+ * condiviso tra piu' blocchi
  */
 public class ProgettoController implements Initializable {
 
-    // Gemelli poveri (solo stringhe) dell'enum TipologiaProgetto lato
-    // Server: stessa logica gia' vista in CatalogoController per
-    // TipologiaElemento.
+    // Gemelli dell'enum TipologiaProgetto
     private static final List<String> TIPOLOGIE_PROGETTO = List.of(
             "STAMPA_3D", "ELETTRONICA", "ROBOTICA", "SOFTWARE"
     );
@@ -81,8 +78,6 @@ public class ProgettoController implements Initializable {
     /**
      * Chiamato da ShellController subito dopo il caricamento del pannello,
      * per collegare questo controller allo Spinner condiviso idProgetto
-     * definito nella sidebar (vedi spiegazione analoga in
-     * InventarioController.impostaSpinnerCondivisi()).
      */
     public void impostaSpinnerCondiviso(Spinner<Integer> spinnerIdProgetto) {
         this.spinnerIdProgettoCondiviso = spinnerIdProgetto;
@@ -188,6 +183,7 @@ public class ProgettoController implements Initializable {
 
     }
 
+    // controlli semplici per la rottura del json
     private String escapaJson(String testo) {
         return testo == null ? "" : testo.replace("\"", "\\\"");
     }
