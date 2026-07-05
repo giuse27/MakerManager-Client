@@ -9,7 +9,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * JavaFX App - Entry point del Client.
+ *
+ * Carica la Shell principale (sidebar di navigazione + area contenuti),
+ * che a sua volta precarica i 4 pannelli di dominio (Inizializzazione,
+ * Catalogo, Inventario, Progetti).
  */
 public class App extends Application {
 
@@ -17,7 +21,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("main"), 720, 640);
+        scene = new Scene(loadFXML("shell"), 780, 640);
         stage.setTitle("MakerManager");
         stage.setScene(scene);
         stage.show();
