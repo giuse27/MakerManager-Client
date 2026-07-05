@@ -10,6 +10,16 @@ e questo progetto aderisce al [Semantic Versioning](https://semver.org/lang/it/)
 
 ## Client
 
+### [Client v0.0.0] - 05/07/2026
+
+#### Aggiunte
+
+* È stata implementata una GUI di base (temporanea) che copre tutti gli endpoint presenti. Ogni schermata mostra le chiamate i parametri richiesti e mostra una schermata dove è possibile visualizzare l'output della richiesta.
+    * Pannello inizializzazione
+    * Pannello catalogo
+    * Pannello inventario
+    * Pannello progetti
+
 ## Server
 
 ### [Server v0.0.0] - 05/07/2026
@@ -44,3 +54,4 @@ Sono stati aggiunti numerosi endpoint di base
 [Client]: https://github.com/giuse27/MakerManager-Client
 [Server]: https://github.com/giuse27/MakerManager-Server
 [Server v0.0.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.0.0
+[Client v0.0.0]: https://github.com/giuse27/MakerManager-Client/releases/tag/v0.0.0

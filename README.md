@@ -76,11 +76,11 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
 > [!note] 
 > La **roadmap** elenca le funzioni già realizzate e da realizzare del progetto. Non dà dettagli implementativi ma serve solo per tenere traccia del **quadro generale** del progetto.
 
-* [ ] Client
+* [X] Client
   * [X] Creazione e setup del progetto MakerManager-Client
-  * [ ] Architettura base
-    * [ ] Interfaccia minimale per testare gli endpoint del server
-    * [ ] Tutti gli endpoint creati lato server possono essere testati
+  * [X] Architettura base
+    * [X] Interfaccia minimale per testare gli endpoint del server
+    * [X] Tutti gli endpoint creati lato server possono essere testati
 * [X] Server
   * [X] Creazione e setup del progetto MakerManager-Server
     * [X] Configurazione della connessione MySQL in `application.properties`

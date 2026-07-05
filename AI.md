@@ -1,6 +1,6 @@
 # Note sull'utilizzo dell'AI
 
-> [!info]
+> [!note]
 > Modelli utilizzati: Gemini 3.1 Pro e Claude Sonnet 5 (medio, no pensiero)
 
 ## Utilizzo generale
@@ -12,6 +12,12 @@
 * Guida per le convenzioni generali sulla struttura dei file e sull'applicazione dell'SRP (single responsibility principle). 
 
 ## Client
+
+* Implementazione di una GUI temporanea per la v0.0.0 e il test degli endpoint.
+
+* Migliorie estetiche e strutturali alla GUI.
+
+* Modifiche sulla robustezza (es. `SpinnerFactories`) e sulle utility per il json (nella v0.0.0)
 
 ## Server
 
