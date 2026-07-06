@@ -124,11 +124,11 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
       * [ ] L'utente può visualizzare i progetti nel catalogo globale
       * [ ] L'utente può aprire un progetto per visualizzarne le caratteristiche
 * [ ] Server
-  * [ ] Utente
-    * [ ] Registrazione con nickname email e password
-      * [ ] Sistema con token di autorizzazione (JWT)
-    * [ ] Autenticazione e permessi sugli endpoint
-  * [ ] Sistema multi ruolo (utente e admin)
+  * [X] Utente
+    * [X] Registrazione con nickname email e password
+      * [X] Sistema con token di autorizzazione (JWT)
+    * [X] Autenticazione e permessi sugli endpoint
+  * [X] Sistema multi ruolo (utente e admin)
   * [ ] Endpoint avanzati per la modifica di entità già esistenti
     * [ ] Catalogo
       * [ ] È possibile modificare un elemento in catalogo
@@ -238,6 +238,8 @@ Se hai domande sul progetto, suggerimenti o segnalazioni, puoi trovarmi qui:
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ## Informazioni sull'utilizzo dell'AI
+
+Dai un'occhiata al documento [**AI.md**](./AI.md).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 

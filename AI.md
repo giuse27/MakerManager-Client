@@ -24,3 +24,5 @@
 * Mi sono fatto aiutare dall'AI nella fase iniziale con l'obiettivo di ottenere uno scheletro per il server e per definire a grandi linee soprattutto il package `model` e parte dell'architettura di base Spring.
 
 * Ho fatto revisionare di tanto in tanto il codice all'AI per verificarne la robustezza e la corettezza. Una parte consistente conseguita da questa verifica è stata la gestione delle eccezioni e l'utilizzo della libreria jakarta.validation e le sue annotazioni. Complessivamente questo mi ha permesso di controllare tutte le situazioni anomale e riportarle sotto forma di messaggio json semplice da leggere.
+
+* Ho avuto un aiuto consistente da parte dell'AI nella scrittura del package `security`. Non avevo mai affrontato il tema dell'autenticazione, dei ruoli e dei permessi e l'utilizzo dell'AI mi ha permesso di poter realizzare queste funzioni all'interno di MakerManager. 
