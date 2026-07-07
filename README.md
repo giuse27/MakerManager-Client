@@ -129,15 +129,15 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
       * [X] Sistema con token di autorizzazione (JWT)
     * [X] Autenticazione e permessi sugli endpoint
   * [X] Sistema multi ruolo (utente e admin)
-  * [ ] Endpoint avanzati per la modifica di entità già esistenti
+  * [X] Endpoint avanzati per la modifica di entità già esistenti
     * [ ] Catalogo
       * [ ] È possibile modificare un elemento in catalogo (*)
-    * [ ] Progetti
+    * [X] Progetti
       * [ ] È possibile modificare un progetto (**)
-      * [ ] È possibile modificare la quantità di un elemento della BOM
-    * [ ] Inventario
+      * [X] È possibile modificare la quantità di un elemento della BOM
+    * [X] Inventario
       * [ ] È possibile modificare un inventario (**)
-      * [ ] È possibile modificare il contenuto di un inventario
+      * [X] È possibile modificare il contenuto di un inventario
   * [ ] Logica di business
     * [ ] Progetti consigliati sulla base delle proprie risorse
 
