@@ -239,7 +239,7 @@ Se hai domande sul progetto, suggerimenti o segnalazioni, puoi trovarmi qui:
 
 ## Informazioni sull'utilizzo dell'AI
 
-Dai un'occhiata al documento [**AI.md**](./AI.md).
+Dai un'occhiata al documento [**AI.md**](./docs/AI.md).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
