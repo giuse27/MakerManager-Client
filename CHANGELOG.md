@@ -1,5 +1,19 @@
 # Changelog
 
+- [Changelog](#changelog)
+  - [Client](#client)
+    - [Client v0.0.0 - 05/07/2026](#client-v000---05072026)
+      - [Aggiunte](#aggiunte)
+  - [Server](#server)
+    - [Server v0.5.0 - 07/07/2026](#server-v050---07072026)
+      - [Aggiunte](#aggiunte-1)
+      - [Modifiche](#modifiche)
+    - [Server v0.4.0 - 07/07/2026](#server-v040---07072026)
+      - [Aggiunte](#aggiunte-2)
+      - [Modifiche](#modifiche-1)
+    - [Server v0.0.0 - 05/07/2026](#server-v000---05072026)
+      - [Aggiunte](#aggiunte-3)
+
 Tutte le modifiche importanti a questo progetto saranno documentate in questo file.
 
 Il formato è basato su [Keep a Changelog](https://keepachangelog.com/it-IT/1.0.0/),
@@ -22,9 +36,23 @@ e questo progetto aderisce al [Semantic Versioning](https://semver.org/lang/it/)
 
 ## Server
 
+### [Server v0.5.0] - 07/07/2026
+
+#### Aggiunte
+
+* Nuovi endpoint
+  * Inventario
+    * Aggiorna la quantità di un articolo (PROPRIETARIO / ADMIN)
+  * Progetti
+    * Aggiorna la quantità di una riga della BOM (PROPRIETARIO / ADMIN)
+
+#### Modifiche
+
+* Typo fix nel metodo `tResponseDTO()` in `ArticoloInventarioMapper.java`, adesso correttamente rinominato in `toResponseDTO()`.
+
 ### [Server v0.4.0] - 07/07/2026
 
-### Aggiunte
+#### Aggiunte
 
 Aggiunti nuovi endpoint per l'autenticazione degli utenti la visualizzazione dei profili e dei relativi progetti. Ogni endpoint possiede dei permessi specifici. Sono di seguito riportate le principali aggiunte della versione:
 
@@ -42,7 +70,7 @@ Aggiunti nuovi endpoint per l'autenticazione degli utenti la visualizzazione dei
   * Progetti
     * Visualizza i progetti di un utente *(PUBBLICO)*
 
-### Modifiche
+#### Modifiche
 
 I precedenti endpoint relativi alla v0.0.0 sono stati modificati per garantire la gestione dei permessi da parte degli utilizzatori del sistema. È di seguito specificato il ruolo default su ciascun endpoint già esistente.
 
@@ -102,4 +130,5 @@ Sono stati aggiunti numerosi endpoint di base
 [Server]: https://github.com/giuse27/MakerManager-Server
 [Server v0.0.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.0.0
 [Server v0.4.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.4.0
+[Server v0.5.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.5.0
 [Client v0.0.0]: https://github.com/giuse27/MakerManager-Client/releases/tag/v0.0.0
