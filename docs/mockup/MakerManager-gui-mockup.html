@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MakerManager — Anteprima GUI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F2EE; --card:#FFFFFF; --border:#E2E0D9; --border-strong:#CFCCC2;
+  --ink:#22272B; --ink-2:#5C6470; --ink-3:#8B929C;
+  --side:#1E2A32; --side-ink:#B9C4CB; --side-active:#2B3A44;
+  --accent:#EF9F27; --accent-dark:#854F0B;
+  --teal:#1D9E75; --teal-bg:#E1F5EE; --teal-dark:#085041;
+  --blue:#378ADD; --blue-bg:#E6F1FB; --blue-dark:#0C447C;
+  --amber-bg:#FAEEDA; --amber-dark:#633806;
+  --red:#E24B4A; --red-bg:#FCEBEB; --red-dark:#791F1F;
+  --gray-bg:#F1EFE8; --gray-dark:#444441;
+  --radius:10px;
+  --sans:'Inter',system-ui,sans-serif; --disp:'Space Grotesk','Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--sans);font-size:14px;color:var(--ink);background:var(--bg)}
+button{font-family:var(--sans);cursor:pointer}
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* ---------- Sidebar ---------- */
+.sidebar{width:220px;flex-shrink:0;background:var(--side);color:var(--side-ink);display:flex;flex-direction:column}
+.logo{display:flex;align-items:center;gap:10px;padding:20px 18px 22px}
+.logo-mark{width:34px;height:34px;border-radius:9px;background:var(--accent);color:#1E2A32;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:600;font-size:17px}
+.logo-name{font-family:var(--disp);font-weight:600;font-size:19px;color:#F4F1EA;letter-spacing:.2px}
+.nav{display:flex;flex-direction:column;gap:2px;padding:0 10px}
+.nav button{display:flex;align-items:center;gap:11px;width:100%;padding:10px 12px;border:0;border-radius:8px;background:transparent;color:var(--side-ink);font-size:14px;text-align:left;position:relative}
+.nav button:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav button.active{background:var(--side-active);color:#fff;font-weight:500}
+.nav button.active::before{content:"";position:absolute;left:-10px;top:8px;bottom:8px;width:3px;border-radius:3px;background:var(--accent)}
+.nav svg{width:18px;height:18px;flex-shrink:0}
+.profile{margin-top:auto;display:flex;align-items:center;gap:10px;padding:16px 18px;border-top:1px solid rgba(255,255,255,.08)}
+.avatar{width:34px;height:34px;border-radius:50%;background:#33434E;color:#9FB0BA;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.profile .who small{display:block;color:#7E8B94;font-size:11px}
+.profile .who span{color:#EDEAE2;font-size:13px;font-weight:500}
+
+/* ---------- Main ---------- */
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.topbar{background:var(--card);border-bottom:1px solid var(--border);padding:12px 26px;font-size:14px;font-weight:500;color:var(--ink);flex-shrink:0}
+.content{flex:1;overflow-y:auto;padding:22px 26px 8px;display:flex;flex-direction:column;gap:16px}
+.version{flex-shrink:0;text-align:right;padding:6px 26px 10px;font-size:11px;color:var(--ink-3)}
+
+/* ---------- Riquadri ---------- */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:0 1px 2px rgba(30,42,50,.04)}
+.card .lbl{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.card .big{font-family:var(--disp);font-size:30px;font-weight:600;line-height:1}
+.card.action{display:flex;align-items:center;justify-content:center;padding:0}
+.card.action button{width:100%;height:100%;min-height:78px;border:0;background:transparent;border-radius:var(--radius);font-size:14px;font-weight:500;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:9px}
+.card.action button:hover{background:#FBF6EC}
+.card.action.danger button:hover{background:var(--red-bg)}
+.card.action.danger button{color:var(--red-dark)}
+.card.action svg{width:18px;height:18px}
+.thinbar{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:11px 18px;font-size:13px;color:var(--ink-2)}
+.thinbar b{color:var(--ink);font-weight:600}
+.server-on{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-size:19px;font-weight:600;color:var(--teal-dark);margin-top:4px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px var(--teal-bg)}
+
+/* ---------- Tabelle ---------- */
+.panelbox{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:0 1px 2px rgba(30,42,50,.04)}
+.panelbox h2{font-family:var(--disp);font-size:16px;font-weight:600;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-3);text-align:left;padding:6px 10px;border-bottom:1px solid var(--border)}
+td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tbody tr.rowlink{cursor:pointer}
+tbody tr.rowlink:hover{background:#FAF9F5}
+.muted{color:var(--ink-2)}
+.deletable tbody tr{cursor:pointer}
+.deletable tbody tr:hover{background:var(--red-bg)}
+.delete-hint{margin-top:10px;font-size:12px;color:var(--red-dark);background:var(--red-bg);border:1px solid #F7C1C1;border-radius:8px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between}
+.delete-hint button{border:0;background:transparent;color:var(--red-dark);font-weight:600;font-size:12px;text-decoration:underline}
+
+/* stato + progresso */
+.pill{display:inline-block;padding:3px 12px;border-radius:999px;font-size:12px;font-weight:500;border:0;appearance:none;-webkit-appearance:none;cursor:pointer}
+select.pill{padding-right:22px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23555' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center}
+.st-pianificato{background:var(--gray-bg);color:var(--gray-dark)}
+.st-iniziato{background:var(--amber-bg);color:var(--amber-dark)}
+.st-incorso{background:var(--blue-bg);color:var(--blue-dark)}
+.st-completato{background:var(--teal-bg);color:var(--teal-dark)}
+.prog{display:flex;align-items:center;gap:8px;min-width:170px}
+.prog .track{flex:1;height:7px;border-radius:999px;background:var(--gray-bg);overflow:hidden}
+.prog .fill{height:100%;border-radius:999px;background:var(--accent);transition:width .25s}
+.prog input{width:52px;padding:3px 4px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:var(--sans);text-align:right}
+.prog input:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.qty{width:70px;padding:5px 6px;border:1px solid var(--border);border-radius:7px;font-size:13px;font-family:var(--sans);text-align:right}
+.qty:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.feas{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:500}
+.feas.ok{color:var(--teal-dark)} .feas.warn{color:var(--amber-dark)} .feas.no{color:var(--red-dark)}
+.feas svg{width:15px;height:15px}
+input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);cursor:pointer}
+
+/* pulsanti generici */
+.btn{border:1px solid var(--border-strong);background:var(--card);border-radius:8px;padding:8px 16px;font-size:13px;font-weight:500;color:var(--ink)}
+.btn:hover{background:#FAF9F5}
+.btn.primary{background:var(--side);border-color:var(--side);color:#fff}
+.btn.primary:hover{background:#2B3A44}
+.btn.warn{background:var(--accent);border-color:var(--accent);color:#3A2503}
+.btn.warn:hover{background:#F0AC45}
+.btn.danger{background:var(--red);border-color:var(--red);color:#fff}
+.btn.danger:hover{background:#D13D3C}
+.backlink{display:inline-flex;align-items:center;gap:7px;border:0;background:transparent;color:var(--ink-2);font-size:13px;font-weight:500;padding:0}
+.backlink:hover{color:var(--ink)}
+
+/* vista progetto */
+.proj-header{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;min-height:25vh;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.proj-header h1{font-family:var(--disp);font-size:30px;font-weight:600}
+.proj-header .desc{font-size:14.5px;color:var(--ink-2);max-width:70ch}
+.proj-header .meta{display:flex;gap:22px;font-size:12.5px;color:var(--ink-3)}
+.proj-header .meta b{color:var(--ink-2);font-weight:600}
+
+/* impostazioni */
+.setting{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--border)}
+.setting:last-child{border-bottom:0}
+.setting .txt b{display:block;font-weight:600;margin-bottom:3px}
+.setting .txt span{font-size:12.5px;color:var(--ink-2)}
+
+/* modali */
+.overlay{position:fixed;inset:0;background:rgba(30,42,50,.45);display:flex;align-items:center;justify-content:center;z-index:50}
+.modal{background:var(--card);border-radius:14px;width:min(480px,92vw);padding:24px 26px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.modal h3{font-family:var(--disp);font-size:17px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:9px}
+.modal p{font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.modal .actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.modal label{display:block;font-size:12px;font-weight:600;color:var(--ink-2);margin:12px 0 4px}
+.modal input[type=text],.modal input[type=number],.modal select,.modal textarea{width:100%;padding:8px 10px;border:1px solid var(--border-strong);border-radius:8px;font-size:13px;font-family:var(--sans)}
+.modal input:focus,.modal select:focus,.modal textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.choice2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.choice2 button{border:1px solid var(--border-strong);background:var(--card);border-radius:10px;padding:16px 14px;text-align:left;font-size:13px}
+.choice2 button b{display:block;font-weight:600;margin-bottom:4px}
+.choice2 button span{color:var(--ink-2);font-size:12px;line-height:1.4;display:block}
+.choice2 button:hover{border-color:var(--accent);background:#FBF6EC}
+.warn-icon{color:var(--accent-dark)}
+
+/* toast */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--side);color:#F4F1EA;padding:10px 18px;border-radius:999px;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:60;opacity:0;transition:opacity .25s}
+.toast.show{opacity:1}
+
+@media (max-width:760px){.cards3{grid-template-columns:1fr}.sidebar{width:64px}.logo-name,.nav button span,.profile .who{display:none}.nav button{justify-content:center}.logo{justify-content:center;padding:16px 0 18px}.profile{justify-content:center}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo"><div class="logo-mark">M</div><div class="logo-name">MakerManager</div></div>
+    <nav class="nav" id="nav"></nav>
+    <div class="profile">
+      <div class="avatar" id="avatar"></div>
+      <div class="who"><small>Utente</small><span id="profileName"></span></div>
+    </div>
+  </aside>
+  <div class="main">
+    <div class="topbar" id="topbar"></div>
+    <div class="content" id="content"></div>
+    <div class="version" id="version"></div>
+  </div>
+</div>
+<div id="modalRoot"></div>
+<div class="toast" id="toast"></div>
+<script>
+/* ===== Dati finti (nessun server: tutto in memoria) ===== */
+const APP = { nickname: 'giuse27', ruolo: 'admin', versione: '0.0.0' };
+
+const CATALOGO = [
+  { id: 1, nome: 'Arduino Uno R3',        descrizione: 'Scheda microcontrollore ATmega328P', tipologia: 'Componente elettronico' },
+  { id: 2, nome: 'Sensore DHT22',          descrizione: 'Sensore di temperatura e umidita',   tipologia: 'Componente elettronico' },
+  { id: 3, nome: 'Filamento PLA 1kg',      descrizione: 'Filamento per stampa 3D, 1.75mm',    tipologia: 'Materiale consumabile' },
+  { id: 4, nome: 'Saldatore 60W',          descrizione: 'Stazione saldante con punta fine',   tipologia: 'Strumento di lavoro' },
+  { id: 5, nome: 'Servo SG90',             descrizione: 'Micro servomotore 9g',               tipologia: 'Componente elettronico' },
+  { id: 6, nome: 'Striscia LED WS2812B',   descrizione: 'LED RGB indirizzabili, 1m',          tipologia: 'Componente elettronico' },
+  { id: 7, nome: 'Cavi jumper (set 40)',   descrizione: 'Cavi dupont maschio-femmina',        tipologia: 'Materiale consumabile' },
+  { id: 8, nome: 'Raspberry Pi 4',         descrizione: 'Single board computer 4GB RAM',      tipologia: 'Componente elettronico' }
+];
+
+const INVENTARI = [
+  { id: 1, nome: 'Laboratorio di casa', attivo: true,  aggiornato: '01/07/2026',
+    articoli: [ {catId:1, q:2}, {catId:2, q:1}, {catId:3, q:3}, {catId:4, q:1}, {catId:7, q:5} ] },
+  { id: 2, nome: 'Scatola progetti scuola', attivo: false, aggiornato: '18/05/2026',
+    articoli: [ {catId:5, q:4}, {catId:6, q:2} ] }
+];
+
+const PROGETTI = [
+  { id: 1, nome: 'Stazione meteo IoT',  autore: 'giuse27',  caricato: '10/05/2026',
+    descrizione: 'Stazione meteorologica basata su Arduino che rileva temperatura e umidita e invia i dati a un server locale.',
+    bom: [ {catId:1, q:1}, {catId:2, q:1}, {catId:7, q:2} ] },
+  { id: 2, nome: 'Braccio robotico',    autore: 'makerLab', caricato: '22/05/2026',
+    descrizione: 'Braccio robotico a 4 gradi di liberta con servomotori SG90 e struttura stampata in 3D.',
+    bom: [ {catId:5, q:4}, {catId:3, q:1}, {catId:1, q:1} ] },
+  { id: 3, nome: 'Vaso stampato 3D',    autore: 'giuse27',  caricato: '28/06/2026',
+    descrizione: 'Vaso parametrico a spirale da stampare in PLA, pensato per piante grasse.',
+    bom: [ {catId:3, q:1} ] },
+  { id: 4, nome: 'Lampada LED smart',   autore: 'admin',    caricato: '10/06/2026',
+    descrizione: 'Lampada da scrivania con striscia LED indirizzabile controllata via WiFi.',
+    bom: [ {catId:6, q:1}, {catId:1, q:1}, {catId:7, q:1} ] },
+  { id: 5, nome: 'Sensore di umidita per piante', autore: 'makerLab', caricato: '22/06/2026',
+    descrizione: 'Sensore capacitivo di umidita del terreno con notifica quando la pianta va annaffiata.',
+    bom: [ {catId:2, q:1}, {catId:8, q:1} ] }
+];
+
+const STATI = ['Pianificato', 'Iniziato', 'In corso', 'Completato'];
+const ATTIVI = [
+  { progettoId: 1, dataInizio: '12/05/2026', stato: 'In corso',    progresso: 65 },
+  { progettoId: 2, dataInizio: '28/05/2026', stato: 'Iniziato',    progresso: 20 },
+  { progettoId: 3, dataInizio: '01/07/2026', stato: 'Pianificato', progresso: 0 }
+];
+
+const state = {
+  panel: 'dashboard',      // pannello selezionato in sidebar
+  view: null,              // vista sovrapposta: {type:'progetto',id} | {type:'inventario',id}
+  deleteMode: null,        // 'mieiProgetti' | 'articoli'
+  unisciInventari: false,
+  loggato: true            // stato profilo (simulato): login/logout dal pannello Impostazioni
+};
+// Pannelli riservati agli utenti loggati: se sloggato mostrano "fai login".
+const PANNELLI_PROTETTI = ['dashboard', 'inventario', 'miei'];
+
+/* ===== Utilities ===== */
+const $ = (sel) => document.querySelector(sel);
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cat = (id) => CATALOGO.find(c => c.id === id);
+const statoClass = (s) => 'st-' + s.toLowerCase().replace(/\s/g, '');
+
+const ICONS = {
+  dashboard: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></svg>',
+  tutti: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg>',
+  inventario: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg>',
+  miei: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>',
+  database: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5.5" rx="8" ry="2.8"/><path d="M4 5.5V18.5c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8V5.5M4 12c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8"/></svg>',
+  impostazioni: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.2a1.7 1.7 0 00-1-1.5 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.2a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3h0a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.2a1.7 1.7 0 001 1.5h0a1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9v0a1.7 1.7 0 001.5 1h.2a2 2 0 110 4h-.2a1.7 1.7 0 00-1.5 1z"/></svg>',
+  plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>',
+  trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m2 0v12a2 2 0 01-2 2H9a2 2 0 01-2-2V7z"/></svg>',
+  edit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h4L19.5 8.5a2.1 2.1 0 00-3-3L5 17z"/><path d="M13.5 6.5l3 3"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>',
+  warn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4L2.5 20h19z"/><path d="M12 10v4m0 3v.01"/></svg>',
+  back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M15 6l-6 6 6 6"/></svg>'
+};
+
+/* ===== Fattibilita: confronta la BOM con gli inventari ===== */
+function fattibilita(progetto) {
+  const invs = state.unisciInventari ? INVENTARI : INVENTARI.filter(i => i.attivo);
+  const disp = {};
+  invs.forEach(inv => inv.articoli.forEach(a => { disp[a.catId] = (disp[a.catId] || 0) + a.q; }));
+  let mancanti = 0;
+  progetto.bom.forEach(r => { if ((disp[r.catId] || 0) < r.q) mancanti++; });
+  if (mancanti === 0) return { cls: 'ok',   txt: 'Hai tutti i componenti necessari' };
+  if (mancanti <= 2)  return { cls: 'warn', txt: 'Ti mancano pochi componenti' };
+  return { cls: 'no', txt: 'Ti mancano molti componenti' };
+}
+function disponibilitaArticolo(catId, q) {
+  const invs = state.unisciInventari ? INVENTARI : INVENTARI.filter(i => i.attivo);
+  let tot = 0;
+  invs.forEach(inv => inv.articoli.forEach(a => { if (a.catId === catId) tot += a.q; }));
+  return tot >= q ? { cls: 'ok', txt: 'Disponibile (' + tot + ')' }
+                  : { cls: 'no', txt: 'Insufficiente (' + tot + '/' + q + ')' };
+}
+
+/* ===== Rendering ===== */
+const PANNELLI = [
+  { id: 'dashboard',    nome: 'Dashboard',        icon: 'dashboard' },
+  { id: 'tutti',        nome: 'Tutti i progetti', icon: 'tutti' },
+  { id: 'inventario',   nome: 'Inventario',       icon: 'inventario' },
+  { id: 'miei',         nome: 'I miei progetti',  icon: 'miei' },
+  { id: 'database',     nome: 'Database',         icon: 'database' },
+  { id: 'impostazioni', nome: 'Impostazioni',     icon: 'impostazioni' }
+];
+
+function renderNav() {
+  $('#nav').innerHTML = PANNELLI.map(p =>
+    '<button class="' + (state.panel === p.id && !state.view ? 'active' : '') + '" onclick="goPanel(\'' + p.id + '\')">' +
+    ICONS[p.icon] + '<span>' + p.nome + '</span></button>').join('');
+  if (state.loggato) {
+    $('#profileName').textContent = APP.nickname;
+    $('#avatar').textContent = APP.nickname.slice(0, 2).toUpperCase();
+  } else {
+    $('#profileName').textContent = 'Non connesso';
+    $('#avatar').textContent = '';
+  }
+  $('#version').textContent = 'MakerManager by Giuseppe Vaglica - versione ' + APP.versione;
+}
+
+function goPanel(id) { state.panel = id; state.view = null; state.deleteMode = null; render(); }
+function openProgetto(id) { state.view = { type: 'progetto', id }; render(); }
+function openInventario(id) { state.view = { type: 'inventario', id }; state.deleteMode = null; render(); }
+function backToPanel() { state.view = null; state.deleteMode = null; render(); }
+
+function render() {
+  renderNav();
+  const c = $('#content');
+  // Gate di autenticazione: i pannelli protetti mostrano "fai login" se sloggato.
+  if (!state.loggato && PANNELLI_PROTETTI.includes(state.panel) && !state.view) {
+    renderFaiLogin(c); return;
+  }
+  if (state.view && state.view.type === 'progetto')  { renderVistaProgetto(c); return; }
+  if (state.view && state.view.type === 'inventario') { renderVistaInventario(c); return; }
+  switch (state.panel) {
+    case 'dashboard':    renderDashboard(c); break;
+    case 'tutti':        renderTutti(c); break;
+    case 'inventario':   renderInventari(c); break;
+    case 'miei':         renderMiei(c); break;
+    case 'database':     renderDatabase(c); break;
+    case 'impostazioni': renderImpostazioni(c); break;
+  }
+}
+
+/* ---------- Dashboard ---------- */
+function renderDashboard(c) {
+  $('#topbar').textContent = 'Benvenuto ' + APP.nickname + ' in MakerManager';
+  const attivo = INVENTARI.find(i => i.attivo);
+  const consigliati = PROGETTI.filter(p => !ATTIVI.some(a => a.progettoId === p.id));
+  c.innerHTML =
+    '<div class="cards3">' +
+      '<div class="card"><div class="lbl">Progetti attivi</div><div class="big">' + ATTIVI.length + '</div></div>' +
+      '<div class="card"><div class="lbl">Progetti consigliati</div><div class="big">' + consigliati.length + '</div></div>' +
+      '<div class="card"><div class="lbl">Stato del server</div><div class="server-on"><span class="dot"></span>ONLINE</div></div>' +
+    '</div>' +
+    '<div class="thinbar">Inventario attivo: <b>' + (attivo ? esc(attivo.nome) : 'nessuno') + '</b></div>' +
+    '<div class="panelbox"><h2>Progetti attivi</h2><table><thead><tr>' +
+      '<th>Nome del progetto</th><th>Autore</th><th>Data inizio</th><th>Stato</th><th>Progresso</th>' +
+    '</tr></thead><tbody>' +
+    ATTIVI.map(a => {
+      const p = PROGETTI.find(x => x.id === a.progettoId);
+      return '<tr>' +
+        '<td class="rowlink" style="font-weight:500" onclick="openProgetto(' + p.id + ')">' + esc(p.nome) + '</td>' +
+        '<td class="muted">' + esc(p.autore) + '</td>' +
+        '<td class="muted">' + a.dataInizio + '</td>' +
+        '<td><select class="pill ' + statoClass(a.stato) + '" onchange="setStato(' + a.progettoId + ', this.value)">' +
+          STATI.map(s => '<option ' + (s === a.stato ? 'selected' : '') + '>' + s + '</option>').join('') +
+        '</select></td>' +
+        '<td><div class="prog"><div class="track"><div class="fill" style="width:' + a.progresso + '%"></div></div>' +
+          '<input type="number" min="0" max="100" step="5" value="' + a.progresso + '" ' +
+          'onchange="setProgresso(' + a.progettoId + ', this.value)"><span class="muted">%</span></div></td>' +
+      '</tr>';
+    }).join('') +
+    '</tbody></table></div>' +
+    '<div class="panelbox"><h2>Progetti consigliati</h2><table><thead><tr>' +
+      '<th>Nome del progetto</th><th>Autore</th><th>Data caricamento</th><th>Fattibilit\u00e0</th>' +
+    '</tr></thead><tbody>' +
+    consigliati.map(p => {
+      const f = fattibilita(p);
+      const icon = f.cls === 'ok' ? ICONS.check : ICONS.warn;
+      return '<tr class="rowlink" onclick="openProgetto(' + p.id + ')">' +
+        '<td style="font-weight:500">' + esc(p.nome) + '</td>' +
+        '<td class="muted">' + esc(p.autore) + '</td>' +
+        '<td class="muted">' + p.caricato + '</td>' +
+        '<td><span class="feas ' + f.cls + '">' + icon + f.txt + '</span></td></tr>';
+    }).join('') +
+    '</tbody></table></div>';
+}
+function setStato(pid, val) {
+  const a = ATTIVI.find(x => x.progettoId === pid);
+  a.stato = val;
+  if (val === 'Completato') a.progresso = 100;
+  if (val === 'Pianificato') a.progresso = 0;
+  render(); toast('Stato aggiornato: ' + val);
+}
+function setProgresso(pid, val) {
+  const a = ATTIVI.find(x => x.progettoId === pid);
+  a.progresso = Math.max(0, Math.min(100, Math.round(Number(val) || 0)));
+  if (a.progresso === 100) a.stato = 'Completato';
+  render();
+}
+
+/* ---------- Tutti i progetti ---------- */
+function renderTutti(c) {
+  $('#topbar').textContent = 'Tutti i progetti';
+  c.innerHTML =
+    '<div class="panelbox"><h2>Tutti i progetti disponibili in catalogo (' + PROGETTI.length + ')</h2>' +
+    '<table><thead><tr><th>Nome del progetto</th><th>Autore</th><th>Descrizione</th><th>Data caricamento</th></tr></thead><tbody>' +
+    PROGETTI.map(p =>
+      '<tr class="rowlink" onclick="openProgetto(' + p.id + ')">' +
+      '<td style="font-weight:500">' + esc(p.nome) + '</td><td class="muted">' + esc(p.autore) + '</td>' +
+      '<td class="muted">' + esc(p.descrizione) + '</td><td class="muted">' + p.caricato + '</td></tr>').join('') +
+    '</tbody></table></div>';
+}
+
+/* ---------- Inventario (elenco) ---------- */
+function renderInventari(c) {
+  $('#topbar').textContent = 'Inventario';
+  c.innerHTML =
+    '<div class="cards3">' +
+      '<div class="card"><div class="lbl">Numero di inventari</div><div class="big">' + INVENTARI.length + '</div></div>' +
+      '<div class="card action"><button onclick="creaInventario()">' + ICONS.plus + 'Crea un nuovo inventario</button></div>' +
+      '<div class="card action"><button onclick="toast(\'Clicca su un inventario per aprirlo e modificarlo\')">' + ICONS.edit + 'Modifica gli inventari esistenti</button></div>' +
+    '</div>' +
+    '<div class="panelbox"><h2>I tuoi inventari</h2><table><thead><tr>' +
+      '<th style="width:70px">Attivo</th><th>Nome dell\u2019inventario</th><th>Numero di articoli presenti</th><th>Data ultimo aggiornamento</th>' +
+    '</tr></thead><tbody>' +
+    INVENTARI.map(inv =>
+      '<tr class="rowlink" onclick="openInventario(' + inv.id + ')">' +
+      '<td onclick="event.stopPropagation()"><input type="checkbox" ' + (inv.attivo ? 'checked' : '') +
+        ' onchange="toggleAttivo(' + inv.id + ', this.checked)"></td>' +
+      '<td style="font-weight:500">' + esc(inv.nome) + '</td>' +
+      '<td class="muted">' + inv.articoli.length + '</td>' +
+      '<td class="muted">' + inv.aggiornato + '</td></tr>').join('') +
+    '</tbody></table></div>';
+}
+function toggleAttivo(id, val) {
+  INVENTARI.find(i => i.id === id).attivo = val;
+  render(); toast(val ? 'Inventario attivato' : 'Inventario disattivato');
+}
+function creaInventario() {
+  openModal(
+    '<h3>' + ICONS.plus + ' Crea un nuovo inventario</h3>' +
+    '<label>Nome dell\u2019inventario</label><input type="text" id="mNome" placeholder="Es. Cassettiera officina">' +
+    '<div class="actions"><button class="btn" onclick="closeModal()">Annulla</button>' +
+    '<button class="btn primary" onclick="confermaCreaInventario()">Crea inventario</button></div>');
+}
+function confermaCreaInventario() {
+  const nome = $('#mNome').value.trim();
+  if (!nome) { toast('Inserisci un nome'); return; }
+  INVENTARI.push({ id: Date.now(), nome, attivo: false, aggiornato: oggi(), articoli: [] });
+  closeModal(); render(); toast('Inventario creato');
+}
+
+/* ---------- Inventario selezionato ---------- */
+function renderVistaInventario(c) {
+  const inv = INVENTARI.find(i => i.id === state.view.id);
+  $('#topbar').textContent = 'Inventario \u203a ' + inv.nome;
+  c.innerHTML =
+    '<button class="backlink" onclick="backToPanel()">' + ICONS.back + ' Torna agli inventari</button>' +
+    '<div class="cards3">' +
+      '<div class="card"><div class="lbl">Numero articoli</div><div class="big">' + inv.articoli.length + '</div></div>' +
+      '<div class="card action"><button onclick="apriAggiungiArticolo()">' + ICONS.plus + 'Aggiungi all\u2019inventario un nuovo articolo</button></div>' +
+      '<div class="card action danger"><button onclick="attivaDeleteMode(\'articoli\')">' + ICONS.trash + 'Elimina un articolo dall\u2019inventario</button></div>' +
+    '</div>' +
+    '<div class="panelbox"><h2>' + esc(inv.nome) + '</h2>' +
+    '<table class="' + (state.deleteMode === 'articoli' ? 'deletable' : '') + '"><thead><tr>' +
+      '<th>Nome articolo</th><th>Descrizione</th><th>Tipologia</th><th style="width:110px">Quantit\u00e0</th>' +
+    '</tr></thead><tbody>' +
+    inv.articoli.map((a, idx) => {
+      const el = cat(a.catId);
+      const del = state.deleteMode === 'articoli' ? ' onclick="chiediEliminaArticolo(' + idx + ')"' : '';
+      return '<tr' + del + '><td style="font-weight:500">' + esc(el.nome) + '</td>' +
+        '<td class="muted">' + esc(el.descrizione) + '</td><td class="muted">' + esc(el.tipologia) + '</td>' +
+        '<td onclick="event.stopPropagation()"><input class="qty" type="number" min="0" step="1" value="' + a.q + '" ' +
+        (state.deleteMode === 'articoli' ? 'disabled ' : '') +
+        'onchange="setQuantita(' + idx + ', this.value)"></td></tr>';
+    }).join('') +
+    (inv.articoli.length ? '' : '<tr><td colspan="4" class="muted">Nessun articolo. Aggiungine uno per iniziare.</td></tr>') +
+    '</tbody></table>' +
+    (state.deleteMode === 'articoli'
+      ? '<div class="delete-hint"><span>Modalit\u00e0 eliminazione attiva: clicca sull\u2019articolo da rimuovere.</span><button onclick="annullaDeleteMode()">Annulla</button></div>'
+      : '') +
+    '</div>';
+}
+function setQuantita(idx, val) {
+  const inv = INVENTARI.find(i => i.id === state.view.id);
+  inv.articoli[idx].q = Math.max(0, Math.round(Number(val) || 0));
+  inv.aggiornato = oggi();
+  render();
+}
+function chiediEliminaArticolo(idx) {
+  const inv = INVENTARI.find(i => i.id === state.view.id);
+  const el = cat(inv.articoli[idx].catId);
+  confirmModal('Eliminare l\u2019articolo?',
+    'Stai per rimuovere \u201c' + esc(el.nome) + '\u201d dall\u2019inventario \u201c' + esc(inv.nome) + '\u201d. L\u2019elemento rester\u00e0 nel catalogo globale.',
+    () => { inv.articoli.splice(idx, 1); inv.aggiornato = oggi(); state.deleteMode = null; closeModal(); render(); toast('Articolo eliminato'); });
+}
+
+/* Aggiungi articolo: wizard a due passi */
+function apriAggiungiArticolo() {
+  openModal(
+    '<h3>' + ICONS.plus + ' Aggiungi un nuovo articolo</h3>' +
+    '<p>L\u2019articolo deve corrispondere a un elemento del Catalogo globale. Scegli come procedere:</p>' +
+    '<div class="choice2">' +
+      '<button onclick="stepImporta()"><b>Importa dal Catalogo</b><span>Seleziona un elemento gi\u00e0 esistente nel database globale.</span></button>' +
+      '<button onclick="stepCrea()"><b>Crea un nuovo elemento</b><span>Aggiungi prima l\u2019elemento al Catalogo, poi all\u2019inventario.</span></button>' +
+    '</div>' +
+    '<div class="actions"><button class="btn" onclick="closeModal()">Annulla</button></div>');
+}
+function stepImporta() {
+  openModal(
+    '<h3>Importa un elemento dal Catalogo</h3>' +
+    '<label>Elemento del catalogo</label><select id="mCat">' +
+    CATALOGO.map(el => '<option value="' + el.id + '">' + esc(el.nome) + ' \u2014 ' + esc(el.tipologia) + '</option>').join('') +
+    '</select>' +
+    '<label>Quantit\u00e0</label><input type="number" id="mQta" min="1" step="1" value="1">' +
+    '<div class="actions"><button class="btn" onclick="closeModal()">Annulla</button>' +
+    '<button class="btn primary" onclick="confermaImporta()">Aggiungi all\u2019inventario</button></div>');
+}
+function confermaImporta() {
+  const inv = INVENTARI.find(i => i.id === state.view.id);
+  const catId = Number($('#mCat').value);
+  const q = Math.max(1, Math.round(Number($('#mQta').value) || 1));
+  const gia = inv.articoli.find(a => a.catId === catId);
+  if (gia) gia.q += q; else inv.articoli.push({ catId, q });
+  inv.aggiornato = oggi();
+  closeModal(); render(); toast('Articolo aggiunto all\u2019inventario');
+}
+function stepCrea() {
+  openModal(
+    '<h3>Crea un nuovo elemento nel Catalogo</h3>' +
+    '<label>Nome elemento</label><input type="text" id="mNome" placeholder="Es. Modulo relay 5V">' +
+    '<label>Descrizione</label><input type="text" id="mDesc" placeholder="Breve descrizione">' +
+    '<label>Tipologia</label><select id="mTipo">' +
+      '<option>Componente elettronico</option><option>Materiale consumabile</option><option>Strumento di lavoro</option>' +
+    '</select>' +
+    '<label>Quantit\u00e0 nel tuo inventario</label><input type="number" id="mQta" min="1" step="1" value="1">' +
+    '<div class="actions"><button class="btn" onclick="closeModal()">Annulla</button>' +
+    '<button class="btn primary" onclick="confermaCrea()">Crea e aggiungi</button></div>');
+}
+function confermaCrea() {
+  const nome = $('#mNome').value.trim();
+  if (!nome) { toast('Inserisci il nome dell\u2019elemento'); return; }
+  const nuovo = { id: Date.now(), nome, descrizione: $('#mDesc').value.trim() || '\u2014', tipologia: $('#mTipo').value };
+  CATALOGO.push(nuovo);
+  const inv = INVENTARI.find(i => i.id === state.view.id);
+  inv.articoli.push({ catId: nuovo.id, q: Math.max(1, Math.round(Number($('#mQta').value) || 1)) });
+  inv.aggiornato = oggi();
+  closeModal(); render(); toast('Elemento creato nel Catalogo e aggiunto all\u2019inventario');
+}
+
+/* ---------- I miei progetti ---------- */
+function renderMiei(c) {
+  $('#topbar').textContent = 'I miei progetti';
+  const miei = PROGETTI.filter(p => p.autore === APP.nickname);
+  c.innerHTML =
+    '<div class="cards3">' +
+      '<div class="card"><div class="lbl">Progetti creati</div><div class="big">' + miei.length + '</div></div>' +
+      '<div class="card action"><button onclick="creaProgetto()">' + ICONS.plus + 'Crea un nuovo progetto</button></div>' +
+      '<div class="card action danger"><button onclick="attivaDeleteMode(\'mieiProgetti\')">' + ICONS.trash + 'Elimina un progetto esistente</button></div>' +
+    '</div>' +
+    '<div class="panelbox"><h2>Ciao ' + APP.nickname + ', qui ci sono i progetti che hai creato (' + miei.length + ')</h2>' +
+    '<table class="' + (state.deleteMode === 'mieiProgetti' ? 'deletable' : '') + '"><thead><tr>' +
+      '<th>Nome del progetto</th><th>Descrizione</th><th>Data caricamento</th></tr></thead><tbody>' +
+    miei.map(p => {
+      const click = state.deleteMode === 'mieiProgetti'
+        ? 'chiediEliminaProgetto(' + p.id + ')' : 'openProgetto(' + p.id + ')';
+      return '<tr class="rowlink" onclick="' + click + '"><td style="font-weight:500">' + esc(p.nome) + '</td>' +
+        '<td class="muted">' + esc(p.descrizione) + '</td><td class="muted">' + p.caricato + '</td></tr>';
+    }).join('') +
+    '</tbody></table>' +
+    (state.deleteMode === 'mieiProgetti'
+      ? '<div class="delete-hint"><span>Modalit\u00e0 eliminazione attiva: clicca sul progetto da eliminare.</span><button onclick="annullaDeleteMode()">Annulla</button></div>'
+      : '') +
+    '</div>';
+}
+function chiediEliminaProgetto(id) {
+  const p = PROGETTI.find(x => x.id === id);
+  confirmModal('Eliminare il progetto?',
+    'Stai per eliminare definitivamente \u201c' + esc(p.nome) + '\u201d e la sua BOM. L\u2019operazione non \u00e8 reversibile.',
+    () => {
+      PROGETTI.splice(PROGETTI.indexOf(p), 1);
+      const a = ATTIVI.findIndex(x => x.progettoId === id);
+      if (a >= 0) ATTIVI.splice(a, 1);
+      state.deleteMode = null; closeModal(); render(); toast('Progetto eliminato');
+    });
+}
+function creaProgetto() {
+  openModal(
+    '<h3>' + ICONS.plus + ' Crea un nuovo progetto</h3>' +
+    '<label>Nome del progetto</label><input type="text" id="mNome" placeholder="Es. Centralina irrigazione">' +
+    '<label>Descrizione</label><textarea id="mDesc" rows="3" placeholder="Descrivi brevemente il progetto"></textarea>' +
+    '<div class="actions"><button class="btn" onclick="closeModal()">Annulla</button>' +
+    '<button class="btn primary" onclick="confermaCreaProgetto()">Crea progetto</button></div>');
+}
+function confermaCreaProgetto() {
+  const nome = $('#mNome').value.trim();
+  if (!nome) { toast('Inserisci il nome del progetto'); return; }
+  PROGETTI.push({ id: Date.now(), nome, autore: APP.nickname, caricato: oggi(),
+    descrizione: $('#mDesc').value.trim() || '\u2014', bom: [] });
+  closeModal(); render(); toast('Progetto creato');
+}
+
+/* ---------- Database ---------- */
+function renderDatabase(c) {
+  $('#topbar').textContent = 'Database';
+  const initBtn = APP.ruolo === 'admin'
+    ? '<div class="thinbar" style="display:flex;align-items:center;justify-content:space-between;gap:12px">' +
+      '<span>Sei connesso come <b>admin</b>: puoi ripopolare il database con i dati iniziali.</span>' +
+      '<button class="btn warn" onclick="chiediInizializza()">Inizializza</button></div>'
+    : '';
+  c.innerHTML = initBtn +
+    '<div class="panelbox"><h2>Elenco completo degli elementi presenti in catalogo (' + CATALOGO.length + ')</h2>' +
+    '<table><thead><tr><th>Nome elemento</th><th>Descrizione</th><th>Tipologia</th></tr></thead><tbody>' +
+    CATALOGO.map(el => '<tr><td style="font-weight:500">' + esc(el.nome) + '</td>' +
+      '<td class="muted">' + esc(el.descrizione) + '</td><td class="muted">' + esc(el.tipologia) + '</td></tr>').join('') +
+    '</tbody></table></div>';
+}
+function chiediInizializza() {
+  openModal(
+    '<h3><span class="warn-icon">' + ICONS.warn + '</span> Inizializzare il database?</h3>' +
+    '<p>Questa operazione cancella i dati presenti e ripopola il database con il contenuto iniziale (endpoint <code>/inizializza</code>). Vuoi procedere?</p>' +
+    '<div class="actions"><button class="btn" onclick="closeModal()">Annulla</button>' +
+    '<button class="btn danger" onclick="closeModal(); toast(\'Database inizializzato (simulato)\')">S\u00ec, inizializza</button></div>');
+}
+
+/* ---------- Impostazioni ---------- */
+function renderImpostazioni(c) {
+  $('#topbar').textContent = 'Impostazioni';
+  const profilo = state.loggato
+    ? '<div class="setting"><div class="avatar" style="background:var(--gray-bg);color:var(--gray-dark)">' + APP.nickname.slice(0,2).toUpperCase() + '</div>' +
+        '<div class="txt" style="flex:1"><b>' + APP.nickname + '</b><span>Ruolo: ' + APP.ruolo + ' \u2014 sei connesso.</span></div>' +
+        '<button class="btn" onclick="logout()">Logout</button></div>'
+    : '<div class="setting"><div class="avatar" style="background:var(--gray-bg)"></div>' +
+        '<div class="txt" style="flex:1"><b>Non connesso</b><span>Accedi per usare Dashboard, Inventario e I miei progetti.</span></div>' +
+        '<button class="btn primary" onclick="apriLogin()">Login</button></div>';
+  c.innerHTML =
+    '<div class="panelbox"><h2>Profilo</h2>' + profilo + '</div>' +
+    '<div class="panelbox"><h2>Preferenze</h2>' +
+    '<div class="setting"><input type="checkbox" id="setUnisci" ' + (state.unisciInventari ? 'checked' : '') +
+      ' onchange="setUnisci(this.checked)">' +
+      '<div class="txt"><b>Cerca progetti unendo tutti gli inventari</b>' +
+      '<span>Seleziona questa impostazione per calcolare la fattibilit\u00e0 dei progetti unendo tutti gli inventari a disposizione e non solo quelli attivi.</span></div></div>' +
+    '</div>';
+}
+function apriLogin() {
+  openModal(
+    '<h3>' + ICONS.miei + ' Accedi a MakerManager</h3>' +
+    '<label>Nickname</label><input type="text" id="mUser" value="giuse27">' +
+    '<label>Password</label><input type="text" id="mPass" value="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022">' +
+    '<div class="actions"><button class="btn" onclick="closeModal()">Annulla</button>' +
+    '<button class="btn primary" onclick="login()">Accedi</button></div>');
+}
+function login() { state.loggato = true; closeModal(); render(); toast('Accesso effettuato'); }
+function logout() { state.loggato = false; state.view = null; render(); toast('Logout effettuato'); }
+function renderFaiLogin(c) {
+  $('#topbar').textContent = PANNELLI.find(p => p.id === state.panel).nome;
+  c.innerHTML =
+    '<div class="panelbox" style="text-align:center;padding:56px 24px;display:flex;flex-direction:column;align-items:center;gap:14px">' +
+    '<div style="width:56px;height:56px;border-radius:50%;background:var(--gray-bg);display:flex;align-items:center;justify-content:center;color:var(--ink-3)">' +
+    '<span style="transform:scale(1.6)">' + ICONS.miei + '</span></div>' +
+    '<h2 style="margin:0">Devi effettuare il login</h2>' +
+    '<p style="color:var(--ink-2);max-width:44ch;margin:0">Questo pannello \u00e8 riservato agli utenti connessi. Accedi dalla sezione profilo nelle Impostazioni per continuare.</p>' +
+    '<button class="btn primary" onclick="apriLogin()">Fai login</button></div>';
+}
+function setUnisci(val) { state.unisciInventari = val; toast(val ? 'Fattibilit\u00e0 calcolata su tutti gli inventari' : 'Fattibilit\u00e0 calcolata sui soli inventari attivi'); }
+
+/* ---------- Vista progetto (comportamento comune 8.1) ---------- */
+function progettoAttivo(id) { return ATTIVI.some(a => a.progettoId === id); }
+
+function renderVistaProgetto(c) {
+  const p = PROGETTI.find(x => x.id === state.view.id);
+  const attivo = progettoAttivo(p.id);
+  const editBom = state.deleteMode === 'bom';
+  $('#topbar').textContent = 'Progetto \u203a ' + p.nome;
+  const btnAttiva = attivo
+    ? '<button class="btn" onclick="toggleAttivoProgetto(' + p.id + ')">Disattiva progetto</button>'
+    : '<button class="btn warn" onclick="toggleAttivoProgetto(' + p.id + ')">Attiva progetto</button>';
+  c.innerHTML =
+    '<button class="backlink" onclick="backToPanel()">' + ICONS.back + ' Torna indietro</button>' +
+    '<div class="proj-header"><h1>' + esc(p.nome) + '</h1>' +
+    '<div class="desc">' + esc(p.descrizione) + '</div>' +
+    '<div class="meta"><span>Data caricamento: <b>' + p.caricato + '</b></span><span>Autore: <b>' + esc(p.autore) + '</b></span></div>' +
+    '<div style="margin-top:14px">' + btnAttiva + '</div></div>' +
+    '<div class="panelbox">' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">' +
+    '<h2 style="margin:0">Requisiti del progetto</h2>' +
+    (editBom
+      ? '<div style="display:flex;gap:8px"><button class="btn" onclick="apriAggiungiRigaBom()">' + ICONS.plus + ' Nuova riga</button>' +
+        '<button class="btn danger" onclick="attivaDeleteMode(\'bomDel\')">' + ICONS.trash + ' Elimina riga</button>' +
+        '<button class="btn" onclick="annullaDeleteMode()">Fine</button></div>'
+      : '<button class="btn" onclick="attivaModificaBom()">' + ICONS.edit + ' Modifica la BOM</button>') +
+    '</div>' +
+    '<table class="' + (state.deleteMode === 'bomDel' ? 'deletable' : '') + '"><thead><tr>' +
+    '<th>Nome</th><th>Descrizione</th><th>Tipologia</th><th>Quantit\u00e0</th><th>Disponibilit\u00e0 in inventario</th>' +
+    '</tr></thead><tbody>' +
+    p.bom.map((r, idx) => {
+      const el = cat(r.catId); const d = disponibilitaArticolo(r.catId, r.q);
+      const icon = d.cls === 'ok' ? ICONS.check : ICONS.warn;
+      const del = state.deleteMode === 'bomDel' ? ' onclick="chiediEliminaRigaBom(' + idx + ')"' : '';
+      return '<tr' + del + '><td style="font-weight:500">' + esc(el.nome) + '</td><td class="muted">' + esc(el.descrizione) + '</td>' +
+        '<td class="muted">' + esc(el.tipologia) + '</td><td>' + r.q + '</td>' +
+        '<td><span class="feas ' + d.cls + '">' + icon + d.txt + '</span></td></tr>';
+    }).join('') +
+    (p.bom.length ? '' : '<tr><td colspan="5" class="muted">BOM vuota. Aggiungi una riga per iniziare.</td></tr>') +
+    '</tbody></table>' +
+    (state.deleteMode === 'bomDel'
+      ? '<div class="delete-hint"><span>Modalit\u00e0 eliminazione attiva: clicca sulla riga da rimuovere.</span><button onclick="attivaModificaBom()">Annulla</button></div>'
+      : '') +
+    '</div>';
+}
+function toggleAttivoProgetto(id) {
+  const idx = ATTIVI.findIndex(a => a.progettoId === id);
+  if (idx >= 0) { ATTIVI.splice(idx, 1); render(); toast('Progetto disattivato'); }
+  else { ATTIVI.push({ progettoId: id, dataInizio: oggi(), stato: 'Pianificato', progresso: 0 }); render(); toast('Progetto attivato'); }
+}
+function attivaModificaBom() { state.deleteMode = 'bom'; render(); }
+function apriAggiungiRigaBom() {
+  openModal(
+    '<h3>' + ICONS.plus + ' Aggiungi una riga alla BOM</h3>' +
+    '<p>La riga deve corrispondere a un elemento del Catalogo globale. Scegli come procedere:</p>' +
+    '<div class="choice2">' +
+      '<button onclick="stepImportaBom()"><b>Importa dal Catalogo</b><span>Seleziona un elemento gi\u00e0 esistente.</span></button>' +
+      '<button onclick="stepCreaBom()"><b>Crea un nuovo elemento</b><span>Aggiungilo prima al Catalogo.</span></button>' +
+    '</div><div class="actions"><button class="btn" onclick="closeModal()">Annulla</button></div>');
+}
+function stepImportaBom() {
+  openModal(
+    '<h3>Importa un elemento nella BOM</h3>' +
+    '<label>Elemento del catalogo</label><select id="mCat">' +
+    CATALOGO.map(el => '<option value="' + el.id + '">' + esc(el.nome) + ' \u2014 ' + esc(el.tipologia) + '</option>').join('') +
+    '</select><label>Quantit\u00e0 richiesta</label><input type="number" id="mQta" min="1" step="1" value="1">' +
+    '<div class="actions"><button class="btn" onclick="closeModal()">Annulla</button>' +
+    '<button class="btn primary" onclick="confermaImportaBom()">Aggiungi alla BOM</button></div>');
+}
+function confermaImportaBom() {
+  const p = PROGETTI.find(x => x.id === state.view.id);
+  const catId = Number($('#mCat').value);
+  const q = Math.max(1, Math.round(Number($('#mQta').value) || 1));
+  const gia = p.bom.find(r => r.catId === catId);
+  if (gia) gia.q += q; else p.bom.push({ catId, q });
+  closeModal(); render(); toast('Riga aggiunta alla BOM');
+}
+function stepCreaBom() {
+  openModal(
+    '<h3>Crea un nuovo elemento nel Catalogo</h3>' +
+    '<label>Nome elemento</label><input type="text" id="mNome" placeholder="Es. Modulo relay 5V">' +
+    '<label>Descrizione</label><input type="text" id="mDesc" placeholder="Breve descrizione">' +
+    '<label>Tipologia</label><select id="mTipo"><option>Componente elettronico</option><option>Materiale consumabile</option><option>Strumento di lavoro</option></select>' +
+    '<label>Quantit\u00e0 richiesta nella BOM</label><input type="number" id="mQta" min="1" step="1" value="1">' +
+    '<div class="actions"><button class="btn" onclick="closeModal()">Annulla</button>' +
+    '<button class="btn primary" onclick="confermaCreaBom()">Crea e aggiungi</button></div>');
+}
+function confermaCreaBom() {
+  const nome = $('#mNome').value.trim();
+  if (!nome) { toast('Inserisci il nome dell\u2019elemento'); return; }
+  const nuovo = { id: Date.now(), nome, descrizione: $('#mDesc').value.trim() || '\u2014', tipologia: $('#mTipo').value };
+  CATALOGO.push(nuovo);
+  const p = PROGETTI.find(x => x.id === state.view.id);
+  p.bom.push({ catId: nuovo.id, q: Math.max(1, Math.round(Number($('#mQta').value) || 1)) });
+  closeModal(); render(); toast('Elemento creato e aggiunto alla BOM');
+}
+function chiediEliminaRigaBom(idx) {
+  const p = PROGETTI.find(x => x.id === state.view.id);
+  const el = cat(p.bom[idx].catId);
+  confirmModal('Eliminare la riga dalla BOM?',
+    'Stai per rimuovere \u201c' + esc(el.nome) + '\u201d dai requisiti di \u201c' + esc(p.nome) + '\u201d. L\u2019elemento rester\u00e0 nel catalogo globale.',
+    () => { p.bom.splice(idx, 1); state.deleteMode = 'bom'; closeModal(); render(); toast('Riga eliminata dalla BOM'); });
+}
+
+/* ---------- Modali, delete mode, toast ---------- */
+function attivaDeleteMode(mode) { state.deleteMode = mode; render(); toast('Clicca sulla riga da eliminare'); }
+function annullaDeleteMode() { state.deleteMode = null; render(); }
+function openModal(html) {
+  $('#modalRoot').innerHTML = '<div class="overlay" onclick="if(event.target===this)closeModal()"><div class="modal">' + html + '</div></div>';
+}
+function confirmModal(titolo, testo, onOk) {
+  window.__onOk = onOk;
+  openModal('<h3><span class="warn-icon">' + ICONS.warn + '</span> ' + titolo + '</h3><p>' + testo + '</p>' +
+    '<div class="actions"><button class="btn" onclick="closeModal()">Annulla</button>' +
+    '<button class="btn danger" onclick="window.__onOk()">Elimina</button></div>');
+}
+function closeModal() { $('#modalRoot').innerHTML = ''; }
+let toastTimer = null;
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+function oggi() {
+  const d = new Date();
+  return String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0') + '/' + d.getFullYear();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+render();
+
+</script>
+</body>
+</html>
