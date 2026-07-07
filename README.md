@@ -131,15 +131,20 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
   * [X] Sistema multi ruolo (utente e admin)
   * [ ] Endpoint avanzati per la modifica di entità già esistenti
     * [ ] Catalogo
-      * [ ] È possibile modificare un elemento in catalogo
+      * [ ] È possibile modificare un elemento in catalogo (*)
     * [ ] Progetti
-      * [ ] È possibile modificare un progetto
-      * [ ] È possibile modificare il contenuto della BOM
+      * [ ] È possibile modificare un progetto (**)
+      * [ ] È possibile modificare la quantità di un elemento della BOM
     * [ ] Inventario
-      * [ ] È possibile modificare un inventario
+      * [ ] È possibile modificare un inventario (**)
       * [ ] È possibile modificare il contenuto di un inventario
   * [ ] Logica di business
     * [ ] Progetti consigliati sulla base delle proprie risorse
+
+</br>
+
+* (*) ci penserò in futuro per il momento è una funzione che potrebbe riguardare sogli gli admin e per il momento non mi interessa
+* (**) priorità minore, non so se voglio implementarlo al momento. Comporterebbe un'uleriore schermata nella GUI già abbastanza pesante. Rimane comunque possibile eliminare un oggetto e ricrearlo se si vogliono modificare campi come nome e descrizione.
 
 </br>
 
