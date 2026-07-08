@@ -123,7 +123,7 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
     * [ ] Dashboard globale
       * [ ] L'utente può visualizzare i progetti nel catalogo globale
       * [ ] L'utente può aprire un progetto per visualizzarne le caratteristiche
-* [ ] Server
+* [X] Server
   * [X] Utente
     * [X] Registrazione con nickname email e password
       * [X] Sistema con token di autorizzazione (JWT)
@@ -138,8 +138,8 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
     * [X] Inventario
       * [ ] È possibile modificare un inventario (**)
       * [X] È possibile modificare il contenuto di un inventario
-  * [ ] Logica di business
-    * [ ] Progetti consigliati sulla base delle proprie risorse
+  * [X] Logica di business
+    * [X] Progetti consigliati sulla base delle proprie risorse
 
 </br>
 
