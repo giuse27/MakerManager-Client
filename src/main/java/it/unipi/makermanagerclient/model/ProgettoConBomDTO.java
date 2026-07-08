@@ -1,11 +1,12 @@
 package it.unipi.makermanagerclient.model;
 
+import java.util.List;
+
 /**
- * Rappresentazione lato client di un ProgettoMaker: rispecchia
- * ProgettoResponseDTO del Server, che include anche id e nickname
- * dell'autore.
+ * Rappresentazione lato client di un ProgettoMaker completo di B.O.M.:
+ * rispecchia ProgettoConBomResponseDTO del Server
  */
-public class ProgettoDTO {
+public class ProgettoConBomDTO {
 
     private Long id;
     private String tipo;
@@ -13,8 +14,9 @@ public class ProgettoDTO {
     private String descrizione;
     private Long idAutore;
     private String nicknameAutore;
+    private List<RigaBOMDTO> bom;
 
-    public ProgettoDTO() {
+    public ProgettoConBomDTO() {
     }
 
     public Long getId() {
@@ -63,6 +65,14 @@ public class ProgettoDTO {
 
     public void setNicknameAutore(String nicknameAutore) {
         this.nicknameAutore = nicknameAutore;
+    }
+
+    public List<RigaBOMDTO> getBom() {
+        return bom;
+    }
+
+    public void setBom(List<RigaBOMDTO> bom) {
+        this.bom = bom;
     }
 
     @Override

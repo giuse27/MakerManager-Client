@@ -1,10 +1,17 @@
 package it.unipi.makermanagerclient.model;
 
+/**
+ * Rappresentazione lato client di un Inventario: rispecchia
+ * InventarioResponseDTO del Server, che include anche il nickname del
+ * proprietario (comodo per mostrarlo in tabella senza una chiamata in
+ * più).
+ */
 public class InventarioDTO {
 
     private Long id;
     private String nome;
     private Long idUtente;
+    private String nicknameUtente;
 
     public InventarioDTO() {
     }
@@ -33,9 +40,17 @@ public class InventarioDTO {
         this.idUtente = idUtente;
     }
 
+    public String getNicknameUtente() {
+        return nicknameUtente;
+    }
+
+    public void setNicknameUtente(String nicknameUtente) {
+        this.nicknameUtente = nicknameUtente;
+    }
+
     @Override
     public String toString() {
-        return nome + " (id=" + id + ", utente=" + idUtente + ")";
+        return nome + " (id=" + id + ", utente=" + nicknameUtente + ")";
     }
 
 }
