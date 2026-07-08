@@ -11,9 +11,10 @@ import java.io.IOException;
 /**
  * JavaFX App - Entry point del Client.
  *
- * Carica la Shell principale (sidebar di navigazione + area contenuti),
- * che a sua volta precarica i 4 pannelli di dominio (Inizializzazione,
- * Catalogo, Inventario, Progetti).
+ * Carica per prima la schermata di Login/Registrazione: solo dopo
+ * un'autenticazione riuscita (che popola la Sessione) LoginController
+ * sostituisce la root della Scene con la Shell principale (sidebar di
+ * navigazione + area contenuti)
  */
 public class App extends Application {
 
@@ -21,7 +22,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("shell"), 1360, 900);
+        scene = new Scene(loadFXML("auth"), 1360, 900);
         scene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
         stage.setTitle("MakerManager");
         stage.setMinWidth(1100);
@@ -30,7 +31,7 @@ public class App extends Application {
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
