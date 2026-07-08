@@ -28,39 +28,75 @@ public final class ApiClient {
     }
 
     /**
-     * Esegue una get
-     * 
+     * Esegue una get non autenticata
+     *
      * @param url url della chiamata
      * @return restituisce il body della risposta come stringa
      * @throws IOException se la richiesta fallisce (es. server non raggiungibile)
      * @throws InterruptedException se viene interrotto durante l'attesa
      */
     public static ApiResponse get(String url) 
-            throws IOException, InterruptedException 
+            throws IOException, InterruptedException
+    {
+        return get(url, null);
+    }
+
+    /**
+     * Esegue una get, aggiungendo l'header "Authorization: Bearer" se
+     * viene passato un token (null per gli endpoint pubblici).
+     *
+     * @param url url della chiamata
+     * @param token token JWT da usare per l'header Authorization, o null
+     *              se la chiamata non richiede autenticazione
+     * @return restituisce il body della risposta come stringa
+     * @throws IOException se la richiesta fallisce (es. server non raggiungibile)
+     * @throws InterruptedException se viene interrotto durante l'attesa
+     */
+    public static ApiResponse get(String url, String token)
+            throws IOException, InterruptedException
     {
 
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest.Builder richiesta = HttpRequest.newBuilder()
                                 .uri(URI.create(url))
-                                .GET()
-                                .build();
+                                .GET();
 
-        return invia(request);
+        aggiungiAutorizzazione(richiesta, token);
+
+        return invia(richiesta.build());
 
     }
 
     /**
-     * Esegue una post
-     * 
+     * Esegue una post non autenticata
+     *
      * @param url url della chiamata
      * @param corpoJson json serializzato come stringa
      * @return restituisce il body della risposta come stringa
      * @throws IOException se la richiesta fallisce (es. server non raggiungibile)
      * @throws InterruptedException se viene interrotto durante l'attesa
      */
-    public static ApiResponse post(String url, String corpoJson) 
-            throws IOException, InterruptedException 
+    public static ApiResponse post(String url, String corpoJson)
+            throws IOException, InterruptedException
     {
-    
+        return post(url, corpoJson, null);
+    }
+
+    /**
+     * Esegue una post, aggiungendo l'header "Authorization: Bearer" se
+     * viene passato un token (null per gli endpoint pubblici).
+     *
+     * @param url url della chiamata
+     * @param corpoJson json serializzato come stringa
+     * @param token token JWT da usare per l'header Authorization, o null
+     *              se la chiamata non richiede autenticazione
+     * @return restituisce il body della risposta come stringa
+     * @throws IOException se la richiesta fallisce (es. server non raggiungibile)
+     * @throws InterruptedException se viene interrotto durante l'attesa
+     */
+    public static ApiResponse post(String url, String corpoJson, String token)
+            throws IOException, InterruptedException
+    {
+
         // creo il body vero e proprio
         HttpRequest.BodyPublisher body;
 
@@ -71,52 +107,85 @@ public final class ApiClient {
             body = HttpRequest.BodyPublishers.ofString(corpoJson);
         }
 
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest.Builder richiesta = HttpRequest.newBuilder()
                                 .uri(URI.create(url))
                                 .header("Content-Type", "application/json")
-                                .POST(body)
-                                .build();
+                                .POST(body);
 
-        return invia(request);
+        aggiungiAutorizzazione(richiesta, token);
+
+        return invia(richiesta.build());
 
     }
 
     /**
-     * esegue una delete
-     * 
+     * esegue una delete non autenticata
+     *
      * @param url url della chiamata
      * @return restituisce il body della risposta come stringa
      * @throws IOException se la richiesta fallisce (es. server non raggiungibile)
      * @throws InterruptedException se viene interrotto durante l'attesa
      */
-    public static ApiResponse delete(String url) 
-            throws IOException, InterruptedException 
+    public static ApiResponse delete(String url)
+            throws IOException, InterruptedException
+    {
+        return delete(url, null);
+    }
+
+    /**
+     * Esegue una delete, aggiungendo l'header "Authorization: Bearer" se
+     * viene passato un token (null per gli endpoint pubblici).
+     *
+     * @param url url della chiamata
+     * @param token token JWT da usare per l'header Authorization, o null
+     *              se la chiamata non richiede autenticazione
+     * @return restituisce il body della risposta come stringa
+     * @throws IOException se la richiesta fallisce (es. server non raggiungibile)
+     * @throws InterruptedException se viene interrotto durante l'attesa
+     */
+    public static ApiResponse delete(String url, String token)
+            throws IOException, InterruptedException
     {
 
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest.Builder richiesta = HttpRequest.newBuilder()
                                 .uri(URI.create(url))
-                                .DELETE()
-                                .build();
+                                .DELETE();
 
-        return invia(request);
+        aggiungiAutorizzazione(richiesta, token);
+
+        return invia(richiesta.build());
 
     }
 
     /**
+     * Aggiunge l'header "Authorization: Bearer {token}" alla richiesta in
+     * costruzione, solo se e' stato fornito un token. Centralizzato qui
+     * per non ripetere lo stesso if in get/post/delete.
+     *
+     * @param richiesta il builder della richiesta HTTP in costruzione
+     * @param token token JWT, o null/vuoto se la chiamata e' pubblica
+     */
+    private static void aggiungiAutorizzazione(HttpRequest.Builder richiesta, String token) {
+        if (token != null && !token.isBlank()) {
+            richiesta.header("Authorization", "Bearer " + token);
+        }
+    }
+
+    /**
      * Metodo di utilità privata per ridurre la ridonanza
-     * 
+     *
      * @param richiesta
      * @return Resituisce un record con lo status code e il body di risposta
      * @throws IOException se la richiesta fallisce (es. server non raggiungibile)
      * @throws InterruptedException se viene interrotto durante l'attesa
      */
-    private static ApiResponse invia(HttpRequest richiesta) 
-            throws IOException, InterruptedException 
+    private static ApiResponse invia(HttpRequest richiesta)
+            throws IOException, InterruptedException
     {
 
         HttpResponse<String> response = HTTP_CLIENT.send(
             richiesta,
-            HttpResponse.BodyHandlers.ofString()    
+            HttpResponse.BodyHandlers.ofString()
         );
 
         return new ApiResponse(response.statusCode(), response.body());
