@@ -17,6 +17,14 @@ public final class AppConfig {
     // Inizializzazione
     public static final String ENDPOINT_INIZIALIZZA = BASE_URL + "/inizializza";
 
+    // Autenticazione
+    public static final String ENDPOINT_AUTH_LOGIN = BASE_URL + "/auth/login";
+    public static final String ENDPOINT_AUTH_REGISTRAZIONE = BASE_URL + "/auth/registrazione";
+
+    // Utenti
+    public static final String ENDPOINT_UTENTI = BASE_URL + "/api/utenti";
+    public static final String ENDPOINT_UTENTI_ME = ENDPOINT_UTENTI + "/me";
+
     // Catalogo
     public static final String ENDPOINT_CATALOGO = BASE_URL + "/api/catalogo";
 
@@ -28,5 +36,6 @@ public final class AppConfig {
     // Progetti
     public static final String ENDPOINT_PROGETTI = BASE_URL + "/api/progetti";
     public static final String ENDPOINT_PROGETTI_TIPOLOGIA = ENDPOINT_PROGETTI + "/tipologia";
+    public static final String ENDPOINT_PROGETTI_CONSIGLIATI = ENDPOINT_PROGETTI + "/consigliati";
 
 }
