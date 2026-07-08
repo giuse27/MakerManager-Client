@@ -1,5 +1,13 @@
 package it.unipi.makermanagerclient.network;
 
+import java.lang.reflect.Type;
+import java.util.Map;
+
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+
+import it.unipi.makermanagerclient.util.GsonProvider;
+
 /**
  * Eccezione non controllata sollevata dal livello Service quando il
  * Server risponde con uno status di errore (4xx/5xx). Il messaggio viene
@@ -9,6 +17,10 @@ package it.unipi.makermanagerclient.network;
  * (errori di validazione su @NotBlank, @Email, ecc.).
  */
 public class ApiException extends RuntimeException {
+
+    // metodo standard per creare una mappa a partire da tipi generici (utile
+    // soprattutto quando ci sono più errori in una risposta del server)
+    private static final Type MAPPA_ERRORI = new TypeToken<Map<String, String>>() {}.getType();
 
     private final int statusCode;
 
@@ -37,8 +49,37 @@ public class ApiException extends RuntimeException {
 
     private static String estraiMessaggio(String corpo) {
 
-        // TODO
-        return "";
+        if (corpo == null || corpo.isBlank()) {
+            return "Il server ha risposto con un errore senza dettagli.";
+        }
+
+        try {
+
+            // provo a deserializzare la risposta del server
+            Map<String, String> campiErrore = GsonProvider
+                                                .get()
+                                                .fromJson(
+                                                    corpo, 
+                                                    MAPPA_ERRORI
+                                                );
+            
+            // caso 1 non ci sono errori
+            if (campiErrore == null || campiErrore.isEmpty()) {
+                return corpo;
+            }
+
+            // caso 2 c'è un errore
+            if (campiErrore.containsKey("errore")) {
+                return campiErrore.get("errore");
+            }
+
+            // caso 3 ci sono più errori
+            // Errori di validazione: una chiave per ogni campo non valido
+            return String.join("; ", campiErrore.values());
+
+        } catch (JsonSyntaxException e) {
+            return corpo;
+        }
 
     }
 
