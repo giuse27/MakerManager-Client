@@ -5,14 +5,16 @@
     - [Client v0.0.0 - 05/07/2026](#client-v000---05072026)
       - [Aggiunte](#aggiunte)
   - [Server](#server)
-    - [Server v0.5.0 - 07/07/2026](#server-v050---07072026)
+    - [Server v0.6.0 - 08/07/2026](#server-v060---08072026)
       - [Aggiunte](#aggiunte-1)
+    - [Server v0.5.0 - 07/07/2026](#server-v050---07072026)
+      - [Aggiunte](#aggiunte-2)
       - [Modifiche](#modifiche)
     - [Server v0.4.0 - 07/07/2026](#server-v040---07072026)
-      - [Aggiunte](#aggiunte-2)
+      - [Aggiunte](#aggiunte-3)
       - [Modifiche](#modifiche-1)
     - [Server v0.0.0 - 05/07/2026](#server-v000---05072026)
-      - [Aggiunte](#aggiunte-3)
+      - [Aggiunte](#aggiunte-4)
 
 Tutte le modifiche importanti a questo progetto saranno documentate in questo file.
 
@@ -36,15 +38,25 @@ e questo progetto aderisce al [Semantic Versioning](https://semver.org/lang/it/)
 
 ## Server
 
+### [Server v0.6.0] - 08/07/2026
+
+#### Aggiunte
+
+* Logica di business per la raccomandazione di progetti all'utente sulla base delle risorse che ha in inventario.
+* Nuovi endpoint
+  * Progetti
+    * Visualizza i progetti consigliati in base al proprio inventario *(AUTENTICATO)*
+* Aggiunti 6 nuovi Unit Test
+
 ### [Server v0.5.0] - 07/07/2026
 
 #### Aggiunte
 
 * Nuovi endpoint
   * Inventario
-    * Aggiorna la quantità di un articolo (PROPRIETARIO / ADMIN)
+    * Aggiorna la quantità di un articolo *(PROPRIETARIO / ADMIN)*
   * Progetti
-    * Aggiorna la quantità di una riga della BOM (PROPRIETARIO / ADMIN)
+    * Aggiorna la quantità di una riga della BOM *(PROPRIETARIO / ADMIN)*
 
 #### Modifiche
 
@@ -128,7 +140,8 @@ Sono stati aggiunti numerosi endpoint di base
 
 [Client]: https://github.com/giuse27/MakerManager-Client
 [Server]: https://github.com/giuse27/MakerManager-Server
+[Client v0.0.0]: https://github.com/giuse27/MakerManager-Client/releases/tag/v0.0.0
 [Server v0.0.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.0.0
 [Server v0.4.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.4.0
 [Server v0.5.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.5.0
-[Client v0.0.0]: https://github.com/giuse27/MakerManager-Client/releases/tag/v0.0.0
+[Server v0.6.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.6.0
