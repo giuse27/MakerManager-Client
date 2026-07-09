@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane styleClass="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" spacing="14.0">
+         <children>
+            <Label alignment="CENTER" styleClass="app-title" text="MakerManager" textAlignment="CENTER" />
+            <Label text="Accedi o registrati per continuare" />
+            <TabPane tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Accedi">
+                     <content>
+                        <VBox spacing="10.0">
+                           <children>
+                              <Label text="Email" />
+                              <TextField fx:id="inserisciEmailAccedi" />
+                              <Label text="Password" />
+                              <PasswordField fx:id="inserisciPasswordAccedi" />
+                              <Label />
+                              <Button fx:id="pulsanteAccedi" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAccedi" text="Accedi">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                </Tab>
+                <Tab text="Registrati">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Label" />
+                              <Label text="Label" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                     <content>
+                        <VBox spacing="10.0">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <children>
+                              <Label layoutX="10.0" layoutY="26.0" text="Nickname" />
+                              <TextField fx:id="inserisciNicknameRegistrati" layoutX="10.0" layoutY="54.0" />
+                              <Label text="Email" />
+                              <TextField fx:id="inserisciEmailRegistrati" />
+                              <Label text="Password" />
+                              <PasswordField fx:id="inserisciPasswordRegistrati" />
+                              <Label />
+                              <Button fx:id="pulsanteRegistrati" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onRegistrati" text="Registrati" />
+                           </children></VBox>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+         <padding>
+            <Insets bottom="28.0" left="28.0" right="28.0" top="28.0" />
+         </padding>
+      </VBox>
+   </children>
+</StackPane>
