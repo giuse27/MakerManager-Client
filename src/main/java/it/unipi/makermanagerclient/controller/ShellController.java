@@ -2,163 +2,121 @@ package it.unipi.makermanagerclient.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-import it.unipi.makermanagerclient.util.SpinnerFactories;
+import it.unipi.makermanagerclient.sessione.Sessione;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 /**
- * Controller della Shell principale.
- *
- * Carica una sola volta i 4 pannelli (Inizializzazione, Catalogo, Inventario, 
- * Progetti), e li collega ai campi definiti nella sidebar
- * Questo preserva lo stato di ciascun pannello (in particolare l'ultimo output 
- * mostrato) quando si cambia sezione.
- *
- * Per questo i 4 pannelli vengono caricati una volta sola in initialize() 
- * e restano sempre vivi in memoria, cambiare sezione significa solo alternare 
- * quale sia visibile.
+ * Controller della Shell principale: sidebar di navigazione fissa con area
+ * contenuti. Precarica una sola volta i 6 pannelli (Dashboard, Tutti i 
+ * progetti, Inventario, I miei progetti, Database, Impostazioni) dentro
+ * areaContenuti (uno StackPane).
  */
 public class ShellController implements Initializable {
 
     @FXML
     private StackPane areaContenuti;
 
-    // spinner per la selezione di idInventario
     @FXML
-    private Spinner<Integer> spinnerIdInventario;
+    private Label etichettaPannelloCorrente;
 
-    // spinner per la selezione di idUtente
     @FXML
-    private Spinner<Integer> spinnerIdUtente;
+    private Label etichettaNickname;
 
-    // spinner per la selezione di idProgetto
-    @FXML
-    private Spinner<Integer> spinnerIdProgetto;
+    // Pannelli precaricati, indicizzati per nome visualizzato (usato
+    // anche come titolo nella barra superiore).
+    private final Map<String, Parent> pannelli = new LinkedHashMap<>();
 
-    // Riferimenti ai 4 pannelli precaricati (per poterle mostrare/nascondere).
-    private Parent pannelloInizializzazione;
-    private Parent pannelloCatalogo;
-    private Parent pannelloInventario;
-    private Parent pannelloProgetti;
-
-    // metodo di base per i controller
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        configuraSpinnerCondivisi();
-        caricaTuttiIPannelli();
+        etichettaNickname.setText(Sessione.getIstanza().getNickname());
 
-        // All'avvio mostriamo il pannello Inizializzazione
-        mostraSoltanto(pannelloInizializzazione);
+        caricaPannello("Dashboard", "pannello-dashboard.fxml");
+        caricaPannello("Tutti i progetti", "pannello-tutti-progetti.fxml");
+        caricaPannello("Inventario", "pannello-inventario.fxml");
+        caricaPannello("I miei progetti", "pannello-miei-progetti.fxml");
+        caricaPannello("Database", "pannello-database.fxml");
+        caricaPannello("Impostazioni", "pannello-impostazioni.fxml");
 
-    }
-
-    /**
-     * utility per evitare lanci di eccezioni in conosole che costringe la 
-     * casella di testo ad avere un intero sicuro e valido
-     */
-    private void configuraSpinnerCondivisi() {
-
-        spinnerIdInventario.setValueFactory(
-                SpinnerFactories.interoSicuro(1, Integer.MAX_VALUE, 1)
-        );
-        spinnerIdUtente.setValueFactory(
-                SpinnerFactories.interoSicuro(1, Integer.MAX_VALUE, 1)
-        );
-        spinnerIdProgetto.setValueFactory(
-                SpinnerFactories.interoSicuro(1, Integer.MAX_VALUE, 1)
-        );
+        // All'avvio il sistema si trova sulla Dashboard principale
+        mostra("Dashboard");
 
     }
 
-    /**
-     * Carica i 4 file FXML dei pannelli una sola volta, li aggiunge tutti
-     * a areaContenuti (sovrapposti, dato che e' uno StackPane), e collega
-     * gli Spinner condivisi ai controller che ne hanno bisogno.
-     */
-    private void caricaTuttiIPannelli() {
+    private void caricaPannello(String nomeVisualizzato, String nomeFile) {
 
-        pannelloInizializzazione = carica("pannello-inizializzazione.fxml");
-        pannelloCatalogo = carica("pannello-catalogo.fxml");
-
-        FXMLLoader loaderInventario = new FXMLLoader(
-                getClass().getResource("/it/unipi/makermanagerclient/pannello-inventario.fxml")
-        );
-        pannelloInventario = carica(loaderInventario);
-        InventarioController controllerInventario = loaderInventario.getController();
-        controllerInventario.impostaSpinnerCondivisi(spinnerIdInventario, spinnerIdUtente);
-
-        FXMLLoader loaderProgetti = new FXMLLoader(
-                getClass().getResource("/it/unipi/makermanagerclient/pannello-progetti.fxml")
-        );
-        pannelloProgetti = carica(loaderProgetti);
-        ProgettoController controllerProgetti = loaderProgetti.getController();
-        controllerProgetti.impostaSpinnerCondiviso(spinnerIdProgetto);
-
-        areaContenuti.getChildren().addAll(
-                pannelloInizializzazione, pannelloCatalogo, pannelloInventario, pannelloProgetti
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/it/unipi/makermanagerclient/" + nomeFile)
         );
 
-    }
-
-    // Metodo di comodo per i pannelli che non necessitano di accesso al
-    // loro controller dopo il caricamento (Inizializzazione, Catalogo).
-    private Parent carica(String nomeFile) {
-        return carica(new FXMLLoader(getClass().getResource("/it/unipi/makermanagerclient/" + nomeFile)));
-    }
-
-    // Variante che accetta un FXMLLoader gia' costruito dal chiamante,
-    // usata quando serve poi recuperare anche il controller associato
-    // (Inventario, Progetti) tramite loader.getController().
-    private Parent carica(FXMLLoader loader) {
         try {
-            return loader.load();
+            Parent radice = loader.load();
+            pannelli.put(nomeVisualizzato, radice);
+            areaContenuti.getChildren().add(radice);
         } catch (IOException e) {
-            throw new IllegalStateException("Impossibile caricare il pannello: " + loader.getLocation(), e);
+            throw new IllegalStateException("Impossibile caricare il pannello: " + nomeFile, e);
         }
+
     }
 
     /**
-     * Mostra esclusivamente il pannello indicato, nascondendo gli altri
-     * tre. Usiamo sia setVisible che setManaged: setVisible nasconde
-     * graficamente il nodo, setManaged evita che continui comunque a
-     * occupare spazio nel layout (altrimenti i pannelli nascosti
-     * lascerebbero "buchi" invisibili nello StackPane).
+     * Mostra esclusivamente il pannello indicato (nascondendo gli
+     * altri) e aggiorna la barra superiore con il suo nome. Usiamo sia
+     * setVisible che setManaged: setVisible nasconde graficamente il
+     * nodo, setManaged evita che continui comunque a occupare spazio
+     * nel layout.
      */
-    private void mostraSoltanto(Parent pannelloDaMostrare) {
+    private void mostra(String nomeVisualizzato) {
 
-        for (var pannello : areaContenuti.getChildren()) {
-            boolean pannelloGiusto = (pannello == pannelloDaMostrare);
+        Parent daMostrare = pannelli.get(nomeVisualizzato);
+
+        for (Parent pannello : pannelli.values()) {
+            boolean pannelloGiusto = (pannello == daMostrare);
             pannello.setVisible(pannelloGiusto);
             pannello.setManaged(pannelloGiusto);
         }
 
+        etichettaPannelloCorrente.setText(nomeVisualizzato);
+
     }
 
     @FXML
-    private void mostraInizializzazione() {
-        mostraSoltanto(pannelloInizializzazione);
+    private void mostraDashboard() {
+        mostra("Dashboard");
     }
 
     @FXML
-    private void mostraCatalogo() {
-        mostraSoltanto(pannelloCatalogo);
+    private void mostraTuttiProgetti() {
+        mostra("Tutti i progetti");
     }
 
     @FXML
     private void mostraInventario() {
-        mostraSoltanto(pannelloInventario);
+        mostra("Inventario");
     }
 
     @FXML
-    private void mostraProgetti() {
-        mostraSoltanto(pannelloProgetti);
+    private void mostraMieiProgetti() {
+        mostra("I miei progetti");
+    }
+
+    @FXML
+    private void mostraDatabase() {
+        mostra("Database");
+    }
+
+    @FXML
+    private void mostraImpostazioni() {
+        mostra("Impostazioni");
     }
 
 }
