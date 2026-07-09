@@ -5,12 +5,19 @@ import java.io.IOException;
 import it.unipi.makermanagerclient.App;
 import it.unipi.makermanagerclient.model.RispostaAutenticazioneDTO;
 import it.unipi.makermanagerclient.network.ApiException;
+import it.unipi.makermanagerclient.service.AuthService;
 import it.unipi.makermanagerclient.sessione.Sessione;
+import it.unipi.makermanagerclient.util.EsecutoreAsincrono;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+/**
+ * controller per l'autenticazione (auth.fxml)
+ * 
+ * AuthController
+ */
 public class AuthController {
 
     @FXML
@@ -52,7 +59,17 @@ public class AuthController {
         etichettaErroreAccedi.setText("");
         pulsanteAccedi.setDisable(true);
 
-        // TODO
+        EsecutoreAsincrono.esegui(
+            () -> AuthService.login(email, password), 
+            esito -> {
+                pulsanteAccedi.setDisable(false);
+                completaAutenticazione(esito);
+            }, 
+            errore -> {
+                pulsanteAccedi.setDisable(false);
+                etichettaErroreAccedi.setText(messaggioErrore(errore));
+            }
+        );
 
     }
 
@@ -69,7 +86,17 @@ public class AuthController {
         etichettaErroreRegistrati.setText("");
         pulsanteRegistrati.setDisable(true);
 
-        // TODO
+        EsecutoreAsincrono.esegui(
+            () -> AuthService.registrati(nickname, email, password), 
+            esito -> {
+                pulsanteRegistrati.setDisable(false);
+                completaAutenticazione(esito);
+            }, 
+            errore -> {
+                pulsanteRegistrati.setDisable(false);
+                etichettaErroreRegistrati.setText(messaggioErrore(errore));
+            }
+        );
 
     }
 
