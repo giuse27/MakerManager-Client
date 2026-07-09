@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane styleClass="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane styleClass="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipi.makermanagerclient.controller.AuthController">
    <children>
-      <VBox alignment="TOP_CENTER" spacing="14.0">
+      <VBox alignment="TOP_CENTER" maxWidth="480.0" spacing="14.0">
          <children>
             <Label alignment="CENTER" styleClass="app-title" text="MakerManager" textAlignment="CENTER" />
             <Label text="Accedi o registrati per continuare" />
@@ -40,14 +40,6 @@
                      </content>
                 </Tab>
                 <Tab text="Registrati">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Label" />
-                              <Label text="Label" />
-                           </children>
-                        </AnchorPane>
-                  </content>
                      <content>
                         <VBox spacing="10.0">
                            <padding>
