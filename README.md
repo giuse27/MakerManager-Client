@@ -115,7 +115,7 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
 
 * [ ] Client
   * [ ] Implementazione di una GUI funzionale
-    * [ ] Creazione dell'utente
+    * [X] Registrazione/login dell'utente
     * [ ] Dashboard utente
       * [ ] L'utente può visualizzare e gestire i suoi progetti
       * [ ] L'utente può visualizzare e gestire i suoi inventari
@@ -172,6 +172,11 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
 
 ### Prerequisiti
 
+* **Java 21** o superiore.
+* **MySQL 8.0** o superiore.
+* **Maven** (per la gestione delle dipendenze).
+* **JavaFX Runtime** (incluso nelle dipendenze Maven).
+
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Installazione
@@ -179,6 +184,8 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Altri manuali
+
+Viene riportata per comodità una copia del manuale dove sono documentati tutti gli **endpoint** che vengono esposti dal server per il funzionamento del software. È possibile consultare [**Documentazione endpoint**](./docs/endpoint.md).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
