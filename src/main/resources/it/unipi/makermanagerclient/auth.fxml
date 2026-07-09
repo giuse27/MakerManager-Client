@@ -26,7 +26,7 @@
                               <TextField fx:id="inserisciEmailAccedi" />
                               <Label text="Password" />
                               <PasswordField fx:id="inserisciPasswordAccedi" />
-                              <Label />
+                              <Label fx:id="etichettaErroreAccedi" />
                               <Button fx:id="pulsanteAccedi" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAccedi" text="Accedi">
                                  <VBox.margin>
                                     <Insets top="10.0" />
@@ -60,7 +60,7 @@
                               <TextField fx:id="inserisciEmailRegistrati" />
                               <Label text="Password" />
                               <PasswordField fx:id="inserisciPasswordRegistrati" />
-                              <Label />
+                              <Label fx:id="etichettaErroreRegistrati" />
                               <Button fx:id="pulsanteRegistrati" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onRegistrati" text="Registrati" />
                            </children></VBox>
                      </content>
