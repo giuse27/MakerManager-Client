@@ -11,6 +11,9 @@ import javafx.scene.control.TextArea;
  * Utility condivisa da tutti i controller di pannello per eseguire una 
  * chiamata ApiClient e mostrarne l'esito in una TextArea, con formattazione 
  * uniforme (orario, stato, codice, body).
+ * 
+ * @version 0.0.0
+ * @deprecated a partire dalla v1.0.0
  */
 public final class OutputFormatter {
 

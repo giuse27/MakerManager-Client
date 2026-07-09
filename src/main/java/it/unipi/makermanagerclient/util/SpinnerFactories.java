@@ -16,6 +16,9 @@ import javafx.util.StringConverter;
  * una NullPointerException (visibile anche solo cliccando altrove, senza
  * premere alcun tasto). Per evitarlo il converter qui sotto ripiega
  * sull'ultimo valore valido invece di restituire null.
+ * 
+ * @version 0.0.0
+ * @deprecated a partire dalla v1.0.0
  */
 public final class SpinnerFactories {
 
