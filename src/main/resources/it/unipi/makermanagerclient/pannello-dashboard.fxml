@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="it.unipi.makermanagerclient.controller.DashboardController">
+      fx:controller="it.unipi.makermanagerclient.controller.DashboardController"
+      spacing="14.0">
+
+    <padding>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+    </padding>
+
     <children>
-        <Label text="Dashboard" />
+
+        <Label fx:id="etichettaBenvenuto" text="Benvenuto in MakerManager" />
+
+        <HBox spacing="14.0">
+            <children>
+                <Label fx:id="etichettaStatoServer" text="Stato server: -" />
+                <Label fx:id="etichettaTotaleProgetti" text="Totale progetti: -" />
+                <Label fx:id="etichettaMieiProgetti" text="I miei progetti: -" />
+                <Label fx:id="etichettaNumeroConsigliati" text="Progetti consigliati: -" />
+            </children>
+        </HBox>
+
+        <Label text="Progetti consigliati" />
+
+        <TableView fx:id="tabellaConsigliati" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colonnaNome" text="Nome del progetto" prefWidth="280.0" />
+                <TableColumn fx:id="colonnaAutore" text="Autore" prefWidth="160.0" />
+                <TableColumn fx:id="colonnaFattibilita" text="Fattibilità" prefWidth="260.0" />
+            </columns>
+        </TableView>
+
     </children>
 </VBox>

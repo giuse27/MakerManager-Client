@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="it.unipi.makermanagerclient.controller.DettaglioProgettoController"
+      spacing="14.0">
+
+    <padding>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+    </padding>
+
+    <children>
+
+        <Label fx:id="etichettaNome" text="Nome progetto" />
+        <Label fx:id="etichettaDescrizione" text="Descrizione" wrapText="true" />
+        <Label fx:id="etichettaAutore" text="Autore" />
+
+        <HBox spacing="14.0">
+            <children>
+                <Button fx:id="bottoneModificaBom" text="Modifica la BOM" onAction="#onModificaBom" />
+                <Button fx:id="bottoneAggiungiRiga" text="Aggiungi riga" onAction="#onAggiungiRiga" visible="false" managed="false" />
+                <Button fx:id="bottoneEliminaRiga" text="Elimina riga" onAction="#onEliminaRiga" visible="false" managed="false" />
+            </children>
+        </HBox>
+
+        <Label text="Requisiti del progetto" />
+
+        <TableView fx:id="tabellaBom" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colonnaNomeElemento" text="Nome" prefWidth="360.0" />
+                <TableColumn fx:id="colonnaQuantita" text="Quantità" prefWidth="120.0" />
+            </columns>
+        </TableView>
+
+    </children>
+</VBox>

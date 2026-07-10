@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="it.unipi.makermanagerclient.controller.CreaProgettoController"
+      spacing="10.0">
+
+    <padding>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+    </padding>
+
+    <children>
+        <Label text="Tipo" />
+        <ComboBox fx:id="comboTipo" maxWidth="Infinity" />
+
+        <Label text="Nome" />
+        <TextField fx:id="campoNome" />
+
+        <Label text="Descrizione" />
+        <TextField fx:id="campoDescrizione" />
+
+        <Label fx:id="etichettaErrore" wrapText="true" />
+
+        <Button fx:id="bottoneCrea" text="Crea progetto" maxWidth="Infinity" onAction="#onCrea">
+            <VBox.margin>
+                <Insets top="8.0" />
+            </VBox.margin>
+        </Button>
+    </children>
+</VBox>

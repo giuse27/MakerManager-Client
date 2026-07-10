@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="it.unipi.makermanagerclient.controller.TuttiProgettiController">
+      fx:controller="it.unipi.makermanagerclient.controller.TuttiProgettiController"
+      spacing="14.0">
+
+    <padding>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+    </padding>
+
     <children>
-        <Label text="Tutti i progetti" />
+
+        <Label fx:id="etichettaTitolo" text="Tutti i progetti disponibili in catalogo (-)" />
+
+        <TableView fx:id="tabellaProgetti" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colonnaNome" text="Nome del progetto" prefWidth="260.0" />
+                <TableColumn fx:id="colonnaAutore" text="Autore" prefWidth="160.0" />
+                <TableColumn fx:id="colonnaDescrizione" text="Descrizione" prefWidth="360.0" />
+            </columns>
+        </TableView>
+
     </children>
 </VBox>
