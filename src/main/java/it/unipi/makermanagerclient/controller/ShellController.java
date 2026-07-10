@@ -35,6 +35,11 @@ public class ShellController implements Initializable {
     // anche come titolo nella barra superiore).
     private final Map<String, Parent> pannelli = new LinkedHashMap<>();
 
+    // Sottoinsieme dei controller dei pannelli che sanno ricaricare i
+    // propri dati: valorizzato in caricaPannello() per i soli
+    // controller che implementano PannelloRicaricabile.
+    private final Map<String, PannelloRicaricabile> pannelliRicaricabili = new LinkedHashMap<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -59,9 +64,15 @@ public class ShellController implements Initializable {
         );
 
         try {
+
             Parent radice = loader.load();
             pannelli.put(nomeVisualizzato, radice);
             areaContenuti.getChildren().add(radice);
+
+            if (loader.getController() instanceof PannelloRicaricabile ricaricabile) {
+                pannelliRicaricabili.put(nomeVisualizzato, ricaricabile);
+            }
+
         } catch (IOException e) {
             throw new IllegalStateException("Impossibile caricare il pannello: " + nomeFile, e);
         }
@@ -74,6 +85,11 @@ public class ShellController implements Initializable {
      * setVisible che setManaged: setVisible nasconde graficamente il
      * nodo, setManaged evita che continui comunque a occupare spazio
      * nel layout.
+     *
+     * Se il pannello sa ricaricare i propri dati (PannelloRicaricabile),
+     * lo facciamo ogni volta che diventa visibile: e' l'unico punto in
+     * cui i pannelli precaricati vengono aggiornati dopo il primo
+     * caricamento.
      */
     private void mostra(String nomeVisualizzato) {
 
@@ -86,6 +102,11 @@ public class ShellController implements Initializable {
         }
 
         etichettaPannelloCorrente.setText(nomeVisualizzato);
+
+        PannelloRicaricabile ricaricabile = pannelliRicaricabili.get(nomeVisualizzato);
+        if (ricaricabile != null) {
+            ricaricabile.ricarica();
+        }
 
     }
 
