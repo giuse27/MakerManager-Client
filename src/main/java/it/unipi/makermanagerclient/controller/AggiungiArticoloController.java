@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import it.unipi.makermanagerclient.model.ElementoCatalogoDTO;
+import it.unipi.makermanagerclient.network.ApiException;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,20 +54,47 @@ public class AggiungiArticoloController implements Initializable {
     @FXML
     private Button bottoneCrea;
 
+    private long idInventarioDestinazione;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         comboTipologiaNuovoElemento.setItems(FXCollections.observableArrayList(TIPOLOGIE_ELEMENTO));
 
+        // TODO
+
+    }
+
+    /**
+     * Chiamato da ContenutoInventarioController per sapere a quale inventario 
+     * andrà aggiunto l'articolo
+     */
+    public void impostaInventarioDestinazione(long idInventario) {
+        this.idInventarioDestinazione = idInventario;
     }
 
     @FXML
     private void onImportaEAggiungi() {
 
+        // TODO
+
     }
 
     @FXML
     private void onCreaEAggiungi() {
+
+        // TODO
+
+    }
+
+    private void mostraErrore(Label etichettaErrore, Throwable errore) {
+
+        if (errore instanceof ApiException apiException) {
+            etichettaErrore.setText(apiException.getMessage());
+            return;
+        }
+
+        etichettaErrore.setText("Impossibile contattare il server: " + errore.getMessage());
 
     }
 
