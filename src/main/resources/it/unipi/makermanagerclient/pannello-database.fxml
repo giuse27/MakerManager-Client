@@ -21,6 +21,8 @@
 
         <HBox spacing="14.0">
             <children>
+                <Button fx:id="bottoneAggiungiElemento" text="Aggiungi elemento" onAction="#onAggiungiElemento" />
+                <Button fx:id="bottoneEliminaElemento" text="Elimina elemento" onAction="#onEliminaElemento" />
                 <Button fx:id="bottoneInizializza" text="Inizializza" onAction="#onInizializza" />
             </children>
         </HBox>
