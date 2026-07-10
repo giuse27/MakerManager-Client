@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import it.unipi.makermanagerclient.App;
 import it.unipi.makermanagerclient.model.InventarioDTO;
 import it.unipi.makermanagerclient.network.ApiException;
 import it.unipi.makermanagerclient.service.InventarioService;
@@ -176,7 +177,9 @@ public class InventarioController implements Initializable, PannelloRicaricabile
             // visualizzo il contenuto in una nuova finestra
             Stage finestra = new Stage();
             finestra.setTitle(inventario.getNome());
-            finestra.setScene(new Scene(radice, 900, 600));
+            Scene scena = new Scene(radice, 900, 600);
+            scena.getStylesheets().add(App.getStylesheet());
+            finestra.setScene(scena);
             finestra.setOnHidden(evento -> ricarica());
             finestra.show();
 

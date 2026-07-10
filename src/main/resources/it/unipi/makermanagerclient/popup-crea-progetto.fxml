@@ -26,7 +26,7 @@
         <Label text="Descrizione" />
         <TextField fx:id="campoDescrizione" />
 
-        <Label fx:id="etichettaErrore" wrapText="true" />
+        <Label fx:id="etichettaErrore" styleClass="error-label" wrapText="true" />
 
         <Button fx:id="bottoneCrea" text="Crea progetto" maxWidth="Infinity" onAction="#onCrea">
             <VBox.margin>

@@ -26,7 +26,7 @@
         <Label text="Tipologia" />
         <ComboBox fx:id="comboTipologia" maxWidth="Infinity" />
 
-        <Label fx:id="etichettaErrore" wrapText="true" />
+        <Label fx:id="etichettaErrore" styleClass="error-label" wrapText="true" />
 
         <Button fx:id="bottoneCrea" text="Aggiungi al catalogo" maxWidth="Infinity" onAction="#onCrea">
             <VBox.margin>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.unipi.makermanagerclient.App;
 import it.unipi.makermanagerclient.model.ElementoCatalogoDTO;
 import it.unipi.makermanagerclient.network.ApiException;
 import it.unipi.makermanagerclient.service.AmministrazioneService;
@@ -183,7 +184,9 @@ public class DatabaseController implements Initializable, PannelloRicaricabile {
             Stage popup = new Stage();
             popup.initModality(Modality.APPLICATION_MODAL);
             popup.setTitle("Nuovo elemento catalogo");
-            popup.setScene(new Scene(radice, 420, 340));
+            Scene scena = new Scene(radice, 420, 340);
+            scena.getStylesheets().add(App.getStylesheet());
+            popup.setScene(scena);
             popup.setOnHidden(evento -> ricarica());
             popup.showAndWait();
 

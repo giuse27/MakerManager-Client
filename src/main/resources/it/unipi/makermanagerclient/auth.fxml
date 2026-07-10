@@ -12,10 +12,10 @@
 
 <StackPane styleClass="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipi.makermanagerclient.controller.AuthController">
    <children>
-      <VBox alignment="CENTER" maxWidth="380.0" spacing="14.0">
+      <VBox alignment="CENTER" maxWidth="380.0" spacing="14.0" styleClass="card">
          <children>
             <Label alignment="CENTER" styleClass="app-title" text="MakerManager" textAlignment="CENTER" />
-            <Label text="Accedi o registrati per continuare" />
+            <Label styleClass="hint-label" text="Accedi o registrati per continuare" />
             <TabPane tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Accedi">
@@ -26,7 +26,7 @@
                               <TextField fx:id="inserisciEmailAccedi" />
                               <Label text="Password" />
                               <PasswordField fx:id="inserisciPasswordAccedi" />
-                              <Label fx:id="etichettaErroreAccedi" />
+                              <Label fx:id="etichettaErroreAccedi" styleClass="error-label" wrapText="true" />
                               <Button fx:id="pulsanteAccedi" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAccedi" text="Accedi">
                                  <VBox.margin>
                                     <Insets top="10.0" />
@@ -52,7 +52,7 @@
                               <TextField fx:id="inserisciEmailRegistrati" />
                               <Label text="Password" />
                               <PasswordField fx:id="inserisciPasswordRegistrati" />
-                              <Label fx:id="etichettaErroreRegistrati" />
+                              <Label fx:id="etichettaErroreRegistrati" styleClass="error-label" wrapText="true" />
                               <Button fx:id="pulsanteRegistrati" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onRegistrati" text="Registrati" />
                            </children></VBox>
                      </content>

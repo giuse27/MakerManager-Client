@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.unipi.makermanagerclient.App;
 import it.unipi.makermanagerclient.model.ProgettoDTO;
 import it.unipi.makermanagerclient.network.ApiException;
 import it.unipi.makermanagerclient.service.ProgettoService;
@@ -121,7 +122,9 @@ public class MieiProgettiController implements Initializable, PannelloRicaricabi
             Stage popup = new Stage();
             popup.initModality(Modality.APPLICATION_MODAL);
             popup.setTitle("Nuovo progetto");
-            popup.setScene(new Scene(radice, 420, 320));
+            Scene scena = new Scene(radice, 420, 320);
+            scena.getStylesheets().add(App.getStylesheet());
+            popup.setScene(scena);
             popup.setOnHidden(evento -> ricarica());
             popup.showAndWait();
 
@@ -185,7 +188,9 @@ public class MieiProgettiController implements Initializable, PannelloRicaricabi
             // visualizzo il dettaglio in una nuova finestra
             Stage finestra = new Stage();
             finestra.setTitle(progetto.getNome());
-            finestra.setScene(new Scene(radice, 900, 600));
+            Scene scena = new Scene(radice, 900, 600);
+            scena.getStylesheets().add(App.getStylesheet());
+            finestra.setScene(scena);
             finestra.setOnHidden(evento -> ricarica());
             finestra.show();
 

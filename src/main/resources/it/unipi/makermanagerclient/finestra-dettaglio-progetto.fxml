@@ -19,19 +19,19 @@
 
     <children>
 
-        <Label fx:id="etichettaNome" text="Nome progetto" />
-        <Label fx:id="etichettaDescrizione" text="Descrizione" wrapText="true" />
-        <Label fx:id="etichettaAutore" text="Autore" />
+        <Label fx:id="etichettaNome" styleClass="section-title" text="Nome progetto" />
+        <Label fx:id="etichettaDescrizione" styleClass="hint-label" text="Descrizione" wrapText="true" />
+        <Label fx:id="etichettaAutore" styleClass="hint-label" text="Autore" />
 
-        <HBox spacing="14.0">
+        <HBox styleClass="toolbar" spacing="14.0">
             <children>
                 <Button fx:id="bottoneModificaBom" text="Modifica la BOM" onAction="#onModificaBom" />
                 <Button fx:id="bottoneAggiungiRiga" text="Aggiungi riga" onAction="#onAggiungiRiga" visible="false" managed="false" />
-                <Button fx:id="bottoneEliminaRiga" text="Elimina riga" onAction="#onEliminaRiga" visible="false" managed="false" />
+                <Button fx:id="bottoneEliminaRiga" styleClass="danger" text="Elimina riga" onAction="#onEliminaRiga" visible="false" managed="false" />
             </children>
         </HBox>
 
-        <Label text="Requisiti del progetto" />
+        <Label styleClass="section-title" text="Requisiti del progetto" />
 
         <TableView fx:id="tabellaBom" VBox.vgrow="ALWAYS">
             <columns>

@@ -1,0 +1,355 @@
+/*
+ * Foglio di stile globale del Client: caricato su OGNI Scene
+ * dell'applicazione (finestra principale, finestre di dettaglio, popup
+ * — vedi App.getStylesheet()), cosi' l'aspetto resta coerente ovunque.
+ *
+ * Design minimale: una manciata di classi semantiche (elencate qui
+ * sotto) sopra i tipi di controllo standard di JavaFX (.button,
+ * .text-field, .table-view, .tab-pane, ...), che gia' si applicano
+ * automaticamente a ogni nodo senza bisogno di styleClass espliciti.
+ *
+ * Classi semantiche personalizzate in uso:
+ *   .app-title     wordmark "MakerManager" (login + sidebar)
+ *   .section-title intestazione di sezione (titoli pannello, tabelle)
+ *   .hint-label    testo secondario/descrittivo
+ *   .error-label   messaggi di errore/validazione
+ *   .card          riquadro in rilievo (solo login, dove c'e' spazio
+ *                  intorno per il dropshadow)
+ *   .sidebar       barra di navigazione laterale
+ *   .nav-button    voce di navigazione nella sidebar
+ *   .profile-box   riquadro profilo in fondo alla sidebar
+ *   .top-bar       barra sottile con il nome del pannello corrente
+ *   .version-label etichetta di versione in basso a destra
+ *   .toolbar       riga di bottoni/statistiche in cima a un pannello
+ *   .stat-chip     singola statistica dentro un .toolbar
+ *   .danger        variante rossa di un bottone (azioni distruttive)
+ */
+
+.root {
+
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13.5px;
+
+    /* Palette (looked-up colors: variabili CSS di JavaFX, referenziabili
+       da qualunque regola sotto con -fx-...: -nome-variabile) */
+    -color-bg:             #f2f4fa;
+    -color-surface:        #ffffff;
+    -color-border:         #e1e4ef;
+    -color-text:           #1f2433;
+    -color-text-muted:     #6c7182;
+    -color-text-inverse:   #eef0fa;
+    -color-text-inverse-muted: #9aa1c0;
+
+    -color-primary:         #4a5ee0;
+    -color-primary-hover:   #3d4fc7;
+    -color-primary-pressed: #3141a8;
+
+    -color-danger:          #e0473d;
+    -color-danger-hover:    #c53a31;
+    -color-danger-pressed:  #9c2e27;
+
+    -color-success: #1f9d68;
+
+    -color-sidebar:        #1b2033;
+    -color-sidebar-hover:  #262c47;
+    -color-sidebar-active: #333c63;
+
+    -fx-background-color: -color-bg;
+    -fx-text-fill: -color-text;
+}
+
+.label {
+    -fx-text-fill: -color-text;
+}
+
+/* ================= Tipografia ================= */
+
+.app-title {
+    -fx-font-size: 21px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -color-text-inverse;
+}
+
+.card .app-title {
+    -fx-text-fill: -color-text;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -color-text;
+}
+
+.hint-label {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: -color-text-muted;
+}
+
+.error-label {
+    -fx-font-size: 12.5px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-danger;
+}
+
+/* ================= Login (card centrale) ================= */
+
+.card {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 16;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 32;
+    -fx-effect: dropshadow(gaussian, rgba(31,36,51,0.12), 28, 0, 0, 8);
+}
+
+/* ================= Sidebar ================= */
+
+.sidebar {
+    -fx-background-color: -color-sidebar;
+    -fx-background-radius: 14;
+    -fx-padding: 22 14 18 14;
+}
+
+.sidebar .label {
+    -fx-text-fill: -color-text-inverse-muted;
+}
+
+.sidebar .app-title {
+    -fx-padding: 4 8 14 8;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text-inverse-muted;
+    -fx-font-size: 13.5px;
+    -fx-font-weight: 600;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: -color-sidebar-hover;
+    -fx-text-fill: -color-text-inverse;
+}
+
+.nav-button:pressed, .nav-button:armed {
+    -fx-background-color: -color-sidebar-active;
+    -fx-text-fill: -color-text-inverse;
+}
+
+.profile-box {
+    -fx-padding: 14 8 4 8;
+    -fx-border-color: rgba(255,255,255,0.08) transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.profile-box .label {
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-text-inverse;
+}
+
+/* ================= Barra superiore e versione ================= */
+
+.top-bar {
+    -fx-font-size: 19px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -color-text;
+    -fx-background-color: -color-surface;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.version-label {
+    -fx-font-size: 10.5px;
+    -fx-text-fill: -color-text-muted;
+    -fx-background-color: -color-surface;
+}
+
+/* ================= Toolbar e statistiche di pannello ================= */
+
+.toolbar {
+    -fx-padding: 0 0 4 0;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.stat-chip {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 9;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 9;
+    -fx-border-width: 1;
+    -fx-padding: 9 16 9 16;
+    -fx-font-weight: 700;
+    -fx-text-fill: -color-text;
+}
+
+/* ================= Bottoni ================= */
+
+.button {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 9 16 9 16;
+    -fx-background-radius: 7;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: -color-primary-hover;
+}
+
+.button:pressed, .button:armed {
+    -fx-background-color: -color-primary-pressed;
+}
+
+.button:disabled {
+    -fx-opacity: 0.55;
+}
+
+.button.danger {
+    -fx-background-color: -color-danger;
+}
+
+.button.danger:hover {
+    -fx-background-color: -color-danger-hover;
+}
+
+.button.danger:pressed, .button.danger:armed {
+    -fx-background-color: -color-danger-pressed;
+}
+
+/* Le voci della sidebar sono comunque <Button>, quindi ereditano anche
+   .button: qui vinciamo per specificita' (selettore a due classi). */
+.sidebar .nav-button {
+    -fx-background-color: transparent;
+}
+
+/* ================= Campi di input ================= */
+
+.text-field, .combo-box, .password-field {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 7;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 7;
+    -fx-border-width: 1;
+    -fx-padding: 7 10 7 10;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused, .combo-box:focused, .password-field:focused {
+    -fx-border-color: -color-primary;
+}
+
+.combo-box .list-cell {
+    -fx-padding: 6 8 6 8;
+    -fx-text-fill: -color-text;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: derive(-color-primary, 85%);
+}
+
+/* ================= TabPane ================= */
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 8 16 8 16;
+}
+
+.tab .tab-label {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-weight: 600;
+}
+
+.tab:selected {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border -color-border transparent -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8 8 0 0;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: -color-primary;
+}
+
+.tab-pane .tab-content-area {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-border-width: 0 1 1 1;
+}
+
+/* ================= TableView ================= */
+
+.table-view {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 10;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-fixed-cell-size: 36px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-pref-height: 38px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-weight: 700;
+    -fx-font-size: 12px;
+}
+
+.table-row-cell {
+    -fx-background-color: -color-surface;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-row-cell:filled:hover {
+    -fx-background-color: derive(-color-primary, 92%);
+}
+
+.table-row-cell:filled:selected {
+    -fx-background-color: derive(-color-primary, 80%);
+}
+
+.table-row-cell:filled:selected .text {
+    -fx-fill: -color-text;
+}
+
+.table-cell {
+    -fx-text-fill: -color-text;
+    -fx-padding: 6 12 6 12;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: -color-text-muted;
+}

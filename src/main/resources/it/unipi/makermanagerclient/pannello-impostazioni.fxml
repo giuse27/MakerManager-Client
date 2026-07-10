@@ -15,9 +15,9 @@
 
     <children>
 
-        <Label text="Impostazioni" />
+        <Label styleClass="section-title" text="Impostazioni" />
 
-        <Label text="Soglia progetti mancanti (numero massimo di elementi mancanti perché un progetto compaia tra i consigliati, oltre a quelli già realizzabili)" wrapText="true" />
+        <Label styleClass="hint-label" text="Soglia progetti mancanti (numero massimo di elementi mancanti perché un progetto compaia tra i consigliati, oltre a quelli già realizzabili)" wrapText="true" />
 
         <HBox spacing="10.0">
             <children>
@@ -27,7 +27,7 @@
             </children>
         </HBox>
 
-        <Label fx:id="etichettaEsito" />
+        <Label fx:id="etichettaEsito" styleClass="hint-label" />
 
     </children>
 </VBox>

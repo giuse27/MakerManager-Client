@@ -18,18 +18,18 @@
 
     <children>
 
-        <Label fx:id="etichettaBenvenuto" text="Benvenuto in MakerManager" />
+        <Label fx:id="etichettaBenvenuto" styleClass="section-title" text="Benvenuto in MakerManager" />
 
-        <HBox spacing="14.0">
+        <HBox styleClass="toolbar" spacing="14.0">
             <children>
-                <Label fx:id="etichettaStatoServer" text="Stato server: -" />
-                <Label fx:id="etichettaTotaleProgetti" text="Totale progetti: -" />
-                <Label fx:id="etichettaMieiProgetti" text="I miei progetti: -" />
-                <Label fx:id="etichettaNumeroConsigliati" text="Progetti consigliati: -" />
+                <Label fx:id="etichettaStatoServer" styleClass="stat-chip" text="Stato server: -" />
+                <Label fx:id="etichettaTotaleProgetti" styleClass="stat-chip" text="Totale progetti: -" />
+                <Label fx:id="etichettaMieiProgetti" styleClass="stat-chip" text="I miei progetti: -" />
+                <Label fx:id="etichettaNumeroConsigliati" styleClass="stat-chip" text="Progetti consigliati: -" />
             </children>
         </HBox>
 
-        <Label text="Progetti consigliati" />
+        <Label styleClass="section-title" text="Progetti consigliati" />
 
         <TableView fx:id="tabellaConsigliati" VBox.vgrow="ALWAYS">
             <columns>

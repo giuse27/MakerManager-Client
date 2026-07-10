@@ -19,14 +19,14 @@
 
     <children>
 
-        <HBox spacing="14.0">
+        <HBox styleClass="toolbar" spacing="14.0">
             <children>
                 <Button text="Crea nuovo progetto" onAction="#onCreaProgetto" />
-                <Button text="Elimina progetto" onAction="#onEliminaProgetto" />
+                <Button styleClass="danger" text="Elimina progetto" onAction="#onEliminaProgetto" />
             </children>
         </HBox>
 
-        <Label fx:id="etichettaTitolo" text="I tuoi progetti" />
+        <Label fx:id="etichettaTitolo" styleClass="section-title" text="I tuoi progetti" />
 
         <TableView fx:id="tabellaProgetti" VBox.vgrow="ALWAYS">
             <columns>

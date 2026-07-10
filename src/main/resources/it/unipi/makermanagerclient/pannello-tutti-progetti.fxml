@@ -17,7 +17,7 @@
 
     <children>
 
-        <Label fx:id="etichettaTitolo" text="Tutti i progetti disponibili in catalogo (-)" />
+        <Label fx:id="etichettaTitolo" styleClass="section-title" text="Tutti i progetti disponibili in catalogo (-)" />
 
         <TableView fx:id="tabellaProgetti" VBox.vgrow="ALWAYS">
             <columns>

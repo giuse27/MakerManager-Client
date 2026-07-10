@@ -28,7 +28,7 @@
                         <Label text="Quantità richiesta" />
                         <TextField fx:id="campoQuantitaImporta" promptText="es. 5" />
 
-                        <Label fx:id="etichettaErroreImporta" wrapText="true" />
+                        <Label fx:id="etichettaErroreImporta" styleClass="error-label" wrapText="true" />
 
                         <Button fx:id="bottoneImporta" text="Aggiungi alla B.O.M." maxWidth="Infinity" onAction="#onImportaEAggiungi">
                             <VBox.margin>
@@ -58,7 +58,7 @@
                         <Label text="Quantità richiesta" />
                         <TextField fx:id="campoQuantitaCrea" promptText="es. 5" />
 
-                        <Label fx:id="etichettaErroreCrea" wrapText="true" />
+                        <Label fx:id="etichettaErroreCrea" styleClass="error-label" wrapText="true" />
 
                         <Button fx:id="bottoneCrea" text="Crea e aggiungi alla B.O.M." maxWidth="Infinity" onAction="#onCreaEAggiungi">
                             <VBox.margin>

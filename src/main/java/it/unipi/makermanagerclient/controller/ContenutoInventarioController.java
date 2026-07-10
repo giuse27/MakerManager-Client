@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.unipi.makermanagerclient.App;
 import it.unipi.makermanagerclient.model.ArticoloInventarioDTO;
 import it.unipi.makermanagerclient.network.ApiException;
 import it.unipi.makermanagerclient.service.InventarioService;
@@ -143,7 +144,9 @@ public class ContenutoInventarioController implements Initializable {
             Stage popup = new Stage();
             popup.initModality(Modality.APPLICATION_MODAL);
             popup.setTitle("Aggiungi articolo a \"" + nomeInventario + "\"");
-            popup.setScene(new Scene(radice, 480, 420));
+            Scene scena = new Scene(radice, 480, 420);
+            scena.getStylesheets().add(App.getStylesheet());
+            popup.setScene(scena);
             popup.setOnHidden(evento -> ricarica());
             popup.showAndWait();
 

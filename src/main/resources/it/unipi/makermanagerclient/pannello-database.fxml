@@ -19,15 +19,15 @@
 
     <children>
 
-        <HBox spacing="14.0">
+        <HBox styleClass="toolbar" spacing="14.0">
             <children>
                 <Button fx:id="bottoneAggiungiElemento" text="Aggiungi elemento" onAction="#onAggiungiElemento" />
-                <Button fx:id="bottoneEliminaElemento" text="Elimina elemento" onAction="#onEliminaElemento" />
-                <Button fx:id="bottoneInizializza" text="Inizializza" onAction="#onInizializza" />
+                <Button fx:id="bottoneEliminaElemento" styleClass="danger" text="Elimina elemento" onAction="#onEliminaElemento" />
+                <Button fx:id="bottoneInizializza" styleClass="danger" text="Inizializza" onAction="#onInizializza" />
             </children>
         </HBox>
 
-        <Label fx:id="etichettaTitoloTabella" text="Elenco completo degli elementi presenti in catalogo (-)" />
+        <Label fx:id="etichettaTitoloTabella" styleClass="section-title" text="Elenco completo degli elementi presenti in catalogo (-)" />
 
         <TableView fx:id="tabellaElementi" VBox.vgrow="ALWAYS">
             <columns>

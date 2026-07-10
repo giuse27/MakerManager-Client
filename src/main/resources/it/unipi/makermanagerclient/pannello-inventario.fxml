@@ -19,15 +19,15 @@
 
     <children>
 
-        <HBox spacing="14.0">
+        <HBox styleClass="toolbar" spacing="14.0">
             <children>
-                <Label fx:id="etichettaNumeroInventari" text="Numero di inventari: -" />
+                <Label fx:id="etichettaNumeroInventari" styleClass="stat-chip" text="Numero di inventari: -" />
                 <Button fx:id="bottoneCreaInventario" text="Crea nuovo inventario" onAction="#onCreaInventario" />
-                <Button fx:id="bottoneEliminaInventario" text="Elimina inventario" onAction="#onEliminaInventario" />
+                <Button fx:id="bottoneEliminaInventario" styleClass="danger" text="Elimina inventario" onAction="#onEliminaInventario" />
             </children>
         </HBox>
 
-        <Label text="I tuoi inventari" />
+        <Label styleClass="section-title" text="I tuoi inventari" />
 
         <TableView fx:id="tabellaInventari" VBox.vgrow="ALWAYS">
             <columns>
