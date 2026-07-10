@@ -1,5 +1,6 @@
 package it.unipi.makermanagerclient.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,7 +11,10 @@ import it.unipi.makermanagerclient.util.EsecutoreAsincrono;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -20,6 +24,8 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
 /**
@@ -121,7 +127,29 @@ public class ContenutoInventarioController implements Initializable {
     @FXML
     private void onAggiungiArticolo() {
 
-        // TODO
+        try {
+
+            // carico "popup-aggiungi-articolo.fxml"
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/it/unipi/makermanagerclient/popup-aggiungi-articolo.fxml")
+            );
+            Parent radice = loader.load();
+
+            // passo l'inventario di destinazione al controller
+            AggiungiArticoloController controller = loader.getController();
+            controller.impostaInventarioDestinazione(idInventario);
+
+            // apro una nuova finestra per aggiungere un articolo
+            Stage popup = new Stage();
+            popup.initModality(Modality.APPLICATION_MODAL);
+            popup.setTitle("Aggiungi articolo a \"" + nomeInventario + "\"");
+            popup.setScene(new Scene(radice, 480, 420));
+            popup.setOnHidden(evento -> ricarica());
+            popup.showAndWait();
+
+        } catch (IOException e) {
+            throw new IllegalStateException("Impossibile aprire il popup di aggiunta articolo", e);
+        }
 
     }
 
@@ -131,7 +159,7 @@ public class ContenutoInventarioController implements Initializable {
     @FXML
     private void onEliminaArticolo() {
 
-        // TODO
+        modalitaEliminazione = true;
 
     }
 
@@ -140,7 +168,24 @@ public class ContenutoInventarioController implements Initializable {
      */
     private void onQuantitaModificata(TableColumn.CellEditEvent<ArticoloInventarioDTO, Integer> evento) {
 
-        // TODO
+        ArticoloInventarioDTO articolo = evento.getRowValue();
+        Integer nuovoValore = evento.getNewValue();
+
+        if (nuovoValore == null || nuovoValore < 0) {
+            tabellaArticoli.refresh();
+            return;
+        }
+
+        EsecutoreAsincrono.esegui(
+
+                () -> InventarioService.aggiornaQuantita(articolo.getId(), nuovoValore),
+                aggiornato -> ricarica(),
+                errore -> {
+                    mostraErrore("Impossibile aggiornare la quantità", errore);
+                    tabellaArticoli.refresh();
+                }
+
+        );
 
     }
 
