@@ -78,4 +78,22 @@ public final class CatalogoService {
 
     }
 
+    /**
+     * Elimina un elemento dal catalogo condiviso (ADMIN). Risponde con
+     * ApiException a statusCode 500 se viola le FK del DB
+     */
+    public static void elimina(long idElemento)
+            throws IOException, InterruptedException
+    {
+
+        String url = AppConfig.ENDPOINT_CATALOGO + "/" + idElemento;
+        ApiResponse risposta = ApiClient.delete(url, Sessione.getIstanza().getToken());
+
+        if (!risposta.isSuccesso()) {
+            throw ApiException.da(risposta);
+        }
+
+    }
+
+
 }
