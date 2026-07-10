@@ -1,13 +1,53 @@
 package it.unipi.makermanagerclient.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import it.unipi.makermanagerclient.model.ProgettoDTO;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
 /**
- * Controller del pannello "I miei progetti"
- * 
- * TODO
- * Ancora da implementare: per ora il pannello mostra solo un placeholder.
+ * Controller del pannello I miei progetti
  */
-public class MieiProgettiController {
-    
-    
+public class MieiProgettiController implements Initializable, PannelloRicaricabile {
+
+    @FXML
+    private Label etichettaTitolo;
+
+    @FXML
+    private TableView<ProgettoDTO> tabellaProgetti;
+
+    @FXML
+    private TableColumn<ProgettoDTO, String> colonnaNome;
+
+    @FXML
+    private TableColumn<ProgettoDTO, String> colonnaDescrizione;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    /**
+     * ricarica il pannello
+     */
+    @Override
+    public void ricarica() {
+
+    }
+
+    @FXML
+    private void onCreaProgetto() {
+
+    }
+
+    @FXML
+    private void onEliminaProgetto() {
+        
+    }
 
 }
