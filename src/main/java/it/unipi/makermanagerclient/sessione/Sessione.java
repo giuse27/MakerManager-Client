@@ -16,6 +16,10 @@ public final class Sessione {
     private String email;
     private String ruolo;
 
+    // Parametro reale esposto in Impostazioni per la soglia dei progetti
+    // consigliati. vive solo durante la sessione corrente
+    private Integer sogliaMancanti;
+
     private Sessione() {
     }
 
@@ -49,6 +53,7 @@ public final class Sessione {
         this.nickname = null;
         this.email = null;
         this.ruolo = null;
+        this.sogliaMancanti = null;
     }
 
     public boolean isAutenticato() {
@@ -77,6 +82,14 @@ public final class Sessione {
 
     public String getRuolo() {
         return ruolo;
+    }
+
+    public Integer getSogliaMancanti() {
+        return sogliaMancanti;
+    }
+
+    public void setSogliaMancanti(Integer sogliaMancanti) {
+        this.sogliaMancanti = sogliaMancanti;
     }
 
 }
