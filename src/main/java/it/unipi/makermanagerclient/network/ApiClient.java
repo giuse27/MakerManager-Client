@@ -119,6 +119,52 @@ public final class ApiClient {
     }
 
     /**
+     * Esegue una patch non autenticata
+     *
+     * @param url url della chiamata
+     * @param corpoJson json serializzato come stringa
+     * @return restituisce il body della risposta come stringa
+     * @throws IOException se la richiesta fallisce (es. server non raggiungibile)
+     * @throws InterruptedException se viene interrotto durante l'attesa
+     */
+    public static ApiResponse patch(String url, String corpoJson)
+            throws IOException, InterruptedException
+    {
+        return patch(url, corpoJson, null);
+    }
+
+    /**
+     * Esegue una patch, aggiungendo l'header "Authorization: Bearer" se
+     * viene passato un token.
+     *
+     * @param url url della chiamata
+     * @param corpoJson json serializzato come stringa
+     * @param token token JWT da usare per l'header Authorization, o null
+     *              se la chiamata non richiede autenticazione
+     * @return restituisce il body della risposta come stringa
+     * @throws IOException se la richiesta fallisce (es. server non raggiungibile)
+     * @throws InterruptedException se viene interrotto durante l'attesa
+     */
+    public static ApiResponse patch(String url, String corpoJson, String token)
+            throws IOException, InterruptedException
+    {
+
+        HttpRequest.BodyPublisher body = (corpoJson == null || corpoJson.isBlank())
+                ? HttpRequest.BodyPublishers.noBody()
+                : HttpRequest.BodyPublishers.ofString(corpoJson);
+
+        HttpRequest.Builder richiesta = HttpRequest.newBuilder()
+                                .uri(URI.create(url))
+                                .header("Content-Type", "application/json")
+                                .method("PATCH", body);
+
+        aggiungiAutorizzazione(richiesta, token);
+
+        return invia(richiesta.build());
+
+    }
+
+    /**
      * esegue una delete non autenticata
      *
      * @param url url della chiamata
