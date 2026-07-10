@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane xmlns="http://javafx.com/javafx/8.0.171"
+         xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="it.unipi.makermanagerclient.controller.AggiungiArticoloController"
+         tabClosingPolicy="UNAVAILABLE">
+
+    <tabs>
+        <Tab text="Importa dal Catalogo">
+            <content>
+                <VBox spacing="10.0">
+                    <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                    </padding>
+                    <children>
+                        <Label text="Elemento del Catalogo" />
+                        <ComboBox fx:id="comboElementoEsistente" maxWidth="Infinity" />
+
+                        <Label text="Quantità" />
+                        <TextField fx:id="campoQuantitaImporta" promptText="es. 5" />
+
+                        <Label fx:id="etichettaErroreImporta" wrapText="true" />
+
+                        <Button fx:id="bottoneImporta" text="Aggiungi all'inventario" maxWidth="Infinity" onAction="#onImportaEAggiungi">
+                            <VBox.margin>
+                                <Insets top="8.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </content>
+        </Tab>
+        <Tab text="Crea nuovo elemento">
+            <content>
+                <VBox spacing="10.0">
+                    <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                    </padding>
+                    <children>
+                        <Label text="Nome" />
+                        <TextField fx:id="campoNomeNuovoElemento" />
+
+                        <Label text="Descrizione" />
+                        <TextField fx:id="campoDescrizioneNuovoElemento" />
+
+                        <Label text="Tipologia" />
+                        <ComboBox fx:id="comboTipologiaNuovoElemento" maxWidth="Infinity" />
+
+                        <Label text="Quantità" />
+                        <TextField fx:id="campoQuantitaCrea" promptText="es. 5" />
+
+                        <Label fx:id="etichettaErroreCrea" wrapText="true" />
+
+                        <Button fx:id="bottoneCrea" text="Crea e aggiungi all'inventario" maxWidth="Infinity" onAction="#onCreaEAggiungi">
+                            <VBox.margin>
+                                <Insets top="8.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </content>
+        </Tab>
+
+    </tabs>
+
+</TabPane>
