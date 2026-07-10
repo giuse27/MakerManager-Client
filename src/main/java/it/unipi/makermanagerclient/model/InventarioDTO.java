@@ -13,6 +13,10 @@ public class InventarioDTO {
     private Long idUtente;
     private String nicknameUtente;
 
+    // e' calcolato lato client per popolare la colonna "Numero di
+    // articoli" della tabella "I tuoi inventari"
+    private int numeroArticoli;
+
     public InventarioDTO() {
     }
 
@@ -46,6 +50,14 @@ public class InventarioDTO {
 
     public void setNicknameUtente(String nicknameUtente) {
         this.nicknameUtente = nicknameUtente;
+    }
+
+    public int getNumeroArticoli() {
+        return numeroArticoli;
+    }
+
+    public void setNumeroArticoli(int numeroArticoli) {
+        this.numeroArticoli = numeroArticoli;
     }
 
     @Override
