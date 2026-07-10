@@ -3,6 +3,7 @@ package it.unipi.makermanagerclient.service;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -98,6 +99,136 @@ public final class InventarioService {
 
         // deserializzo la risposta del server in LISTA_ARTICOLI
         return GsonProvider.get().fromJson(risposta.body(), LISTA_ARTICOLI);
+
+    }
+
+    /**
+     * Crea un nuovo inventario per l'utente autenticato (il proprietario
+     * è sempre ricavato dal token, non va indicato nel body).
+     */
+    public static InventarioDTO creaInventario(String nome)
+            throws IOException, InterruptedException
+    {
+
+        // creo il json contenente il nome dell'inventario per inviare
+        // la richiesta al server
+        String corpo = GsonProvider.get().toJson(Map.of("nome", nome));
+
+        // eseguo la chiamata
+        ApiResponse risposta = ApiClient.post(
+                                    AppConfig.ENDPOINT_INVENTARIO, 
+                                    corpo, 
+                                    Sessione.getIstanza().getToken()
+                                );
+
+        if (!risposta.isSuccesso()) {
+            throw ApiException.da(risposta);
+        }
+
+        // deserializzo la risposta
+        return GsonProvider.get().fromJson(risposta.body(), InventarioDTO.class);
+
+    }
+
+    /**
+     * Elimina un inventario
+     */
+    public static void eliminaInventario(long idInventario)
+            throws IOException, InterruptedException
+    {
+
+        String url = AppConfig.ENDPOINT_INVENTARIO + "/" + idInventario;
+
+        // eseguo la delete
+        ApiResponse risposta = ApiClient.delete(
+                                    url, 
+                                    Sessione.getIstanza().getToken()
+                                );
+
+        if (!risposta.isSuccesso()) {
+            throw ApiException.da(risposta);
+        }
+
+    }
+
+    /**
+     * Aggiunge un articolo a un inventario, a partire da un elemento di
+     * catalogo gia' esistente.
+     */
+    public static ArticoloInventarioDTO aggiungiArticolo(
+        long idElementoCatalogo, 
+        long idInventario, 
+        int quantita
+    )
+            throws IOException, InterruptedException
+    {
+
+        // serializzo il json
+        String corpo = GsonProvider.get().toJson(Map.of(
+                "idElementoCatalogo", idElementoCatalogo,
+                "idInventario", idInventario,
+                "quantita", quantita
+        ));
+
+        ApiResponse risposta = ApiClient.post(
+                AppConfig.ENDPOINT_INVENTARIO_ARTICOLI, 
+                corpo, 
+                Sessione.getIstanza().getToken()
+        );
+
+        if (!risposta.isSuccesso()) {
+            throw ApiException.da(risposta);
+        }
+
+        // deserializzo la risposta
+        return GsonProvider.get().fromJson(risposta.body(), ArticoloInventarioDTO.class);
+
+    }
+
+    /**
+     * Aggiorna la quantita' di un articolo esistente, sostituendo
+     * il valore corrente con nuovaQuantità
+     */
+    public static ArticoloInventarioDTO aggiornaQuantita(long idArticolo, int nuovaQuantita)
+            throws IOException, InterruptedException
+    {
+
+        // serializzazione
+        String corpo = GsonProvider.get().toJson(Map.of("quantita", nuovaQuantita));
+        String url = AppConfig.ENDPOINT_INVENTARIO_ARTICOLI + "/" + idArticolo;
+
+        ApiResponse risposta = ApiClient.patch(
+                                    url, 
+                                    corpo, 
+                                    Sessione.getIstanza().getToken()
+                                );
+
+        if (!risposta.isSuccesso()) {
+            throw ApiException.da(risposta);
+        }
+
+        // deserializzazione
+        return GsonProvider.get().fromJson(risposta.body(), ArticoloInventarioDTO.class);
+
+    }
+
+    /**
+     * Elimina un articolo da un inventario.
+     */
+    public static void eliminaArticolo(long idArticolo)
+            throws IOException, InterruptedException
+    {
+
+        String url = AppConfig.ENDPOINT_INVENTARIO_ARTICOLI + "/" + idArticolo;
+        
+        ApiResponse risposta = ApiClient.delete(
+                                    url, 
+                                    Sessione.getIstanza().getToken()
+                                );
+
+        if (!risposta.isSuccesso()) {
+            throw ApiException.da(risposta);
+        }
 
     }
 
