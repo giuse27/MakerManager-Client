@@ -1,21 +1,5 @@
 # MakerManager
 
-<p align="center">
-  <a href="https://gitlab.com/peppe27/MakerManager-Client">
-    <img src="https://img.shields.io/github/stars/giuse27/MakerManager-Client?style=social" alt="Stars">
-  </a>
-  <a href="https://gitlab.com/peppe27/MakerManager-Client/releases">
-    <img src="https://img.shields.io/github/v/release/giuse27/MakerManager-Client?color=green" alt="Latest Release">
-  </a>
-  <a href="https://gitlab.com/peppe27/MakerManager-Client">
-    <img src="https://img.shields.io/github/license/giuse27/MakerManager-Client" alt="License">
-  </a>
-  </br>
-  <a href="https://gitlab.com/peppe27">
-    <img src="https://img.shields.io/badge/GitHub-giuse27-blue?logo=github&style=for-the-badge" alt="GitHub User">
-  </a>
-</p>
-
 Progetto "MakerManager" di Giuseppe Vaglica per il corso di Programmazione Avanzata (prof. Vecchio, Vallati, A.A. 2025/2026).
 
 - [MakerManager](#makermanager)
@@ -275,14 +259,7 @@ Gli esempi di utilizzo del software sono presenti nella documentazione pdf del p
 
 ### Autore
 
-Questo progetto è stato ideato e sviluppato interamente da:
-
-<div align="center">
-  <a href="https://gitlab.com/peppe27">
-    <img src="https://gitlab.com/peppe27.png" width="180" alt="Giuseppe Vaglica" style="border-radius:50%;" /><br><br>
-    <img src="https://img.shields.io/badge/Giuseppe_Vaglica-@giuse27-green?style=flat-square&logo=github" alt="Badge Giuseppe Vaglica" width="256"/>
-  </a>
-</div>
+Questo progetto è stato ideato e sviluppato da Giuseppe Vaglica per il progetto del corso di Programmazione Avanzata.
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
