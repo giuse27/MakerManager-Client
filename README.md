@@ -1,13 +1,5 @@
 # MakerManager
 
-</br>
-
-<div align="center">
-  <img src="https://img.shields.io/badge/Stato-Work_in_Progress-yellow?style=for-the-badge" alt="Work in Progress Banner">
-</div>
-
-</br>
-
 <p align="center">
   <a href="https://github.com/giuse27/MakerManager-Client">
     <img src="https://img.shields.io/github/stars/giuse27/MakerManager-Client?style=social" alt="Stars">
@@ -42,13 +34,13 @@ Progetto "MakerManager" di Giuseppe Vaglica per il corso di Programmazione Avanz
   - [Informazioni generali](#informazioni-generali)
     - [Autore](#autore)
     - [Licenza](#licenza)
-    - [Contatti](#contatti)
   - [Informazioni sull'utilizzo dell'AI](#informazioni-sullutilizzo-dellai)
-  - [Supporta il progetto](#supporta-il-progetto)
 
 ## Introduzione
 
-Il progetto **MakerManager** è un applicazione distribuita realizzata in Java che permette ad hobbisti e professionisti (maker) di gestire in modo efficiente il proprio inventario hardware e la pianificazione dei progetti. Il sistema si compone di un'interfaccia grafica intuitiva realizzata in JavaFX e di un servizio backend autonomo che gestisce la logica di business e la persistenza dei dati. L'obiettivo principale è mettere in correlazione i componenti posseduti dall'utente (es. sensori, microcontrollori, filamenti 3D) con i requisiti di nuovi progetti, permettendo di stimare costi, tenere traccia del tempo impiegato e verificare la fattibilità costruttiva in base alle giacenze.
+Il progetto MakerManager è un'applicazione distribuita realizzata in Java che permette ad hobbisti e professionisti (maker) di gestire in modo efficiente il proprio inventario hardware e la pianificazione dei progetti. Il sistema si compone di un'interfaccia grafica realizzata in JavaFX e di un servizio backend autonomo (Spring Boot) che gestisce la logica di business e la persistenza dei dati su MySQL.
+
+L'obiettivo principale è mettere in correlazione i componenti posseduti dall'utente (es. sensori, microcontrollori, filamenti 3D) con i requisiti dei progetti presenti in catalogo, così da suggerire all'utente quali progetti può realizzare subito e quali richiedono ancora pochi acquisti.
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
@@ -113,16 +105,16 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
 
 </br>
 
-* [ ] Client
-  * [ ] Implementazione di una GUI funzionale
+* [X] Client
+  * [X] Implementazione di una GUI funzionale
     * [X] Registrazione/login dell'utente
-    * [ ] Dashboard utente
-      * [ ] L'utente può visualizzare e gestire i suoi progetti
-      * [ ] L'utente può visualizzare e gestire i suoi inventari
-        * [ ] L'utente può creare un nuovo articolo in inventario selezionando un elemento catalogo già esistente o in alternativa può crearne uno nuovo
-    * [ ] Dashboard globale
-      * [ ] L'utente può visualizzare i progetti nel catalogo globale
-      * [ ] L'utente può aprire un progetto per visualizzarne le caratteristiche
+    * [X] Dashboard utente
+      * [X] L'utente può visualizzare e gestire i suoi progetti
+      * [X] L'utente può visualizzare e gestire i suoi inventari
+        * [X] L'utente può creare un nuovo articolo in inventario selezionando un elemento catalogo già esistente o in alternativa può crearne uno nuovo
+    * [X] Dashboard globale
+      * [X] L'utente può visualizzare i progetti nel catalogo globale
+      * [X] L'utente può aprire un progetto per visualizzarne le caratteristiche
 * [X] Server
   * [X] Utente
     * [X] Registrazione con nickname email e password
@@ -153,6 +145,7 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
 </br>
 
 * [ ] Funzioni future 
+  * [ ] Tracciamento reale del progresso di un progetto
   * [ ] Interazione con altri utenti
   * [ ] Interfaccia di prototipazione
     * [ ] Diario personale
@@ -173,19 +166,82 @@ Puoi consultare il changelog per i dettagli delle varie versioni di questo proge
 ### Prerequisiti
 
 * **Java 21** o superiore.
-* **MySQL 8.0** o superiore.
+* **MySQL 8.0** o superiore, in ascolto su `127.0.0.1:3306` con credenziali `root` / `root`.
 * **Maven** (per la gestione delle dipendenze).
 * **JavaFX Runtime** (incluso nelle dipendenze Maven).
+
+> NOTA BENE: il database viene creato automaticamente all'avvio.
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Installazione
 
+> [!warning]
+> Le due repository sono versionate in modo coerente: scarica sempre la release del Server corrispondente a quella del Client (in questo momento v1.0.0).
+
+L'indirizzo del Server è centralizzato in un'unica costante, AppConfig.BASE_URL: se il Server gira su un'altra macchina o su un'altra porta è sufficiente modificare quella riga.
+
+1. **Avvia il Server (repository MakerManager-Server):**
+
+Scarica il codice sorgente della repository e da NetBeans importa il progetto e avvialo.
+
+Il server resta in ascolto su http://localhost:8080. Al primo avvio viene creato automaticamente il database e l'utente ADMIN di default, con le credenziali definite in `src/main/resources/application.properties`:
+
+```properties
+sadmin.default.nickname=giuse27
+admin.default.email=giuse27@makermanager.com
+admin.default.password=LOUVRE2014
+```
+
+2. **Avvia il Client (questa repository):**
+
+Scarica il codice sorgente della repository e da NetBeans importa il progetto e avvialo.
+
+3. **Primo avvio e inizializzazione:**
+
+All'avvio del Client compare la schermata di autenticazione: registra un nuovo utente oppure accedi con le credenziali dell'ADMIN di default.
+
+Su un database vuoto non c'è nulla da vedere: **accedi come ADMIN**, apri il pannello **Database** e premi **Inizializza**. Il Server cancella l'eventuale contenuto pregresso (tranne l'ADMIN di default) e ricarica catalogo, utenti, inventari e progetti dal file `src/main/resources/data/inizializzazione.json` (server).
+
+È possibile proseguire sia dall'account admin sia rientarre con un utente di test tra quelli caricati dal JSON:
+
+```json
+  "utenti": [
+    { 
+      "nickname": "pippo", 
+      "email": "pippo@test.com", 
+      "password": "LOUVRE2014" 
+    },
+    { 
+      "nickname": "maria", 
+      "email": "maria@test.com", 
+      "password": "LOUVRE2014" 
+    },
+    { 
+      "nickname": "peppe", 
+      "email": "peppe@test.com", 
+      "password": "LOUVRE2014" 
+    },
+    { 
+      "nickname": "andrea", 
+      "email": "andrea@test.com", 
+      "password": "LOUVRE2014" 
+    }
+  ]
+```
+
+Aprendo la Dashboard MakerManager mostrerà i progetti consigliati in base a ciò che quell'utente possiede in inventario (l'admin a inizializzazione non possiede nulla).
+
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Altri manuali
 
-Viene riportata per comodità una copia del manuale dove sono documentati tutti gli **endpoint** che vengono esposti dal server per il funzionamento del software. È possibile consultare [**Documentazione endpoint**](./docs/endpoint.md).
+| Documento | Contenuto | 
+| :-- | :-- |
+| [**`docs/endpoint.md`**](./docs/endpoint.md) | Manuale completo di tutti gli endpoint esposti dal Server, con permessi ed esempi curl. |
+| [**`docs/documentazione-progetto.md`**](./docs/documentazione-progetto.md) | Documento di progetto: caso d'uso, struttura, scelte progettuali, test, sviluppi futuri. |
+| [**`docs/diagrams/diagrammi.md`**](./docs/diagrams/diagrammi.md) | Diagrammi Mermaid: dominio del Server, architettura del Client, casi d'uso. |
+| [**`CHANGELOG.md`**](./CHANGELOG.md) | Storico delle versioni di Client e Server. |
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
@@ -193,20 +249,25 @@ Viene riportata per comodità una copia del manuale dove sono documentati tutti 
 
 ### Descrizione di MakerManager
 
-**MakerManager** è un software per hobbisti e professionisti che nasce dall'esigenza di avere un sistema semplice per tenere sotto controllo o creare nuovi progetti. Le funzioni di base di MakerManager sono:
+**MakerManager** è un software per hobbisti e professionisti che nasce dall'esigenza di avere un sistema semplice per tenere sotto controllo o creare nuovi progetti. Le funzioni di base sono:
 
-* **Gestione dell'inventario:** è possibile creare il proprio inventario di oggettistica, strumenti da lavoro, risorse digitali, e tanto altro; il tutto tenendo traccia delle quantità, tipologie, costi e caratteristiche dei prodotti.
-* **Catalogo dei progetti:** viene fornita una lista iniziale di progetti a cui è possibile lavorare. Ogni progetto è diverso sia per tipologia che per scopo: ci sono progetti semplici e progetti difficili da realizzare, costosi e meno costosi, poi ci sono progetti didattici e altri di utilità. Il sistema viene incontro a tutte le esigenze e permette la creazione del proprio progetto e l'inserimento nel catalogo.
-* **Gestione dei progetti:** il software permette di mettere in relazione i due punti precedenti permettendo all'utente di cercare un progetto sulla base delle proprie risorse; MakerManager suggerirà all'utente l'elenco dei progetti che può realizzare o dei progetti per cui sono richieste meno risorse aggiuntive.
-* **Prototipazione rapida:** prima ancora di pubblicare un progetto in catalogo l'utente ha la possibilità di utilizzare MakerManager per gestire la fase di progettazione e prototipazione del proprio progetto in modo semplice. L'utente avrà un'interfaccia tramite il quale potrà tenere sotto controllo il tempo speso al progetto, le risorse, e dove potrà avere un diario personale per annotazioni, descrizioni delle attività svolte, fonti esterne e materiale didattico di supporto per la creazione del progetto. Tutto ciò costituisce un sistema centralizzato dove poter lavorare. 
+* **Gestione dell'inventario:** è possibile creare uno o più inventari di componenti, materiali, strumenti da lavoro e risorse digitali, tenendo traccia delle quantità e delle tipologie.
+
+* **Catalogo condiviso:** il catalogo elementi definisce i "modelli teorici" (es. Arduino Nano), mentre il catalogo progetti raccoglie i progetti pubblicati dagli utenti, ciascuno con la propria distinta base (B.O.M. -> *Bill of Materials*).
+
+* **Progetti consigliati:** il sistema mette in relazione i due punti precedenti e suggerisce all'utente i progetti che può realizzare subito con ciò che possiede, oppure quelli per cui gli mancano pochi elementi (soglia configurabile).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Casi d'uso
 
+I singoli casi d'uso sono meglio descritti nella documentazione pdf del progetto o nel file in [**`docs/documentazione-progetto.md`**](./docs/documentazione-progetto.md).
+
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Esempi di utilizzo
+
+Gli esempi di utilizzo del software sono presenti nella documentazione pdf del progetto o nel file in [**`docs/documentazione-progetto.md`**](./docs/documentazione-progetto.md).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
@@ -231,35 +292,9 @@ Puoi consultare la licenza di questo progetto nel file [`LICENSE`](./LICENSE).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
-### Contatti
-
-Se hai domande sul progetto, suggerimenti o segnalazioni, puoi trovarmi qui:
-
-<p align=center>
-  <a href="mailto:giuseppe.vaglica3@gmail.com">
-    <img src="https://img.shields.io/badge/Email-giuseppe.vaglica3@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white" alt="Email" width="50%">
-  </a><br>
-  <a href="https://t.me/giuseppe_vaglica">
-    <img src="https://img.shields.io/badge/Telegram-@giuseppe__vaglica-2CA5E0?style=flat-square&logo=telegram&logoColor=white" alt="Telegram" width="40%">
-  </a>
-  <a href="https://instagram.com/giuseppe_vaglica">
-    <img src="https://img.shields.io/badge/Instagram-@giuseppe__vaglica-E4405F?style=flat-square&logo=instagram&logoColor=white" alt="Instagram" width="40%">
-  </a>
-</p>
-
-<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
-
 ## Informazioni sull'utilizzo dell'AI
 
 Dai un'occhiata al documento [**AI.md**](./docs/AI.md).
-
-<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
-
-## Supporta il progetto
-
-Se questo strumento ti è stato utile, ti ha fatto risparmiare tempo o semplicemente ti piace, considera di lasciarmi una ⭐️ su [GitHub](https://github.com/giuse27/Programmazione-Avanzata-UNIPI).
-
-È un piccolo gesto gratuito che mi aiuta tantissimo a mantenere il progetto attivo e visibile!
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 

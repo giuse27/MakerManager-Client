@@ -1,28 +1,16 @@
 # Note sull'utilizzo dell'AI
 
 > [!note]
-> Modelli utilizzati: Gemini 3.1 Pro e Claude Sonnet 5 (medio, no pensiero)
+> Modelli utilizzati: Gemini 3.1 Pro e Claude Sonnet 5 (impegno medio, no pensiero)
 
-## Utilizzo generale
+Durante lo sviluppo di **MakerManager** sono stati impiegati strumenti di Intelligenza Artificiale Generativa con i seguenti scopi:
 
-* Ho usato l'AI per avere alcuni piccoli aiuti nel **brainstorming** delle idee, nella stesura della **documentazione** e nella modellazione della **roadmap**.
+* Supporto allo studio e alla scelta delle tecnologie: chiarimenti su JPA/Hibernate (specialmente nel contesto di classi astratte, sottoclassi ecc), Spring Security, JWT e sulla gestione dell'interfaccia grafica del client.
 
-* Utilizzo nell'apprendimento rapido del framework Spring.
+* Migliorie estetiche e gestione della GUI e creazione di una gui temporanea iniziale per effettuare i test (interamente sostituita in seguito).
 
-* Guida per le convenzioni generali sulla struttura dei file e sull'applicazione dell'SRP (single responsibility principle). 
+* Revisione del codice: individuazione di bug, falle di sicurezza, ridondanze, incoerenze stilistiche, gestione controllata delle eccezioni.
 
-## Client
+* Documentazione: stesura e revisione della documentazione, diagrammi (mermaid interamente generati da AI), a partire dal codice già scritto.
 
-* Implementazione di una GUI temporanea per la v0.0.0 e il test degli endpoint.
-
-* Migliorie estetiche e strutturali alla GUI.
-
-* Modifiche sulla robustezza (es. `SpinnerFactories`) e sulle utility per il json (nella v0.0.0)
-
-## Server
-
-* Mi sono fatto aiutare dall'AI nella fase iniziale con l'obiettivo di ottenere uno scheletro per il server e per definire a grandi linee soprattutto il package `model` e parte dell'architettura di base Spring.
-
-* Ho fatto revisionare di tanto in tanto il codice all'AI per verificarne la robustezza e la corettezza. Una parte consistente conseguita da questa verifica è stata la gestione delle eccezioni e l'utilizzo della libreria jakarta.validation e le sue annotazioni. Complessivamente questo mi ha permesso di controllare tutte le situazioni anomale e riportarle sotto forma di messaggio json semplice da leggere.
-
-* Ho avuto un aiuto consistente da parte dell'AI nella scrittura del package `security`. Non avevo mai affrontato il tema dell'autenticazione, dei ruoli e dei permessi e l'utilizzo dell'AI mi ha permesso di poter realizzare queste funzioni all'interno di MakerManager. 
+* Definizione di alcune strutture base: in alcuni casi ho utilizzato l'AI per la modellazione dei controller per il client e per la definizione di alcuni modelli, al fine di ottenere una struttura di base da cui partire per l'implementazione.
