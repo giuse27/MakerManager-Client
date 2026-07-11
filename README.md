@@ -239,7 +239,7 @@ Aprendo la Dashboard MakerManager mostrer√† i progetti consigliati in base a ci√
 | Documento | Contenuto | 
 | :-- | :-- |
 | [**`docs/endpoint.md`**](./docs/endpoint.md) | Manuale completo di tutti gli endpoint esposti dal Server, con permessi ed esempi curl. |
-| [**`docs/documentazione-progetto.md`**](./docs/documentazione-progetto.md) | Documento di progetto: caso d'uso, struttura, scelte progettuali, test, sviluppi futuri. |
+| [**`documentazione PDF`**](./docs/MakerManager%20-%20Giuseppe%20Vaglica.pdf) | Documento di progetto: caso d'uso, struttura, scelte progettuali, test, sviluppi futuri. |
 | [**`docs/diagrams/diagrammi.md`**](./docs/diagrams/diagrammi.md) | Diagrammi Mermaid: dominio del Server, architettura del Client, casi d'uso. |
 | [**`CHANGELOG.md`**](./CHANGELOG.md) | Storico delle versioni di Client e Server. |
 
@@ -261,13 +261,13 @@ Aprendo la Dashboard MakerManager mostrer√† i progetti consigliati in base a ci√
 
 ### Casi d'uso
 
-I singoli casi d'uso sono meglio descritti nella documentazione pdf del progetto o nel file in [**`docs/documentazione-progetto.md`**](./docs/documentazione-progetto.md).
+I singoli casi d'uso sono meglio descritti nella documentazione pdf del progetto o nel file in [**`documentazione PDF`**](./docs/MakerManager%20-%20Giuseppe%20Vaglica.pdf).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Esempi di utilizzo
 
-Gli esempi di utilizzo del software sono presenti nella documentazione pdf del progetto o nel file in [**`docs/documentazione-progetto.md`**](./docs/documentazione-progetto.md).
+Gli esempi di utilizzo del software sono presenti nella documentazione pdf del progetto o nel file in [**`documentazione PDF`**](./docs/MakerManager%20-%20Giuseppe%20Vaglica.pdf).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
