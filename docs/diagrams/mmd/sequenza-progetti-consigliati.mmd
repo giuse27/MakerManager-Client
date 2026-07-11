@@ -1,0 +1,51 @@
+sequenceDiagram
+    autonumber
+
+    actor U as Utente
+    participant DC as DashboardController<br/>(Client)
+    participant EA as EsecutoreAsincrono<br/>(Client)
+    participant PS as ProgettoService<br/>(Client)
+    participant AC as ApiClient<br/>(Client)
+
+    participant JF as JwtAuthFilter<br/>(Server)
+    participant PM as PermessiEndpoint<br/>AuthorizationManager
+    participant CTRL as ProgettiConsigliati<br/>Controller
+    participant SVC as ProgettiConsigliati<br/>Service
+    participant CALC as Calcolatore<br/>Fattibilita
+    participant DB as MySQL
+
+    U->>DC: apre la Dashboard
+    DC->>EA: esegui(operazione, ifSuccesso, ifFallimento)
+    Note over EA: la chiamata bloccante gira su un<br/>thread daemon, non su quello grafico
+    EA->>PS: consigliati(sogliaMancanti)
+    PS->>AC: GET /api/progetti/consigliati?sogliaMancanti=N<br/>Authorization: Bearer {token}
+    AC->>JF: HTTP request
+
+    JF->>JF: valida il JWT ed estrae email + ruolo
+    JF->>PM: richiesta autenticata
+    PM->>PM: applica le regole di<br/>permessi-endpoint.properties (AUTENTICATO)
+    PM->>CTRL: autorizzata
+
+    CTRL->>SVC: consigliaProgetti(sogliaMancanti)
+    SVC->>SVC: risolviSoglia(N) o default da application.properties
+    SVC->>DB: articoli di tutti gli inventari dell'utente
+    DB-->>SVC: List~ArticoloInventario~
+    SVC->>SVC: recuperaPossedimenti() -> Map~idElemento, quantita~
+    SVC->>DB: findAll() dei progetti
+    DB-->>SVC: List~ProgettoMaker~
+
+    loop per ogni progetto (esclusi i propri e quelli con BOM vuota)
+        SVC->>CALC: calcola(righeBOM, disponibilita)
+        CALC->>CALC: rimuoviDuplicati() e confronto con le disponibilita
+        CALC-->>SVC: EsitoFattibilita(righeTotali, dettaglioMancanti)
+    end
+
+    SVC->>SVC: filtra per soglia e ordina per<br/>indice di fattibilita decrescente
+    SVC-->>CTRL: List~ProgettoConsigliatoResponseDTO~
+    CTRL-->>AC: 200 OK + JSON
+
+    AC-->>PS: ApiResponse(200, body)
+    PS->>PS: deserializza con Gson
+    PS-->>EA: List~ProgettoConsigliatoDTO~
+    EA-->>DC: callback ifSuccesso (thread JavaFX)
+    DC-->>U: tabella "Progetti consigliati" popolata

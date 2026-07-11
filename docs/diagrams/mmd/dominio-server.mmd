@@ -1,0 +1,170 @@
+classDiagram
+
+    %% ------------------------- RELAZIONI ---------------------------------
+
+    Utente "1" --> "0..*" Inventario : possiede
+    Utente "1" --> "0..*" ProgettoMaker : autore di
+
+    Inventario "1" *-- "0..*" ArticoloInventario : articoli
+    ArticoloInventario "0..*" --> "1" ElementoCatalogo : elementoCatalogo
+
+    ArticoloInventario <|-- ComponenteElettronico
+    ArticoloInventario <|-- MaterialeConsumabile
+    ArticoloInventario <|-- AttrezzoDaLavoro
+    ArticoloInventario <|-- Software
+
+    ProgettoMaker <|-- ProgettoStampa3D
+    ProgettoMaker <|-- ProgettoElettronica
+    ProgettoMaker <|-- ProgettoRobotica
+    ProgettoMaker <|-- ProgettoSoftware
+
+    ProgettoMaker *-- BOM : distintaBase
+    ProgettoMaker *-- Progresso : progresso
+    BOM "1" *-- "0..*" RigaBOM : righeFabbisogno
+    RigaBOM "0..*" --> "1" ElementoCatalogo : articoloRichiesto
+
+    Utente --> RuoloUtente
+    ElementoCatalogo --> TipologiaElemento
+    ProgettoMaker --> TipologiaProgetto
+
+    %% ------------------------- UTENTE ------------------------------------
+
+    class Utente {
+        <<Entity>>
+        -Long id
+        -String nickname
+        -String email
+        -String password
+        -RuoloUtente ruolo
+    }
+
+    class RuoloUtente {
+        <<enumeration>>
+        UTENTE
+        ADMIN
+    }
+
+    %% ------------------------- CATALOGO ----------------------------------
+
+    class ElementoCatalogo {
+        <<Entity>>
+        -Long id
+        -String nome
+        -String descrizione
+        -TipologiaElemento tipologia
+    }
+
+    class TipologiaElemento {
+        <<enumeration>>
+        COMPONENTE_ELETTRONICO
+        MATERIALE_CONSUMABILE
+        ATTREZZO_DA_LAVORO
+        SOFTWARE
+    }
+
+    %% ------------------------- INVENTARIO --------------------------------
+
+    class Inventario {
+        <<Entity>>
+        -Long id
+        -String nome
+        -Utente utente
+        -List~ArticoloInventario~ articoli
+        +aggiungiArticolo(ArticoloInventario) void
+    }
+
+    class ArticoloInventario {
+        <<abstract>>
+        <<Entity>>
+        -Long id
+        -ElementoCatalogo elementoCatalogo
+        -Inventario inventario
+        -int quantita
+        +getQuantita() int
+        +setQuantita(int) void
+    }
+
+    class ComponenteElettronico {
+        <<Entity>>
+    }
+
+    class MaterialeConsumabile {
+        <<Entity>>
+    }
+
+    class AttrezzoDaLavoro {
+        <<Entity>>
+    }
+
+    class Software {
+        <<Entity>>
+    }
+
+    %% ------------------------- PROGETTI ----------------------------------
+
+    class ProgettoMaker {
+        <<abstract>>
+        <<Entity>>
+        -Long id
+        -String nome
+        -String descrizione
+        -Utente autore
+        -TipologiaProgetto tipologia
+        -LocalDate dataCaricamento
+        -BOM distintaBase
+        -Progresso progresso
+        +getDistintaBase() BOM
+        +getProgresso() Progresso
+    }
+
+    class TipologiaProgetto {
+        <<enumeration>>
+        STAMPA_3D
+        ELETTRONICA
+        ROBOTICA
+        SOFTWARE
+    }
+
+    class ProgettoStampa3D {
+        <<Entity>>
+    }
+
+    class ProgettoElettronica {
+        <<Entity>>
+        -String schemaElettricoUrl
+        -boolean richiedePcbCustom
+    }
+
+    class ProgettoRobotica {
+        <<Entity>>
+        -String firmwareRepositoryUrl
+        -int numeroGradiDiLiberta
+    }
+
+    class ProgettoSoftware {
+        <<Entity>>
+        -String linguaggioPrevalente
+        -String piattaformaTarget
+    }
+
+    class BOM {
+        <<Embeddable>>
+        -List~RigaBOM~ righeFabbisogno
+        +aggiungiRiga(RigaBOM) void
+        +rimuoviRiga(RigaBOM) void
+    }
+
+    class RigaBOM {
+        <<Entity>>
+        -Long id
+        -ElementoCatalogo articoloRichiesto
+        -int quantitaRichiesta
+    }
+
+    class Progresso {
+        <<Embeddable>>
+        -String statoAvanzamento
+        -LocalDateTime ultimoAggiornamento
+        -double percentualeCompletamento
+        +aggiornaProgresso(String, double) void
+    }
