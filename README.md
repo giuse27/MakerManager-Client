@@ -1,17 +1,17 @@
 # MakerManager
 
 <p align="center">
-  <a href="https://github.com/giuse27/MakerManager-Client">
+  <a href="https://gitlab.com/peppe27/MakerManager-Client">
     <img src="https://img.shields.io/github/stars/giuse27/MakerManager-Client?style=social" alt="Stars">
   </a>
-  <a href="https://github.com/giuse27/MakerManager-Client/releases">
+  <a href="https://gitlab.com/peppe27/MakerManager-Client/releases">
     <img src="https://img.shields.io/github/v/release/giuse27/MakerManager-Client?color=green" alt="Latest Release">
   </a>
-  <a href="https://github.com/giuse27/MakerManager-Client">
+  <a href="https://gitlab.com/peppe27/MakerManager-Client">
     <img src="https://img.shields.io/github/license/giuse27/MakerManager-Client" alt="License">
   </a>
   </br>
-  <a href="https://github.com/giuse27">
+  <a href="https://gitlab.com/peppe27">
     <img src="https://img.shields.io/badge/GitHub-giuse27-blue?logo=github&style=for-the-badge" alt="GitHub User">
   </a>
 </p>
@@ -278,8 +278,8 @@ Gli esempi di utilizzo del software sono presenti nella documentazione pdf del p
 Questo progetto è stato ideato e sviluppato interamente da:
 
 <div align="center">
-  <a href="https://github.com/giuse27">
-    <img src="https://github.com/giuse27.png" width="180" alt="Giuseppe Vaglica" style="border-radius:50%;" /><br><br>
+  <a href="https://gitlab.com/peppe27">
+    <img src="https://gitlab.com/peppe27.png" width="180" alt="Giuseppe Vaglica" style="border-radius:50%;" /><br><br>
     <img src="https://img.shields.io/badge/Giuseppe_Vaglica-@giuse27-green?style=flat-square&logo=github" alt="Badge Giuseppe Vaglica" width="256"/>
   </a>
 </div>
@@ -298,8 +298,8 @@ Dai un'occhiata al documento [**AI.md**](./docs/AI.md).
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
-[Repo - MakerManager-Client]: https://github.com/giuse27/MakerManager-Client
-[Repo - MakerManager-Server]: https://github.com/giuse27/MakerManager-Server
+[Repo - MakerManager-Client]: https://gitlab.com/peppe27/MakerManager-Client
+[Repo - MakerManager-Server]: https://gitlab.com/peppe27/MakerManager-Server
 [`v0.0.0`]: ./CHANGELOG.md
 [`v1.0.0`]: ./CHANGELOG.md
 [`v2.0.0`]: ./CHANGELOG.md
