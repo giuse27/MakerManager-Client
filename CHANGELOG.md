@@ -2,19 +2,23 @@
 
 - [Changelog](#changelog)
   - [Client](#client)
-    - [Client v0.0.0 - 05/07/2026](#client-v000---05072026)
+    - [Client v1.0.0 - 11/07/2026](#client-v100---11072026)
       - [Aggiunte](#aggiunte)
-  - [Server](#server)
-    - [Server v0.6.0 - 08/07/2026](#server-v060---08072026)
+    - [Client v0.0.0 - 05/07/2026](#client-v000---05072026)
       - [Aggiunte](#aggiunte-1)
-    - [Server v0.5.0 - 07/07/2026](#server-v050---07072026)
-      - [Aggiunte](#aggiunte-2)
+  - [Server](#server)
+    - [Server v1.0.0 - 11/07/2026](#server-v100---11072026)
       - [Modifiche](#modifiche)
-    - [Server v0.4.0 - 07/07/2026](#server-v040---07072026)
+    - [Server v0.6.0 - 08/07/2026](#server-v060---08072026)
+      - [Aggiunte](#aggiunte-2)
+    - [Server v0.5.0 - 07/07/2026](#server-v050---07072026)
       - [Aggiunte](#aggiunte-3)
       - [Modifiche](#modifiche-1)
-    - [Server v0.0.0 - 05/07/2026](#server-v000---05072026)
+    - [Server v0.4.0 - 07/07/2026](#server-v040---07072026)
       - [Aggiunte](#aggiunte-4)
+      - [Modifiche](#modifiche-2)
+    - [Server v0.0.0 - 05/07/2026](#server-v000---05072026)
+      - [Aggiunte](#aggiunte-5)
 
 Tutte le modifiche importanti a questo progetto saranno documentate in questo file.
 
@@ -25,6 +29,20 @@ e questo progetto aderisce al [Semantic Versioning](https://semver.org/lang/it/)
 > Questo file contiene sia il CHANGELOG del **[Client]** che del **[Server]**.
 
 ## Client
+
+### [Client v1.0.0] - 11/07/2026
+
+#### Aggiunte
+
+* Adattamenti per il collegamento con la versione `v1.0.0` del Server
+* GUI definitiva
+  * Pannello Autenticazione
+  * Pannello Dashboard
+  * Pannello Tutti i Progetti
+  * Pannello Inventario
+  * Pannello I Miei Progetti
+  * Pannello Database
+  * Pannello Impostazioni
 
 ### [Client v0.0.0] - 05/07/2026
 
@@ -37,6 +55,17 @@ e questo progetto aderisce al [Semantic Versioning](https://semver.org/lang/it/)
   * Pannello progetti
 
 ## Server
+
+### [Server v1.0.0] - 11/07/2026
+
+#### Modifiche
+
+* Piccoli adeguamenti per adattarlo alla versione `v1.0.0` del Client.
+* Aggiornato il file di inzializzazione
+  * nuovi utenti
+  * nuovi progetti
+  * espansione del catalogo inziale
+  * gestione degli inventari appropriata per i test
 
 ### [Server v0.6.0] - 08/07/2026
 
@@ -141,7 +170,9 @@ Sono stati aggiunti numerosi endpoint di base
 [Client]: https://github.com/giuse27/MakerManager-Client
 [Server]: https://github.com/giuse27/MakerManager-Server
 [Client v0.0.0]: https://github.com/giuse27/MakerManager-Client/releases/tag/v0.0.0
+[Client v1.0.0]: https://github.com/giuse27/MakerManager-Client/releases/tag/v1.0.0
 [Server v0.0.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.0.0
 [Server v0.4.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.4.0
 [Server v0.5.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.5.0
 [Server v0.6.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.6.0
+[Server v1.0.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v1.0.0
