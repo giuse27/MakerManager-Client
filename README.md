@@ -16,7 +16,7 @@
   </a>
 </p>
 
-Progetto "MakerManager" di Giuseppe Vaglica per il corso di Programmazione Avanzata (prof. Vecchio, Vallati, A.A. 2025/2026).
+Progetto "MakerManager" di Giuseppe Vaglica per il corso di Programmazione Avanzata (prof. Vecchio, Vallati, A.A. 2025/2026), discusso in data 17/07/2026 e valutato 29/30.
 
 - [MakerManager](#makermanager)
   - [Introduzione](#introduzione)
@@ -33,8 +33,10 @@ Progetto "MakerManager" di Giuseppe Vaglica per il corso di Programmazione Avanz
     - [Esempi di utilizzo](#esempi-di-utilizzo)
   - [Informazioni generali](#informazioni-generali)
     - [Autore](#autore)
+    - [Contatti](#contatti)
     - [Licenza](#licenza)
   - [Informazioni sull'utilizzo dell'AI](#informazioni-sullutilizzo-dellai)
+  - [Supporta il progetto](#supporta-il-progetto)
 
 ## Introduzione
 
@@ -239,7 +241,7 @@ Aprendo la Dashboard MakerManager mostrerà i progetti consigliati in base a ci�
 | Documento | Contenuto | 
 | :-- | :-- |
 | [**`docs/endpoint.md`**](./docs/endpoint.md) | Manuale completo di tutti gli endpoint esposti dal Server, con permessi ed esempi curl. |
-| [**`docs/documentazione-progetto.md`**](./docs/documentazione-progetto.md) | Documento di progetto: caso d'uso, struttura, scelte progettuali, test, sviluppi futuri. |
+| [**`documentazione PDF`**](./docs/MakerManager%20-%20Giuseppe%20Vaglica.pdf). | Documento di progetto: caso d'uso, struttura, scelte progettuali, test, sviluppi futuri. |
 | [**`docs/diagrams/diagrammi.md`**](./docs/diagrams/diagrammi.md) | Diagrammi Mermaid: dominio del Server, architettura del Client, casi d'uso. |
 | [**`CHANGELOG.md`**](./CHANGELOG.md) | Storico delle versioni di Client e Server. |
 
@@ -261,13 +263,13 @@ Aprendo la Dashboard MakerManager mostrerà i progetti consigliati in base a ci�
 
 ### Casi d'uso
 
-I singoli casi d'uso sono meglio descritti nella documentazione pdf del progetto o nel file in [**`docs/documentazione-progetto.md`**](./docs/documentazione-progetto.md).
+I singoli casi d'uso sono meglio descritti nella documentazione pdf del progetto o nel file in [**`documentazione PDF`**](./docs/MakerManager%20-%20Giuseppe%20Vaglica.pdf)..
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
 ### Esempi di utilizzo
 
-Gli esempi di utilizzo del software sono presenti nella documentazione pdf del progetto o nel file in [**`docs/documentazione-progetto.md`**](./docs/documentazione-progetto.md).
+Gli esempi di utilizzo del software sono presenti nella documentazione pdf del progetto o nel file in [**`documentazione PDF`**](./docs/MakerManager%20-%20Giuseppe%20Vaglica.pdf)..
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
@@ -286,6 +288,24 @@ Questo progetto è stato ideato e sviluppato interamente da:
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
+### Contatti
+
+Se hai domande sul progetto, suggerimenti o segnalazioni, puoi trovarmi qui:
+
+<p align=center>
+  <a href="mailto:giuseppe.vaglica3@gmail.com">
+    <img src="https://img.shields.io/badge/Email-giuseppe.vaglica3@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white" alt="Email" width="50%">
+  </a><br>
+  <a href="https://t.me/giuseppe_vaglica">
+    <img src="https://img.shields.io/badge/Telegram-@giuseppe__vaglica-2CA5E0?style=flat-square&logo=telegram&logoColor=white" alt="Telegram" width="40%">
+  </a>
+  <a href="https://instagram.com/giuseppe_vaglica">
+    <img src="https://img.shields.io/badge/Instagram-@giuseppe__vaglica-E4405F?style=flat-square&logo=instagram&logoColor=white" alt="Instagram" width="40%">
+  </a>
+</p>
+
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
+
 ### Licenza
 
 Puoi consultare la licenza di questo progetto nel file [`LICENSE`](./LICENSE).
@@ -295,6 +315,14 @@ Puoi consultare la licenza di questo progetto nel file [`LICENSE`](./LICENSE).
 ## Informazioni sull'utilizzo dell'AI
 
 Dai un'occhiata al documento [**AI.md**](./docs/AI.md).
+
+<p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
+
+## Supporta il progetto
+
+Se questo strumento ti è stato utile, ti ha fatto risparmiare tempo o semplicemente ti piace, considera di lasciarmi una ⭐️ su [GitHub](https://github.com/giuse27/Programmazione-Avanzata-UNIPI).
+
+È un piccolo gesto gratuito che mi aiuta tantissimo a mantenere il progetto attivo e visibile!
 
 <p align="right">(<a href="#makermanager">ritorna all'inizio</a>)</p>
 
