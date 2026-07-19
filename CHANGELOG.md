@@ -167,12 +167,12 @@ Sono stati aggiunti numerosi endpoint di base
   * Aggiungi una riga alla BOM di un progetto
   * Elimina una riga dalla BOM di un progetto a partire dal suo id
 
-[Client]: https://gitlab.com/peppe27/MakerManager-Client
-[Server]: https://gitlab.com/peppe27/MakerManager-Server
-[Client v0.0.0]: https://gitlab.com/peppe27/MakerManager-Client/releases/tag/v0.0.0
-[Client v1.0.0]: https://gitlab.com/peppe27/MakerManager-Client/releases/tag/v1.0.0
-[Server v0.0.0]: https://gitlab.com/peppe27/MakerManager-Server/releases/tag/v0.0.0
-[Server v0.4.0]: https://gitlab.com/peppe27/MakerManager-Server/releases/tag/v0.4.0
-[Server v0.5.0]: https://gitlab.com/peppe27/MakerManager-Server/releases/tag/v0.5.0
-[Server v0.6.0]: https://gitlab.com/peppe27/MakerManager-Server/releases/tag/v0.6.0
-[Server v1.0.0]: https://gitlab.com/peppe27/MakerManager-Server/releases/tag/v1.0.0
+[Client]: https://github.com/giuse27/MakerManager-Client
+[Server]: https://github.com/giuse27/MakerManager-Server
+[Client v0.0.0]: https://github.com/giuse27/MakerManager-Client/releases/tag/v0.0.0
+[Client v1.0.0]: https://github.com/giuse27/MakerManager-Client/releases/tag/v1.0.0
+[Server v0.0.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.0.0
+[Server v0.4.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.4.0
+[Server v0.5.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.5.0
+[Server v0.6.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v0.6.0
+[Server v1.0.0]: https://github.com/giuse27/MakerManager-Server/releases/tag/v1.0.0
