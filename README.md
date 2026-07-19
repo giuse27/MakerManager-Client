@@ -320,7 +320,7 @@ Dai un'occhiata al documento [**AI.md**](./docs/AI.md).
 
 ## Supporta il progetto
 
-Se questo strumento ti è stato utile, ti ha fatto risparmiare tempo o semplicemente ti piace, considera di lasciarmi una ⭐️ su [GitHub](https://github.com/giuse27/Programmazione-Avanzata-UNIPI).
+Se questo strumento ti è stato utile, ti ha fatto risparmiare tempo o semplicemente ti piace, considera di lasciarmi una ⭐️ su [GitHub](https://github.com/giuse27/MakerManager-Client).
 
 È un piccolo gesto gratuito che mi aiuta tantissimo a mantenere il progetto attivo e visibile!
 
